@@ -1,0 +1,78 @@
+/* General container for login page */
+.login-container {
+    text-align: center;
+    margin-top: 150px;
+  }
+  
+  /* Box styling for login content with a border */
+  .login-box {
+    margin: 0 auto;
+    padding: 100px; 
+    border: 5px solid #ccc;
+    border-radius: 10px; 
+    width: 30%; 
+    background-color: white; 
+  }
+  
+  /* Title and subtitle styles */
+  .login-title {
+    color: red;
+    font-size: 2rem;
+    margin-top: 10px;
+  }
+  
+  .login-subtitle {
+    font-size: 1.2rem;
+    margin-top: -15px;
+  }
+  
+  .login-heading {
+    margin: 20px 0;
+  }
+  
+  /* Button styling */
+  .login-btn {
+    width: 30%;
+    margin: 0 auto;
+    text-transform: none;
+  }
+  
+  .google-btn {
+    background-color: red !important;
+    color: white !important;
+    width: -webkit-fill-available;
+  }
+  
+  .apple-btn {
+    background-color: black !important;
+    color: white !important;
+    width: -webkit-fill-available;
+  }
+  
+  /* Input field styling */
+  .login-input {
+    width: -webkit-fill-available;
+  }
+  
+  /* Divider styling */
+  .divider {
+    margin: 10px auto;
+    border-bottom: 2px solid #ccc;
+    width: 30%;
+    width: -webkit-fill-available;
+  }
+  
+  /* Continue button styling */
+  .continue-btn {
+    background-color: red !important;
+    color: white !important;
+    
+  }
+  /* General container for Dashboard page */
+  .text-center {
+    text-align: center;
+    margin-top: 150px; 
+    font-size: 20px; 
+    font-weight: bold; 
+    color: #333; 
+  }
