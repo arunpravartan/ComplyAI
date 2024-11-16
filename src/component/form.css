@@ -1,22 +1,26 @@
 /* General container for login page */
 .login-container {
     text-align: center;
-    margin-top: 150px;
+    margin-top: 70px;
   }
   
   /* Box styling for login content with a border */
   .login-box {
     margin: 0 auto;
-    padding: 100px; 
+    padding: 10px;
     border: 5px solid #ccc;
-    border-radius: 10px; 
-    width: 30%; 
-    background-color: white; 
+    border-radius: 5px;
+    width: 95%;
+    background-color: white;
+  }
+  .login-box .login-cantainer {
+    width: 30%;
+    margin-left: 35%;
   }
   
   /* Title and subtitle styles */
   .login-title {
-    color: red;
+    color: #FF7A59;
     font-size: 2rem;
     margin-top: 10px;
   }
@@ -38,7 +42,7 @@
   }
   
   .google-btn {
-    background-color: red !important;
+    background-color: #FF7A59 !important;
     color: white !important;
     width: -webkit-fill-available;
   }
@@ -64,7 +68,7 @@
   
   /* Continue button styling */
   .continue-btn {
-    background-color: red !important;
+    background-color: #FF7A59 !important;
     color: white !important;
     
   }

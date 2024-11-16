@@ -26,6 +26,7 @@ function Login() {
   return (
     <div className="login-container">
       <div className="login-box">
+        <div className="login-cantainer">
         <h1 className="login-title">ComplyAI</h1>
         <p className="login-subtitle">One Step Solution For Your Company</p>
         <h2 className="login-heading">Sign in or Sign up to continue</h2>
@@ -77,6 +78,7 @@ function Login() {
         >
           Continue
         </Button>
+        </div>
       </div>
     </div>
   );
