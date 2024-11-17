@@ -1,21 +1,23 @@
 /* General container for login page */
 .login-container {
     text-align: center;
-    margin-top: 70px;
+    margin-top: 10px;
   }
   
   /* Box styling for login content with a border */
   .login-box {
-    margin: 0 auto;
-    padding: 10px;
-    border: 5px solid #ccc;
+    margin: 10px auto;
+    padding: 1px;
+    border: 1.5px solid #ccc;
     border-radius: 5px;
-    width: 95%;
+    width: 98%;
     background-color: white;
   }
   .login-box .login-cantainer {
     width: 30%;
     margin-left: 35%;
+    margin-top: 4.6%;
+    margin-bottom: 70px;
   }
   
   /* Title and subtitle styles */
@@ -64,7 +66,7 @@
     border-bottom: 2px solid #ccc;
     width: 30%;
     width: -webkit-fill-available;
-  }
+  } 
   
   /* Continue button styling */
   .continue-btn {
@@ -76,7 +78,7 @@
   .text-center {
     text-align: center;
     margin-top: 150px; 
-    font-size: 20px; 
+    font-size: 15px; 
     font-weight: bold; 
     color: #333; 
   }
