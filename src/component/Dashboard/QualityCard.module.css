@@ -1,0 +1,64 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    box-shadow: 2px 2px 6.8px 0px rgba(0, 0, 0, 0.25);
+    width: 30%;
+    padding: 15px;
+    margin-top: -100px;
+    text-align: center;
+    font: 400 20px Unbounded, sans-serif;
+  }
+  
+  .active {
+    background-color: var(--gray-5, #f9f7f7);
+  }
+  
+  .inactive {
+    background-color: var(--gray-4, #ecebeb);
+  }
+  
+  .cardIcon {
+    width: 77px;
+    height: 80px;
+    object-fit: contain;
+  }
+  
+  .cardTitle {
+    font-size: 24px;
+    margin-top: 14px;
+    color: var(--primary-red, #ff7a59);
+  }
+  
+  .inactive .cardTitle {
+    color: var(--gray-2, #b2b2b2);
+  }
+  
+  .procedureButton {
+    width: 100%;
+    border-radius: 11px;
+    background-color: var(--primary-red, #ff7a59);
+    color: #fff;
+    margin-top: 14px;
+    min-height: 65px;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 20px;
+  }
+  
+  .inactive .procedureButton {
+    background-color: var(--gray-2, #b2b2b2);
+  }
+  
+  @media (max-width: 991px) {
+    .card {
+      width: 100%;
+      margin-top: 40px;
+    }
+  
+    .procedureButton {
+      padding: 20px 10px;
+    }
+  }

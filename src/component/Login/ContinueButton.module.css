@@ -1,0 +1,17 @@
+.continueButton {
+  display: block;
+  margin: 21px auto 0;
+  border-radius: 14px;
+  background-color: var(--primary-red, #ff7a59);
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 19px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .continueButton {
+    width: 80%;
+  }
+}
