@@ -3,7 +3,7 @@ import QualityCard from './QualityCard';
 import styles from './QualityAssistant.module.css';
 import { useNavigate } from 'react-router-dom';
 
-function QualityAssistant() {
+const QualityAssistant = () => {
   const navigate = useNavigate();
   const qualityCards = [
     {
@@ -29,6 +29,9 @@ function QualityAssistant() {
   const handleCardClick = (card, index) => {
    if(index === 0){
     navigate('/auditchecker');
+   }
+   if(index === 1){
+    navigate('/knowledgeHub');
    }
   }
   return (

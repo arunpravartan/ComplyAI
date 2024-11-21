@@ -23,13 +23,13 @@ function LoginPage() {
           <p className={styles.subtitle}>One step solution for your company</p>
         </header>
         <p className={styles.signInPrompt}>Sign in or sign up to continue</p>
-        <GoogleButton />
-        <AppleButton />
+        <GoogleButton onClick={handleContinue}/>
+        <AppleButton onClick={handleContinue}/>
         <hr className={styles.divider} />
-        <form className={styles.loginForm}>
+        <form className={styles.loginForm}  onSubmit={handleContinue}>
           <EmailInput />
           <PasswordInput />
-          <ContinueButton onClick={handleContinue} />
+          <ContinueButton/>
         </form>
       </section>
     </main>

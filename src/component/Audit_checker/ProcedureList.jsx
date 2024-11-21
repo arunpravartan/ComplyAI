@@ -2,10 +2,10 @@ import React from 'react';
 
 const ProcedureList = () => {
   const procedures = [
-    { name: "Procedure 1", active: true },
-    { name: "Procedure 2", active: false },
-    { name: "Procedure 3", active: false },
-    { name: "Procedure 4", active: false },
+    { name: "History 1", active: true },
+    { name: "History 2", active: false },
+    { name: "History 3", active: false },
+    { name: "History 4", active: false },
   ];
 
   return (
