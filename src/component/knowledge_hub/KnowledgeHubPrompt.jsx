@@ -2,7 +2,6 @@ import React from 'react';
 import '../Recommended_action/auditStyle.css';
 import { useNavigate } from 'react-router-dom';
 import styles from '../Login/EmailInput.module.css';
-
 const KnowledgeHubPrompt = () => {
   const navigate = useNavigate();
   const sidebarIcons = [
@@ -41,6 +40,9 @@ const KnowledgeHubPrompt = () => {
       window.location.reload();
     }
   }
+  const handleSubmit = () => {
+    navigate('/KnowledgeHubQuery'); 
+  };
 
   const handleCopyClick = () => {
     const textToCopy = document.querySelector('.findings-text').textContent;
@@ -92,10 +94,10 @@ const KnowledgeHubPrompt = () => {
     URL.revokeObjectURL(url);
   };
   
-  const handlePrintClick = () => {
-    const textToDownload = document.querySelector('.findings-text').textContent;
-    window.print(textToDownload);
-  }
+  // const handlePrintClick = () => {
+  //   const textToDownload = document.querySelector('.findings-text').textContent;
+  //   window.print(textToDownload);
+  // }
   return (
     <main className="audit-container">
       <aside className="sidebar-audit">
@@ -114,14 +116,15 @@ const KnowledgeHubPrompt = () => {
       <input
         type="email"
         id="email"
-        className={styles.emailInput}
+        className={styles.email}
         placeholder="Enter your email"
         required
       />
     </div>
           <div className="download-print-buttons">
-            <button className="action-button-downlaod" onClick={() => {handleDownloadClick()}}>Download</button>
-            <button className="action-button-downlaod" onClick={() => {handlePrintClick()}}>Print</button>
+            {/* <button className="action-button-downlaod" onClick={() => {handleDownloadClick()}}>Download</button>
+            <button className="action-button-downlaod" onClick={() => {handlePrintClick()}}>Print</button> */}
+            <button type="submit" onClick={handleSubmit} className="action-button-Submit">Submit</button>
           </div>
         </div>
       </section>

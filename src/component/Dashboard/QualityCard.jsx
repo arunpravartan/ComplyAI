@@ -7,9 +7,9 @@ function QualityCard({ title, icon, procedures, active, onClick }) {
       <img src={icon} alt="" className={styles.cardIcon} />
       <h3 className={styles.cardTitle}>{title}</h3>
       {procedures.map((procedure, index) => (
-        <button key={index} className={styles.procedureButton}>
-          {procedure}
-        </button>
+         <p key={index} className={styles.procedureText}>
+         {procedure}
+       </p>
       ))}
     </article>
   );
