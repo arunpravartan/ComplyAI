@@ -5,8 +5,7 @@
     width: auto;
     color: var(--gray-2, #b2b2b2);
     padding: 15px;
-    padding-top: 0px;
-    /* font: 400 20px Unbounded, sans-serif; */
+    padding-top: 30px;
   }
   
   .logo {

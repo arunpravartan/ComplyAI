@@ -1,9 +1,10 @@
-import React from 'react';
+import {useState} from 'react';
 import '../Recommended_action/auditStyle.css';
 import { useNavigate } from 'react-router-dom';
 import styles from '../Login/EmailInput.module.css';
 const KnowledgeHubPrompt = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
   const sidebarIcons = [
     { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/6df618ae8636df5739c65c0445c8a8045fd46b2191a0e0cf7d0ba0bd2ec097b1?placeholderIfAbsent=true&apiKey=3a4ca977ef8d444389c929708ee52065", alt: "Main icon" },
     { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/ea86de254a516581c29aaa6480ff5a1b67b50de5504ce9cfcf22bcd493309d46?placeholderIfAbsent=true&apiKey=3a4ca977ef8d444389c929708ee52065", alt: "Secondary icon 1" },
@@ -31,8 +32,8 @@ const KnowledgeHubPrompt = () => {
 
   const handleIconClick = (index) => {
     if (index === 0) {
-      navigate(-1); 
-    } 
+      navigate(-1);
+    }
     if (index === 1) {
       navigate('/dashboard');
     }
@@ -40,8 +41,19 @@ const KnowledgeHubPrompt = () => {
       window.location.reload();
     }
   }
-  const handleSubmit = () => {
-    navigate('/KnowledgeHubQuery'); 
+
+  const handleInputChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent form submission
+    if (!email.trim()) {
+      alert('Please enter your query before submitting.');
+    } else {
+      navigate('/KnowledgeHubQuery');
+    }
+    
   };
 
   const handleCopyClick = () => {
@@ -52,11 +64,11 @@ const KnowledgeHubPrompt = () => {
 
   const handleShareClick = () => {
     const textToShare = document.querySelector('.findings-text').textContent;
-    
+
     // Encode text to make it URL-friendly
     const encodedText = encodeURIComponent(textToShare);
     const encodedUrl = encodeURIComponent(window.location.href);
-  
+
     // Check if the Share API is available
     if (navigator.share) {
       navigator.share({
@@ -68,7 +80,7 @@ const KnowledgeHubPrompt = () => {
       // Fallback: Create custom share links for Email and WhatsApp
       const emailLink = `mailto:?subject=Check this out&body=${encodedText}`;
       const whatsappLink = `https://wa.me/?text=${encodedText}`;
-  
+
       // Open share options in a new window
       const shareMenu = document.createElement('div');
       shareMenu.innerHTML = `
@@ -83,27 +95,13 @@ const KnowledgeHubPrompt = () => {
       // You can style this or show it in a modal to improve UX
     }
   };
-  const handleDownloadClick = () => {
-    const textToDownload = document.querySelector('.findings-text').textContent;
-    const blob = new Blob([textToDownload], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'findings.txt';
-    link.click();
-    URL.revokeObjectURL(url);
-  };
-  
-  // const handlePrintClick = () => {
-  //   const textToDownload = document.querySelector('.findings-text').textContent;
-  //   window.print(textToDownload);
-  // }
+
   return (
     <main className="audit-container">
       <aside className="sidebar-audit">
         {sidebarIcons.map((icon, index) => (
           <div key={index} className="icon-wrapper">
-            <img src={icon.src} alt={icon.alt} className="icon" onClick={() => handleIconClick(index)}/>
+            <img src={icon.src} alt={icon.alt} className="icon" onClick={() => handleIconClick(index)} />
           </div>
         ))}
       </aside>
@@ -111,21 +109,20 @@ const KnowledgeHubPrompt = () => {
         <div className="content-wrapper-audit">
           <h1 className="title-audit">Ask queries from knowledge base</h1>
           <hr className="divider" />
-          <div className={styles.inputWrapper}>
-      {/* <label htmlFor="email" className="visually-hidden">Enter your email</label> */}
-      <input
-        type="email"
-        id="email"
-        className={styles.email}
-        placeholder="Enter your email"
-        required
-      />
-    </div>
-          <div className="download-print-buttons">
-            {/* <button className="action-button-downlaod" onClick={() => {handleDownloadClick()}}>Download</button>
-            <button className="action-button-downlaod" onClick={() => {handlePrintClick()}}>Print</button> */}
-            <button type="submit" onClick={handleSubmit} className="action-button-Submit">Submit</button>
-          </div>
+            <div className={styles.inputWrapper}>
+              <input
+               type="email"
+               id="email"
+               className={styles.email}
+               placeholder="Type your queries related to internal procedures, external guidelines, or other queries"
+               value={email}
+               onChange={handleInputChange}
+               required
+              />
+            </div>
+            <div className="download-print-buttons">
+              <button type="submit" onClick={handleSubmit} className="action-button-Submit">Submit</button>
+            </div>
         </div>
       </section>
     </main>

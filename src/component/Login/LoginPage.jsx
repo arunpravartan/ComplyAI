@@ -20,7 +20,7 @@ function LoginPage() {
       <section className={styles.loginContainer}>
         <header>
           <h1 className={styles.title}>ComplyAI</h1>
-          <p className={styles.subtitle}>One step solution for your company</p>
+          <p className={styles.subtitle}>AI Agent for SOP validation, knowledge search, and predictive analytics</p>
         </header>
         <p className={styles.signInPrompt}>Sign in or sign up to continue</p>
         <GoogleButton onClick={handleContinue}/>
