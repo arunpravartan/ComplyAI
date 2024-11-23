@@ -9,17 +9,18 @@
   }
   
   .title {
-    color: var(--gray-1, #858585);
+    color: var(--primary-teal, #15808D);
     text-align: center;
-    font: 400 36px Unbounded, sans-serif;
+    /* font: 400 36px Unbounded, sans-serif; */
     margin-bottom: 138px;
     margin-top: -50px;
+    font-size: 50px;
   }
   
   .cardContainer {
     display: flex;
-    justify-content: space-between;
-    gap: 30px;
+    justify-content: center;
+    gap: 100px;
   }
   
   @media (max-width: 991px) {

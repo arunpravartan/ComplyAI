@@ -9,7 +9,7 @@ const AuditChecker = () => {
     <main className="audit-checker">
       <Sidebar />
       <div className="main-content">
-        <h1 className="title">Audit Cheker</h1>
+        <h1 className="title">Quality Doc Validation</h1>
         <div className="content-wrapper">
           <ProcedureList />
           <UploadSection />

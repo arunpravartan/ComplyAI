@@ -1,6 +1,6 @@
 :root {
     --bg-red: #fff9f5;
-    --primary-red: #ff7a59;
+    --primary-teal: #15808D;
     --gray-1: #858585;
     --gray-2: #b2b2b2;
     --gray-4: #ecebeb; 
@@ -64,7 +64,7 @@
   }
   
   .title {
-    color: var(--primary-red);
+    color: var(--primary-teal, #15808D);
     text-align: right;
     align-self: flex-start;
     /* font: 400 36px Unbounded, sans-serif; */
@@ -90,9 +90,9 @@
   
   .procedure-header {
     justify-content: flex-end;
-    background-color: var(--primary-red);
+    background-color: var(--gray-1);
     display: flex;
-    gap: 40px 89px;
+    gap: 40px 120px;
     overflow: hidden;
     color: #fff;
     padding: 7px 12px 7px 67px;
@@ -105,7 +105,7 @@
   }
   
   .procedure-item-active {
-    background-color: var(--gray-4);
+    background-color: var(--gray-1#ECEBEB);
     color: var(--gray-1);
   }
   
@@ -158,7 +158,7 @@
   .submit-button {
     align-self: center;
     border-radius: 20px;
-    background-color: var(--primary-red);
+    background-color: var(--primary-teal);
     margin-top: 50px;
     min-height: 56px;
     width: 168px;
@@ -171,6 +171,7 @@
     padding: 16px 37px;
     border: none;
     cursor: pointer;
+    margin-left: 300px;
   }
   
   .visually-hidden {

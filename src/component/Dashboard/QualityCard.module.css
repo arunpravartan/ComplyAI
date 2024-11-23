@@ -4,8 +4,9 @@
     align-items: center;
     border-radius: 16px;
     box-shadow: 2px 2px 6.8px 0px rgba(0, 0, 0, 0.25);
-    width: 30%;
+    width: 18%;
     padding: 15px;
+    height : 250px;
     margin-top: -100px;
     text-align: center;
     font: 400 20px Unbounded, sans-serif;
@@ -21,14 +22,14 @@
   
   .cardIcon {
     width: 77px;
-    height: 80px;
+    height: 50px;
     object-fit: contain;
   }
   
   .cardTitle {
     font-size: 24px;
     margin-top: 14px;
-    color: var(--primary-red, #ff7a59);
+    color: var(--primary-teal, #15808D);
   }
   
   .inactive .cardTitle {
@@ -38,7 +39,7 @@
   .procedureButton {
     width: 100%;
     border-radius: 11px;
-    background-color: var(--primary-red, #ff7a59);
+    background-color: var(--primary-teal, #15808D);
     color: #fff;
     margin-top: 14px;
     min-height: 65px;

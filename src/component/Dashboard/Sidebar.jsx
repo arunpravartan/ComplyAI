@@ -18,7 +18,7 @@ function Sidebar() {
   return (
     <nav className={styles.sidebar}>
       <div className={styles.logo} onClick={closeSidebar}>
-        <h1 className={styles.companyName}>ComplyAI</h1>
+        {/* <h1 className={styles.companyName}>ComplyAI</h1> */}
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6df618ae8636df5739c65c0445c8a8045fd46b2191a0e0cf7d0ba0bd2ec097b1?placeholderIfAbsent=true&apiKey=3a4ca977ef8d444389c929708ee52065" alt="ComplyAI Logo" className={styles.logoImage} />
       </div>
       <ul className={styles.menu}>

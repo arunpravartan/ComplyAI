@@ -103,7 +103,7 @@ const AuditFindings = () => {
     <main className="audit-container">
       <aside className="sidebar-audit">
         {sidebarIcons.map((icon, index) => (
-          <div key={index} className="icon-wrapper">
+          <div key={index} className="icon-wrapper" style={{ 'marginTop': icon.alt === "Secondary icon 3" ? "400px" : "0px" }}>
             <img src={icon.src} alt={icon.alt} className="icon" onClick={() => handleIconClick(index)}/>
           </div>
         ))}
@@ -112,9 +112,9 @@ const AuditFindings = () => {
         <div className="content-wrapper-audit">
           <h1 className="title-audit">Findings of Audit Checker</h1>
           <hr className="divider" />
-          <div className="findings-container">
+          <div className="findings-container" style={{"marginLeft": "75px"}}>
             <h2 className="visually-hidden-audit">Audit Findings</h2>
-            <p className="findings-text">
+            <p className="findings-text" style={{height : '270px', overflow : 'scroll', overflowX: 'hidden'}}>
               <strong>Document Name : {fileName}</strong><br />
               <strong>Date : {new Date().toLocaleDateString()}</strong><br />
               {findings.map((finding, index) => (
@@ -126,8 +126,8 @@ const AuditFindings = () => {
                 </React.Fragment>
               ))}
             </p>
-            <div className="action-buttons">
-              <button className="button-wrapper" aria-label="Copy findings" onClick={() => {handleCopyClick()}}>
+            <div className="action-buttons" style={{"marginTop": "0px"}}>
+              <button className="button-wrapper" aria-label="Copy findings" onClick={() => {handleCopyClick()}} style={{"marginTop": "0px"}}>
                 <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bc3366fb618a48362b000029ff6d79a82380f2547812fe25efdb6334a76a20a3?placeholderIfAbsent=true&apiKey=3a4ca977ef8d444389c929708ee52065" alt="" className="button-icon" />
                 <span className="button-text">Copy</span>
               </button>

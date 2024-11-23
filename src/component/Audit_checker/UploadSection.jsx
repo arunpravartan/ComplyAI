@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgressBarComponent from '../Progress_bar';
 import axios from 'axios';
-
+ 
 const UploadSection = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [error, setError] = useState("");

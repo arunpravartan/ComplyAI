@@ -13,7 +13,26 @@
     border: none;
     outline: none;
   }
-  
+  .email{
+    width: 50%;
+    border-radius: 14px;
+    background-color: var(--gray-4, #ecebeb);
+    font-size: 20px;
+    padding: 25px 150px;
+    border: none;
+    outline: none;
+    /* margin-top: 320px; */
+  }
+.text{
+  width: 50%;
+    border-radius: 14px;
+    background-color: var(--gray-4, #ecebeb);
+    font-size: 20px;
+    padding: 40px 80px;
+    border: none;
+    outline: none;
+    margin-top: 20px; 
+}
   .emailInput::placeholder {
     color: var(--gray-2, #b2b2b2);
   }
