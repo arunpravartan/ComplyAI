@@ -19,8 +19,8 @@ function LoginPage() {
     <main className={styles.loginPage}>
       <section className={styles.loginContainer}>
         <header>
-          <h1 className={styles.title}>ComplyAI</h1>
-          <p className={styles.subtitle}>AI Agent for SOP validation, knowledge search, and predictive analytics</p>
+          <h1 className={styles.title} style={{marginBottom : '10px'}}>ComplyAI</h1>
+          <p className={styles.subtitle} style={{color : 'grey', fontSize : '22px'}}>AI Agent for SOP validation, knowledge search, and predictive analytics</p>
         </header>
         <p className={styles.signInPrompt}>Sign in or sign up to continue</p>
         <GoogleButton onClick={handleContinue}/>

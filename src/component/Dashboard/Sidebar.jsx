@@ -29,7 +29,7 @@ function Sidebar() {
           </li>
         ))}
       </ul>
-      <ul className={styles.menu} style={{ marginTop: '290px' }}>
+      <ul className={styles.menu} style={{ marginTop: '420px' }}>
         {candidateItems.map((item, index) => (
           <li key={index} className={styles.menuItem}>
             <img src={item.icon} alt="" className={styles.menuIcon} />

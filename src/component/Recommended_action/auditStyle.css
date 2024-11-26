@@ -1,5 +1,5 @@
 :root {
-    --bg-red: #fff9f5;
+    --bg-red: #ecebeb;
     --gray-5: #f9f7f7;
     --primary-teal: #15808D;
     --gray-2: #b2b2b2; 
@@ -11,6 +11,8 @@
     gap: 14px;
     overflow: hidden;
     flex-wrap: wrap;
+    height: 680px;
+    width : 97%;
     padding: 27px 70px 27px 22px;
   }
   
@@ -103,7 +105,7 @@
     display: flex;
     /* width: 344px; */
     max-width: 100%;
-    gap: 40px 40px;
+    gap: 40px 150px !important;
     font-family: Unbounded, sans-serif;
     color: var(--gray-2);
     white-space: nowrap;

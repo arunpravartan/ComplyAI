@@ -1,7 +1,7 @@
 .loginPage {
   display: flex;
   justify-content: center;
-  background: var(--bg-red, #fff9f5);
+  background: var(--bg-red, #ecebeb);
   padding: 26px 37px;
   font: 400 24px Unbounded, sans-serif;
   color: var(--gray-2, #b2b2b2);

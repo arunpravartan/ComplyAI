@@ -35,7 +35,7 @@ const QualityAssistant = () => {
    }
   }
   return (
-    <section className={styles.qualityAssistant}>
+    <section className={styles.qualityAssistant} style={{width : '1220px'}}>
       <h2 className={styles.title}>Comply AI</h2>
       <div className={styles.cardContainer}>
         {qualityCards.map((card, index) => (

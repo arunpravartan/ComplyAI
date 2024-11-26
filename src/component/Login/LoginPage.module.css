@@ -1,7 +1,7 @@
 .loginPage {
     display: flex;
     justify-content: center;
-    background: var(--bg-red, #fff9f5);
+    background: var(--bg-red, #ecebeb);
     /* padding: 26px 37px; */
     font: 400 24px Unbounded, sans-serif;
     color: var(--gray-2, #b2b2b2);
@@ -16,9 +16,9 @@
     flex-direction: column;
     align-items: center;
     padding: 135px 245px;
-    max-width: 900px;
+    max-width: 1020px;
     width: 1100%;
-    height: 360px;
+    height: 430px;
   }
  
   
@@ -37,8 +37,8 @@
   
   .signInPrompt {
     color: var(--gray-1, #858585);
-    font-size: 36px;
-    margin-top: 30px;
+    font-size: 28px;
+    /* margin-top: 30px; */
     text-align: center;
   }
   
