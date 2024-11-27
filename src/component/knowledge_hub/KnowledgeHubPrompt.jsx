@@ -46,24 +46,26 @@ const Chatbot = () => {
 
   return (
     <main>
-      <div className="chatbot-container">
+      <div>
         <Sidebar />
-        <h1>Knowledge agent</h1>
-        <div className="chatbot-input-section">
-          <input
+        <div className="chatbot-container">
+          <h1>Knowledge agent</h1>
+          <div className="chatbot-input-section">
+            <input
             type="text"
             value={question}
             onChange={handleInputChange}
             placeholder="Ask anything about regulatory compliance and internal policies"
             className="chatbot-input"
-          />
-          <button onClick={handleSubmit} className="chatbot-submit">
-            Submit
-          </button>
-        </div>
-        {loading && <p className="chatbot-loading">Finding the answers...</p>}
-        {response && <div className="chatbot-response">{response}</div>}
-        {error && <div className="chatbot-error">{error}</div>}
+            />
+            <button onClick={handleSubmit} className="chatbot-submit">
+              Submit
+            </button>
+          </div>
+          {loading && <p className="chatbot-loading">Finding the answers...</p>}
+          {response && <div className="chatbot-response">{response}</div>}
+          {error && <div className="chatbot-error">{error}</div>}
+          </div>
       </div>
    </main>
   );
