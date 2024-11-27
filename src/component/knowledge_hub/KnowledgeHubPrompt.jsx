@@ -32,9 +32,9 @@ const KnowledgeHubPrompt = () => {
     }
   }
 
-  const handleInputChange = (event) => {
-    setEmail(event.target.value);
-  };
+  // const handleInputChange = (event) => {
+  //   setEmail(event.target.value);
+  // };
 
   // const handleSubmit = (event) => {
   //   event.preventDefault(); // Prevent form submission
@@ -46,9 +46,9 @@ const KnowledgeHubPrompt = () => {
     
   // };
 
-  // const handleInputChange = (event) => {
-  //   setSearchText(event.target.value);
-  // };
+  const handleInputChange = (event) => {
+    setSearchText(event.target.value);
+  };
 
   const handleSubmit = async(event) => {
     event.preventDefault(); // Prevent form submission
