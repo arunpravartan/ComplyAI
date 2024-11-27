@@ -112,24 +112,24 @@ const AuditFindings = () => {
         <div className="content-wrapper-audit">
           <h1 className="title-audit">Findings of Audit Checker</h1>
           <hr className="divider" />
-          <div className="findings-container" style={{ "marginLeft": "75px", height:'450px' }}>
+          <div className="findings-container" style={{ "marginLeft": "75px", height: '450px' }}>
             <h2 className="visually-hidden-audit">Audit Findings</h2>
-            <p className="findings-text" style={{ height: '370px', overflow: 'scroll', overflowX: 'hidden', fontSize: '20px', fontStyle:'italic' }}>
+            <p className="findings-text" style={{ height: '370px', overflow: 'scroll', overflowX: 'hidden', fontSize: '20px', fontStyle: 'italic' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                 <strong>Document Name: {fileName}</strong>
-                <strong style={{marginRight : '20px'}}>Date: {new Date().toLocaleDateString()}</strong>
+                <strong style={{ marginRight: '20px' }}>Date: {new Date().toLocaleDateString()}</strong>
               </div>
               {findings.map((finding, index) => (
                 <div key={index} style={{ marginTop: '15px' }}>
-                  <strong> {index + 1}.</strong> Finding {index + 1} :<br/> {finding.issue}
+                  <strong> {index + 1}.</strong> Finding {index + 1} :<br /> {finding.issue}
                   <br />
                   {/* Uncomment below for recommendations */}
                   {finding.recommendation && (
-                  <>
-                    <strong>Recomendation:</strong> {finding.recommendation}
-                    <br />
-                  </>
-                )}
+                    <>
+                      <strong>Recommendation:</strong> {finding.recommendation}
+                      <br />
+                    </>
+                  )}
                 </div>
               ))}
 
