@@ -124,12 +124,12 @@ const AuditFindings = () => {
                   <strong> {index + 1}.</strong> Finding {index + 1} :<br/> {finding.issue}
                   <br />
                   {/* Uncomment below for recommendations */}
-                  {/* {finding.recommendation && (
-      <>
-        <strong>Mitigating Actions:</strong> {finding.recommendation}
-        <br />
-      </>
-    )} */}
+                  {finding.recommendation && (
+                  <>
+                    <strong>Recomendation:</strong> {finding.recommendation}
+                    <br />
+                  </>
+                )}
                 </div>
               ))}
 
