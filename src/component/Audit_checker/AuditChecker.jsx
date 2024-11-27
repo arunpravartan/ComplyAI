@@ -6,10 +6,10 @@ import './style.css';
 
 const AuditChecker = () => {
   return (
-    <main className="audit-checker">
+    <main className="audit-checker" style={{height:'675px'}}>
       <Sidebar />
       <div className="main-content">
-        <h1 className="title">Quality Doc Validation</h1>
+        <h1 className="title">Document Validation</h1>
         <div className="content-wrapper">
           <ProcedureList />
           <UploadSection />

@@ -14,7 +14,7 @@ const SidebarItem = ({ iconSrc, altText, index }) => {
     }
   }
   return (
-    <div className="sidebar-item">
+    <div className="sidebar-item" style={{ 'marginTop': altText === "Sidebar item 4" ? "490px" : "0px" }}>
       <img loading="lazy" src={iconSrc} alt={altText} className="sidebar-item-icon" onClick={() => {handleIconClick(index)}}/>
     </div>
   );

@@ -35,8 +35,8 @@ const AuditFindings = () => {
 
   const handleIconClick = (index) => {
     if (index === 0) {
-      navigate(-1); 
-    } 
+      navigate(-1);
+    }
     if (index === 1) {
       navigate('/dashboard');
     }
@@ -52,38 +52,38 @@ const AuditFindings = () => {
   }
 
   const handleShareClick = () => {
-    const textToShare = document.querySelector('.findings-text').textContent;
-    
-    // Encode text to make it URL-friendly
+    const textToShare = document.querySelector('.findings-text')?.textContent || '';
+
+    // Encode text for fallback sharing
     const encodedText = encodeURIComponent(textToShare);
-    const encodedUrl = encodeURIComponent(window.location.href);
-  
+
     // Check if the Share API is available
     if (navigator.share) {
-      navigator.share({
-        title: 'Findings to Share',
-        text: textToShare,
-        url: window.location.href,
-      }).catch((error) => console.error('Sharing failed', error));
+      navigator
+        .share({
+          title: 'Findings to Share',
+          text: textToShare,
+        })
+        .catch((error) => console.error('Sharing failed', error));
     } else {
-      // Fallback: Create custom share links for Email and WhatsApp
-      const emailLink = `mailto:?subject=Check this out&body=${encodedText}`;
+      // Fallback for platforms without Share API
+      const emailLink = `mailto:?subject=Findings to Share&body=${encodedText}`;
       const whatsappLink = `https://wa.me/?text=${encodedText}`;
-  
-      // Open share options in a new window
+
+      // Display fallback share links
       const shareMenu = document.createElement('div');
       shareMenu.innerHTML = `
-        <div>
-          <a href="${emailLink}" target="_blank">Share via Email</a>
-        </div>
-        <div>
+        <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 8px;">
+          <p>Share this content:</p>
+          <a href="${emailLink}" target="_blank" style="margin-right: 10px;">Share via Email</a>
           <a href="${whatsappLink}" target="_blank">Share via WhatsApp</a>
+          <button style="margin-top: 10px;" onclick="document.body.removeChild(this.parentElement)">Close</button>
         </div>
       `;
       document.body.appendChild(shareMenu);
-      // You can style this or show it in a modal to improve UX
     }
   };
+
   const handleDownloadClick = () => {
     const textToDownload = document.querySelector('.findings-text').textContent;
     const blob = new Blob([textToDownload], { type: 'text/plain' });
@@ -94,7 +94,7 @@ const AuditFindings = () => {
     link.click();
     URL.revokeObjectURL(url);
   };
-  
+
   const handlePrintClick = () => {
     const textToDownload = document.querySelector('.findings-text').textContent;
     window.print(textToDownload);
@@ -103,8 +103,8 @@ const AuditFindings = () => {
     <main className="audit-container">
       <aside className="sidebar-audit">
         {sidebarIcons.map((icon, index) => (
-          <div key={index} className="icon-wrapper">
-            <img src={icon.src} alt={icon.alt} className="icon" onClick={() => handleIconClick(index)}/>
+          <div key={index} className="icon-wrapper" style={{ 'marginTop': icon.alt === "Secondary icon 3" ? "480px" : "0px" }}>
+            <img src={icon.src} alt={icon.alt} className="icon" onClick={() => handleIconClick(index)} />
           </div>
         ))}
       </aside>
@@ -112,34 +112,42 @@ const AuditFindings = () => {
         <div className="content-wrapper-audit">
           <h1 className="title-audit">Findings of Audit Checker</h1>
           <hr className="divider" />
-          <div className="findings-container">
+          <div className="findings-container" style={{ "marginLeft": "75px", height:'450px' }}>
             <h2 className="visually-hidden-audit">Audit Findings</h2>
-            <p className="findings-text">
-              <strong>Document Name : {fileName}</strong><br />
-              <strong>Date : {new Date().toLocaleDateString()}</strong><br />
+            <p className="findings-text" style={{ height: '370px', overflow: 'scroll', overflowX: 'hidden', fontSize: '20px', fontStyle:'italic' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                <strong>Document Name: {fileName}</strong>
+                <strong style={{marginRight : '20px'}}>Date: {new Date().toLocaleDateString()}</strong>
+              </div>
               {findings.map((finding, index) => (
-                <React.Fragment key={index}>
-                  <strong>Finding {index + 1} :</strong> {finding}<br />
-                  {/* {finding.mitigatingActions && (
-                    <><strong>Mitigating Actions:</strong> {finding.mitigatingActions}<br /></>
-                  )} */}
-                </React.Fragment>
+                <div key={index} style={{ marginTop: '15px' }}>
+                  <strong> {index + 1}.</strong> Finding {index + 1} :<br/> {finding.issue}
+                  <br />
+                  {/* Uncomment below for recommendations */}
+                  {/* {finding.recommendation && (
+      <>
+        <strong>Mitigating Actions:</strong> {finding.recommendation}
+        <br />
+      </>
+    )} */}
+                </div>
               ))}
+
             </p>
             <div className="action-buttons">
-              <button className="button-wrapper" aria-label="Copy findings" onClick={() => {handleCopyClick()}}>
+              <button className="button-wrapper" aria-label="Copy findings" onClick={() => { handleCopyClick() }} style={{ "marginTop": "0px" }}>
                 <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bc3366fb618a48362b000029ff6d79a82380f2547812fe25efdb6334a76a20a3?placeholderIfAbsent=true&apiKey=3a4ca977ef8d444389c929708ee52065" alt="" className="button-icon" />
                 <span className="button-text">Copy</span>
               </button>
-              <button className="button-wrapper" aria-label="Share findings" onClick={() => {handleShareClick()}}>
+              <button className="button-wrapper" aria-label="Share findings" onClick={() => { handleShareClick() }}>
                 <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/351d06a8af9b954457b9e843a1b1d3e7a52d93230ffd1af5339c31a5d8871a3f?placeholderIfAbsent=true&apiKey=3a4ca977ef8d444389c929708ee52065" alt="" className="button-icon" />
                 <span className="button-text">Share</span>
               </button>
             </div>
           </div>
           <div className="download-print-buttons">
-            <button className="action-button-downlaod" onClick={() => {handleDownloadClick()}}>Download</button>
-            <button className="action-button-downlaod" onClick={() => {handlePrintClick()}}>Print</button>
+            <button className="action-button-downlaod" onClick={() => { handleDownloadClick() }}>Download</button>
+            <button className="action-button-downlaod" onClick={() => { handlePrintClick() }}>Print</button>
           </div>
         </div>
       </section>

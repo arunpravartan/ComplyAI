@@ -1,5 +1,5 @@
 :root {
-    --bg-red: #fff9f5;
+    --bg-red: #ecebeb;
     --gray-5: #f9f7f7;
     --primary-teal: #15808D;
     --gray-2: #b2b2b2; 
@@ -76,7 +76,7 @@
     flex-direction: column;
     overflow: hidden;
     align-items: center;
-    padding: 0 55px 26px;
+    padding: 0 0px 26px;
   }
   .content-audit{
     background-color: #fff;
@@ -124,14 +124,14 @@
   .action-buttons {
     align-self: end;
     display: flex;
-    width: 344px;
+    /* width: 344px; */
     max-width: 100%;
-    gap: 40px 100px;
+    gap: 40px 40px;
     font-family: Unbounded, sans-serif;
     color: var(--gray-2);
     white-space: nowrap;
     line-height: 2;
-    margin: 36px 26px 0 0;
+    /* margin: 36px 26px 0 0; */
   }
   
   .button-wrapper {
@@ -139,7 +139,7 @@
     flex: 1;
     border-radius: 5px;
     border-style: none;
-    margin-left: -200px;
+    /* margin-left: -200px; */
   }
   
   .button-icon {
@@ -181,7 +181,7 @@
     align-self: center;
     border-radius: 20px;
     background-color: var(--primary-teal);
-    margin-top: 50px;
+    /* margin-top: 50px; */
     min-height: 56px;
     width: 168px;
     max-width: 100%;
