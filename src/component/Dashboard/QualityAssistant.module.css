@@ -1,0 +1,41 @@
+.qualityAssistant {
+    border-radius: 26px;
+    box-shadow: 2px 2px 6.8px 0px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+    width: 76%;
+    overflow: hidden;
+    margin: 30px 10px 5px 10px;
+    padding: 120px 45px 105px;
+  }
+  
+  .title {
+    color: var(--primary-teal, #15808D);
+    text-align: center;
+    /* font: 400 36px Unbounded, sans-serif; */
+    margin-bottom: 138px;
+    margin-top: -50px;
+    font-size: 50px;
+  }
+  
+  .cardContainer {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+  }
+  
+  @media (max-width: 991px) {
+    .qualityAssistant {
+      width: 100%;
+      margin-top: 40px;
+      padding: 100px 20px;
+    }
+  
+    .title {
+      margin-bottom: 40px;
+    }
+  
+    .cardContainer {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
