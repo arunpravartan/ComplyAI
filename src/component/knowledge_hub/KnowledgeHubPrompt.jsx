@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./KnowledgeHubPrompt.css";
 import Sidebar from './Sidebar';
 
-const Chatbot = () => {
+const KnowledgeHubPrompt = () => {
   const [question, setQuestion] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
