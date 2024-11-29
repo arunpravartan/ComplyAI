@@ -36,16 +36,29 @@ const QualityAssistant = () => {
   }
   return (
     <section className={styles.qualityAssistant} style={{width : '1220px'}}>
+<<<<<<< HEAD
       <h2 className={styles.title}>Comply AI</h2>
       <div className={styles.cardContainer}>
         {qualityCards.map((card, index) => (
+=======
+      <h1 className={styles.title}>Comply AI</h1>
+      <div className={styles.cardContainer}>
+        {cards.map((card) => (
+          <QualityCard key={card.id} {...card} />
+          ))}
+        {/*{qualityCards.map((card) => (
+>>>>>>> parent of defc78d2 (Updated QualityAssistant.jsx)
           <QualityCard key={index} 
           {...card}
           customStyles={{
             marginTop: index === 0 ? '0px' : "28px", // Set margin to 0px for index 0
           }}
            onClick={() => handleCardClick(card, index)} />
+<<<<<<< HEAD
         ))}
+=======
+         ))}*/}
+>>>>>>> parent of defc78d2 (Updated QualityAssistant.jsx)
       </div>
     </section>
   );
