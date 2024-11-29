@@ -37,16 +37,22 @@ const QualityAssistant = () => {
   return (
     <section className={styles.qualityAssistant} style={{width : '1220px'}}>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <h2 className={styles.title}>Comply AI</h2>
       <div className={styles.cardContainer}>
         {qualityCards.map((card, index) => (
 =======
+=======
+>>>>>>> parent of defc78d2 (Updated QualityAssistant.jsx)
       <h1 className={styles.title}>Comply AI</h1>
       <div className={styles.cardContainer}>
         {cards.map((card) => (
           <QualityCard key={card.id} {...card} />
           ))}
         {/*{qualityCards.map((card) => (
+<<<<<<< HEAD
+>>>>>>> parent of defc78d2 (Updated QualityAssistant.jsx)
+=======
 >>>>>>> parent of defc78d2 (Updated QualityAssistant.jsx)
           <QualityCard key={index} 
           {...card}
@@ -55,7 +61,11 @@ const QualityAssistant = () => {
           }}
            onClick={() => handleCardClick(card, index)} />
 <<<<<<< HEAD
+<<<<<<< HEAD
         ))}
+=======
+         ))}*/}
+>>>>>>> parent of defc78d2 (Updated QualityAssistant.jsx)
 =======
          ))}*/}
 >>>>>>> parent of defc78d2 (Updated QualityAssistant.jsx)
