@@ -36,16 +36,19 @@ const QualityAssistant = () => {
   }
   return (
     <section className={styles.qualityAssistant} style={{width : '1220px'}}>
-      <h2 className={styles.title}>Comply AI</h2>
+      <h1 className={styles.title}>Comply AI</h1>
       <div className={styles.cardContainer}>
-        {qualityCards.map((card, index) => (
+        {cards.map((card) => (
+          <QualityCard key={card.id} {...card} />
+          ))}
+        {/*{qualityCards.map((card) => (
           <QualityCard key={index} 
           {...card}
           customStyles={{
             marginTop: index === 0 ? '0px' : "28px", // Set margin to 0px for index 0
           }}
            onClick={() => handleCardClick(card, index)} />
-        ))}
+         ))}*/}
       </div>
     </section>
   );
