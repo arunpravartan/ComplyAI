@@ -15,7 +15,7 @@
   cursor: pointer;
   gap: var(--spacing-small, 8px);
   font-size: var(--font-size-large, 20px);
-  color: var(--primary-color, #0066ff);
+  color: var(--primary-teal, #15808d);
 }
 
 .companyName {
@@ -46,7 +46,7 @@
 }
 
 .menuItem:hover {
-  background-color: var(--primary-color, #0066ff);
+  background-color: var(--primary-teal, #15808d);
   color: #fff;
 }
 

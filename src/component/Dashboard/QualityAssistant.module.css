@@ -9,10 +9,10 @@
 }
 
 .title {
-  color: var(--primary-color, #0066ff);
+  color: var(--primary-teal, #15808d);
   text-align: center;
-  font-weight: 600;
-  font-size: var(--font-size-large, 20px);
+  font-weight: 500;
+  font-size: var(--font-size-large, 48px);
   margin-bottom: var(--spacing-large, 24px);
 }
 
