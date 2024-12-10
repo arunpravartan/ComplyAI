@@ -1,71 +1,75 @@
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: auto;
-    color: var(--gray-2, #b2b2b2);
-    padding: 15px;
-    padding-top: 30px;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    gap: 10px;
-    font-size: 22px;
-    color: var(--primary-red, #ff7a59);
-    white-space: nowrap;
-  }
-  
-  .companyName {
-    flex-grow: 1;
-  }
-  
-  .logoImage {
-    width: 34px;
-    height: 34px;
-    object-fit: contain;
-  }
-  
-  .menu {
-    list-style-type: none;
-    padding: 0;
-    margin: 28px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 250px;
+  height: 100vh;
+  background-color: var(--background-color, #f9f9f9);
+  padding: var(--spacing-large, 24px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: var(--spacing-small, 8px);
+  font-size: var(--font-size-large, 20px);
+  color: var(--primary-teal, #15808d);
+}
+
+.companyName {
+  flex-grow: 1;
+}
+
+.logoImage {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--spacing-large, 24px);
+  width: 100%;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small, 8px);
+  padding: var(--spacing-small, 8px);
+  margin-bottom: var(--spacing-small, 8px);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menuItem:hover {
+  background-color: var(--primary-teal, #15808d);
+  color: #fff;
+}
+
+.menuIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.menuText {
+  flex-grow: 1;
+}
+
+@media (max-width: 991px) {
+  .sidebar {
     width: 100%;
+    height: auto;
   }
-  
+
+  .logo {
+    font-size: var(--font-size-base, 16px);
+  }
+
   .menuItem {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    gap: 7px;
-    padding: 3px 0;
-    margin-bottom: 12px;
-    white-space: nowrap;
+    padding: var(--spacing-small, 8px);
   }
-  
-  .menuIcon {
-    width: 31px;
-    height: 31px;
-    object-fit: contain;
-  }
-  
-  .menuText {
-    flex-grow: 1;
-  }
-  
-  @media (max-width: 991px) {
-    .sidebar {
-      width: 100%;
-      margin-top: 36px;
-    }
-  
-    .logo {
-      white-space: initial;
-    }
-  
-    .menuItem {
-      white-space: initial;
-    }
-  }
+}

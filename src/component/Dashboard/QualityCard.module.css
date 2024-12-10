@@ -1,65 +1,81 @@
 .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 16px;
-    box-shadow: 2px 2px 6.8px 0px rgba(0, 0, 0, 0.25);
-    width: 18%;
-    padding: 15px;
-    height : 250px;
-    margin-top: -100px;
-    text-align: center;
-    font: 400 20px Unbounded, sans-serif;
-  }
-  
-  .active {
-    background-color: var(--gray-5, #f9f7f7);
-  }
-  
-  .inactive {
-    background-color: var(--gray-4, #ecebeb);
-  }
-  
-  .cardIcon {
-    width: 77px;
-    height: 50px;
-    object-fit: contain;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--background-color, #fff);
+  width: 100%;
+  max-width: 300px;
+  padding: var(--spacing-medium, 16px);
+  margin: var(--spacing-medium, 16px) auto;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background-color: var(--primary-teal, #15808d);
   .cardTitle {
-    font-size: 24px;
-    margin-top: 14px;
-    color: var(--primary-teal, #15808D);
+    color: #fff; 
+   }
+}
+
+.active {
+  background-color: var(--gray-4, #ecebeb);
+  color: #fff;
+}
+
+.inactive {
+  background-color: var(--gray-4, #ecebeb);
+}
+
+.cardIcon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: var(--spacing-small, 8px);
+  object-fit: contain;
+}
+
+.cardTitle {
+  font-size: var(--font-size-medium, 24px);
+  margin-top: var(--spacing-small, 8px);
+  color: var(--primary-teal, #15808d);
+}
+
+.inactive .cardTitle {
+  color: var(--text-secondary, #666);
+}
+
+.procedureButton {
+  width: 100%;
+  padding: var(--spacing-small, 8px);
+  border-radius: 8px;
+  background-color: var(--primary-teal, #15808d);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.procedureButton:hover {
+  background-color: var(--gray-2, #b2b2b2);
+  p.color: #fff;
+}
+
+.inactive .procedureButton {
+  background-color: var(--gray-2, #b2b2b2);
+  cursor: not-allowed;
+}
+
+@media (max-width: 991px) {
+  .card {
+    width: 90%;
+    margin: var(--spacing-medium, 16px) auto;
   }
-  
-  .inactive .cardTitle {
-    color: var(--gray-2, #b2b2b2);
-  }
-  
+
   .procedureButton {
-    width: 100%;
-    border-radius: 11px;
-    background-color: var(--primary-teal, #15808D);
-    color: #fff;
-    margin-top: 14px;
-    min-height: 65px;
-    border: none;
-    cursor: pointer;
-    font: inherit;
-    padding: 20px;
+    padding: var(--spacing-small, 8px);
   }
-  
-  .inactive .procedureButton {
-    background-color: var(--gray-2, #b2b2b2);
-  }
-  
-  @media (max-width: 991px) {
-    .card {
-      width: 100%;
-      margin-top: 40px;
-    }
-  
-    .procedureButton {
-      padding: 20px 10px;
-    }
-  }
+}

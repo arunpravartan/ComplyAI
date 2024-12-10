@@ -45,7 +45,7 @@ const QualityAssistant = () => {
             marginTop: index === 0 ? '0px' : "28px", // Set margin to 0px for index 0
           }}
            onClick={() => handleCardClick(card, index)} />
-        ))}
+         ))}
       </div>
     </section>
   );
