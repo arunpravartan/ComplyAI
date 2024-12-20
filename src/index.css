@@ -1,15 +1,485 @@
-body {
+* {
   margin: 0;
-  background-color: #ecebeb;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  color: var(--Light-Neutral-600, #4B5563);
+  font-family: "Inter", sans-serif!important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px; /* 150% */
 }
+
+.login-page {
+  position: relative;
+  display: flex;
+  padding: 2rem;
+  height: 100vh;
+  background-color: #D9D9D9;
+  overflow: hidden;
+}
+.login-page .login-wrapper {  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 4rem);
+  background-color: #ffffff;
+}
+.login-page .login-wrapper .main-title {
+  color: #15808D;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.login-page .login-wrapper .info-text {
+  color: #B2B2B2;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.login-page .login-wrapper .signup-text {
+  color:#858585;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 44px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+.login-page .login-wrapper .login-form-wrapper {
+  position: relative;
+  width: 400px;
+  margin: 0 auto;
+}
+.login-page .login-form-wrapper .MuiButtonBase-root {
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.login-page .login-form-wrapper .MuiButtonBase-root.google-login-btn {
+  background-color: #858585;
+}
+.login-page .login-form-wrapper .MuiButtonBase-root.google-login-btn:hover {
+  background-color: #15808D;
+}
+.login-page .login-form-wrapper .MuiButtonBase-root.apple-login-btn{
+  background-color: #858585;
+}
+.login-page .login-form-wrapper .MuiButtonBase-root.continue-btn {
+  background-color: #15808D;
+}
+/* .login-page .login-form-wrapper .MuiButtonBase-root.continue-btn:hover {
+  background-color: #858585;
+} */
+
+.login-page .login-form-wrapper .MuiButtonBase-root.apple-login-btn:hover {
+  background-color: #15808D;
+}
+
+.login-page .MuiInputBase-root {
+  border-radius: 12px;
+}
+.login-page .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #15808D;
+}
+
+.main {
+  position: relative;
+  display: flex;
+  width: 100%;  
+  height: 100vh;
+  overflow: hidden;
+}
+.side-menu .MuiDrawer-paper {
+  border-right: none;
+  background-color: #ECEBEB;
+}
+.complyai-main {  
+  display: flex;
+  overflow: hidden;
+}
+.complyai-main .complyai-wrapper {
+  position: relative;
+  width: 100%;
+  background: #ECEBEB;
+  padding: 30px;
+}
+.complyai-main .complyai-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 26px;
+  background: #FFF;
+  box-shadow: 2px 2px 6.8px 0px rgba(0, 0, 0, 0.25);
+  padding: 40px;
+}
+.complyai-main .title {
+  color: #15808D;
+  text-align: center;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 5rem;
+}
+.complyai-main .dashboard-card {
+  display: flex;
+  padding: 25px 34px;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: #F9F7F7!important;  
+  box-shadow: 2px 2px 6.8px 0px rgba(0, 0, 0, 0.25);
+}
+.complyai-main .dashboard-card .icon {
+  display: flex;
+  justify-content: center;
+}
+.complyai-main .dashboard-card .card-title {
+  color: #15808D;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.complyai-main .dashboard-card .info-text {
+  color: #858585;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.audit-procedure .left-wrapper h3 {
+  color: #15808D;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 52px; 
+  letter-spacing: 0px;
+}
+.dropdown-list {
+  border-radius: 8px;
+  padding: 0!important;
+  margin-top: 20px!important;
+  overflow: hidden;
+}
+.dropdown-list .menu-title-root {
+  background-color: #858585;
+}
+.dropdown-list .MuiCollapse-root {
+  background-color: #F9F7F7;
+}
+.dropdown-list .MuiButtonBase-root:hover {
+  background-color: #ecebeb!important;
+}
+.dropdown-list .menu-title-root:hover {
+  background-color: #858585!important;
+}
+.dropdown-list .menu-title-root .MuiTypography-root  {  
+  color: #ffffff;
+  text-align: center;
+  font-weight: 600;
+}
+.dropdown-list .menu-title-root svg path {
+  fill: #ffffff;
+}
+.dropdown-list .MuiCollapse-root .MuiListItemButton-root .MuiTypography-root {
+  color: #b2b2b2;
+  font-weight: 600;
+}
+.dropdown-list .MuiCollapse-root .MuiListItemButton-root:hover .MuiTypography-root {
+  color: #858585;
+}
+.audit-procedure .right-wrapper .main-title {
+  color: #000000;
+  font-weight: 600;
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+.audit-procedure .right-wrapper .info-text {
+  font-size: 20px;
+  line-height: 26px;
+}
+.audit-procedure .right-wrapper .MuiButtonBase-root.submit-btn {
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: capitalize;
+  background-color: #15808D;
+}
+.audit-procedure .upload-file-btn {
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: capitalize;
+  background-color: #15808D;
+  border-radius: 12px;
+}
+.audit-procedure .upload-file-btn:hover {
+  background-color: #15808D;
+}
+
+
+.findings-audit-checker-main .main-title {
+  color: #000000;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.findings-audit-checker-main .findings-audit-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  background-color: #f9f7f7;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;  
+}
+.findings-audit-checker-main .findings-audit-wrapper p,
+.findings-audit-checker-main .findings-audit-wrapper span {
+  color: #000000;
+  font-size: 18px;
+}
+.findings-audit-checker-main .findings-audit-wrapper .bold {
+  font-weight: 600;
+}
+.findings-audit-checker-main .findings-audit-content {
+  flex-grow: 1;
+  overflow: auto;
+  height: 45vh;
+  padding: 1rem 0 3rem;
+}
+.findings-audit-checker-main .copy-share-btn-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+.findings-audit-checker-main .MuiButton-contained {
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: capitalize;
+  background-color: #15808D;
+}
+
+.que-ans-main .main-title {
+  color: #000000;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.que-ans-main .que-ans-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 350px;
+  background-color: #f9f7f7;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;  
+}
+
+.visible-hidden {
+  visibility: hidden;  
+}
+
+.que-ans-main .que-ans-wrapper p,
+.que-ans-main .que-ans-wrapper span {
+  color: #000000;
+  font-size: 18px;
+}
+.que-ans-main .que-ans-wrapper .bold {
+  font-weight: 600;
+}
+.que-ans-main .que-ans-content {
+  flex-grow: 1;
+  overflow: auto;
+  height: 35vh;
+  padding: 1rem 0 3rem;
+}
+
+.visible-hidden {
+  visibility: hidden;  
+}
+
+.que-ans-main .copy-share-btn-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+.que-ans-main .MuiButton-contained {
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: capitalize;
+  background-color: #15808D;
+}
+.prompt-que-ans-page .complyai-main .complyai-container {
+  width: calc(100vw - 125px);
+}
+.prompt-que-ans-page .que-ans-main{
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  justify-content: center;
+}
+
+.icon-btn {
+  color: #b2b2b2!important;
+  font-weight: 500;
+  text-transform: capitalize!important;
+}
+.icon-btn svg path {
+  color: #b2b2b2;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .complyai-main .dashboard-card {
+    padding: 15px;
+    height: 260px;
+  }
+  .complyai-main .dashboard-card .card-title {
+    font-size: 20px;
+  }
+  .complyai-main .dashboard-card .info-text {
+    font-size: 18px;
+  }
+  .prompt-que-ans-page .complyai-main .complyai-container {
+    width: 100%;
+  }
+  .prompt-que-ans-page .que-ans-main {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .login-page {
+    padding: 1rem;
+    height: 100%;
+  }
+  .login-page .login-wrapper {
+    padding: 1rem;
+    height: 100%;
+  }
+  .login-page .login-wrapper .main-title {
+    font-size: 36px;
+  }
+  .login-page .login-wrapper .info-text {
+    font-size: 20px;
+    text-align: center;
+  }
+  .login-page .login-wrapper .signup-text {
+    font-size: 20px;
+  }
+  .login-page .login-wrapper .login-form-wrapper {
+    width: 100%;
+  }
+  .login-page .login-form-wrapper .MuiButtonBase-root {
+    font-size: 16px;
+  }
+
+  .main {
+    height: 100%;
+  }
+  .complyai-main .complyai-wrapper {
+    padding: 15px;
+  }
+  .complyai-main .complyai-container {
+    padding: 20px;
+    height: auto;
+  }
+  .complyai-main .title {
+    font-size: 28px;
+    margin-bottom: 2rem;
+  }
+  .complyai-main .dashboard-card {
+    padding: 15px;
+  }
+  .complyai-main .dashboard-card .card-title {
+    font-size: 18px;
+  }
+  .complyai-main .dashboard-card .info-text {
+    font-size: 16px;
+    text-align: center;
+  }
+  .complyai-main .dashboard-card .icon img {
+    width: 50px;
+  }
+
+  .audit-procedure .left-wrapper h3 {
+    font-size: 24px;
+    text-align: center;
+  }
+  .audit-procedure .right-wrapper .main-title {
+    font-size: 18px;
+    text-align: center;
+  }
+  .audit-procedure .right-wrapper {
+    padding: 0;
+  }
+  .audit-procedure .right-wrapper .text-wrapper {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  .audit-procedure .right-wrapper .MuiButtonBase-root.submit-btn {
+    font-size: 16px;
+    margin-top: 1.5rem;
+  }
+  .audit-procedure .right-wrapper .info-text {
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+  }
+  .audit-procedure .upload-file-btn {
+    font-size: 14px;
+  }
+  .dropdown-list {
+    margin: 1rem auto 0!important;
+  }
+
+  .findings-audit-checker-main .main-title {
+    font-size: 18px;
+  }
+  .findings-audit-checker-main .findings-audit-wrapper p,
+  .findings-audit-checker-main .findings-audit-wrapper span {
+    color: #000000;
+    font-size: 14px;
+  }
+  .findings-audit-checker-main .MuiButton-contained {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .prompt-que-ans-page .complyai-main .complyai-container {
+    width: 100%;
+  }
+  .que-ans-main .main-title {
+    font-size: 18px;
+  }
+  .prompt-que-ans-page .que-ans-main {
+    width: 100%;
+  }
+  .que-ans-main .que-ans-wrapper {
+    height: 300px;
+    padding: 15px;
+  }
+  .que-ans-main .que-ans-wrapper p,
+  .que-ans-main .que-ans-wrapper span {
+    font-size: 16px;
+  }
+
+  .findings-audit-checker-main .findings-audit-content {
+    height: 35vh;
+  }
+  .que-ans-main .MuiButton-contained {
+    font-size: 16px;
+  }
+}
+
+
+
