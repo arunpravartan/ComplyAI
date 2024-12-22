@@ -106,16 +106,14 @@ const AuditChecker = () => {
 
     const fetchJobDetails = async (jobId, fileName) => {
         try {
-          const jobIdResponse = await fetch(`${url}/job/${jobId}`);
+          let jobIdResponse = await fetch(`${url}/job/${jobId}`);
           if (jobIdResponse?.status === 200) {
-            const jobIdResult = jobIdResponse?.data;
-      
+            const jobIdResult = await jobIdResponse.json();
             if (jobIdResult && jobIdResult?.["audit-result"]?.length > 0) {
               const auditData = jobIdResult?.["audit-result"];
               setAuditData(auditData);
               navigate("/findings-audit-checker", { state: { auditData, fileName: fileName } });
             }
-      
             if (jobIdResult && jobIdResult?.Status === 500 && jobIdResult?.payload?.error) {
               alert(jobIdResult?.payload?.error);
             }

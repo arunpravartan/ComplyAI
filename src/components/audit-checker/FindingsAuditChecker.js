@@ -14,7 +14,7 @@ const FindingsAuditChecker = () => {
     const location = useLocation();
     const findings = location.state?.auditData;
     const fileName = location.state?.fileName;
-
+   
     const handleShareClick = () => {
         const textToShare = document.querySelector('.findings-text')?.textContent || '';
     
@@ -99,7 +99,7 @@ const FindingsAuditChecker = () => {
                                     </Box>
                                     <Box className="findings-audit-content">
                                         <Stack spacing={2} className="findings-text">
-                                        {findings.map((finding, index) => (
+                                        {(findings || []).map((finding, index) => (
                                             <Box >
                                                 <Typography>{index + 1}. Finding {index + 1} :</Typography>
                                                 <Typography>{finding.issue}</Typography>
