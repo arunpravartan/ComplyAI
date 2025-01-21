@@ -102,20 +102,21 @@ const PromptQuestionAnswer = () => {
 
             const data = await res.json();
             // const data = { response: "This is a sample response to the question." };
-            let timer, progressPercentage = 0, isDataFetch = false;
+            // let timer, progressPercentage = 0, isDataFetch = false;
             if (data && data?.response) {
-                timer = setInterval(() => {
-                    if (progressPercentage >= 100 && !isDataFetch) {
-                        clearInterval(timer);
-                        setResponse(data.response);
-                        setIsPreloader(false);
-                        isDataFetch = true;
-                    } else {
-                        const diff = Math.random() * 10;
-                        progressPercentage = Math.min(progressPercentage + diff, 100);
-                        setProgress(progressPercentage);
-                    }
-                }, 1000);
+                setResponse(data.response);
+                // timer = setInterval(() => {
+                //     if (progressPercentage >= 100 && !isDataFetch) {
+                //         clearInterval(timer);
+                       
+                //         setIsPreloader(false);
+                //         isDataFetch = true;
+                //     } else {
+                //         const diff = Math.random() * 10;
+                //         progressPercentage = Math.min(progressPercentage + diff, 100);
+                //         setProgress(progressPercentage);
+                //     }
+                // }, 100);
             }
         } catch (err) {
             alert(err.message || "An error occurred");
@@ -180,9 +181,9 @@ const PromptQuestionAnswer = () => {
                             <Box className="que-ans-main">
                                 <Typography variant='h4' className="main-title">Ask queries from knowledge base</Typography>
                                 <Divider />
-                                <Box mt={2} sx={{ textAlign: 'center' }} className={!isPreloader ? 'visible-hidden' : ""}>
+                                {/* <Box mt={2} sx={{ textAlign: 'center' }} className={!isPreloader ? 'visible-hidden' : ""}>
                                     <CircularProgressWithLabel value={progress} />
-                                </Box>
+                                </Box> */}
                                 <Box className={!response ? 'que-ans-wrapper visible-hidden' : "que-ans-wrapper"} mt={1} >
                                     <Box className="que-ans-content">
                                         <Typography>{response}</Typography>
