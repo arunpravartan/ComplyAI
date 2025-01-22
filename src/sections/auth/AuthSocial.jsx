@@ -19,17 +19,17 @@ const authButtons = [
   {
     label: 'Google',
     icon: '/assets/images/social/google.svg',
-    title: 'Sign In with Google'
+    title: 'Continue with Google'
   },
-  {
-    label: 'Facebook',
-    icon: '/assets/images/social/facebook.svg',
-    title: 'Sign In with Facebook'
-  },
+  // {
+  //   label: 'Facebook',
+  //   icon: '/assets/images/social/facebook.svg',
+  //   title: 'Sign In with Facebook'
+  // },
   {
     label: 'Apple',
     icon: { light: '/assets/images/social/apple-light.svg', dark: '/assets/images/social/apple-dark.svg' },
-    title: 'Sign In with Apple'
+    title: 'Continue with Apple'
   }
 ];
 
@@ -45,7 +45,7 @@ export default function AuthSocial({ type = SocialTypes.VERTICAL, buttonSx }) {
           fullWidth
           size="small"
           color="secondary"
-          sx={{ ...(type === SocialTypes.HORIZONTAL && { '.MuiButton-startIcon': { m: 0 } }), ...buttonSx }}
+          sx={{ ...(type === SocialTypes.HORIZONTAL && { '.MuiButton-startIcon': { m: 0 } }), ...buttonSx , gap: 1, mb: 1}}
           startIcon={<CardMedia component="img" src={GetImagePath(item.icon)} sx={{ width: 16, height: 16 }} alt={item.label} />}
         >
           {type === SocialTypes.VERTICAL && <Typography variant="caption1">{item.title}</Typography>}
