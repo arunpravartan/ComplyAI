@@ -14,12 +14,12 @@ export default function AnalyticsOverview() {
       <Grid size={12}>
         <AnalyticsOverviewCard />
       </Grid>
-      <Grid size={12}>
+      {/* <Grid size={12}>
         <AnalyticsOverviewChart />
       </Grid>
       <Grid size={12}>
         <AnalyticsTopRef />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

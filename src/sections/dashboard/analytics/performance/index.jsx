@@ -15,9 +15,9 @@ export default function AnalyticsPerformance() {
   return (
     <Grid container spacing={{ xs: 2, md: 3 }}>
       <Grid size={12}>
-        <AnalyticsPerformanceCard />
+      <AnalyticsPerformanceChart />
       </Grid>
-      <Grid size={12}>
+      {/* <Grid size={12}>
         <AnalyticsPerformanceChart />
       </Grid>
       <Grid size={{ xs: 12, md: 6 }}>
@@ -28,7 +28,7 @@ export default function AnalyticsPerformance() {
           <AnalyticsPerformanceMapChart />
           <AnalyticsPerformanceRedialChart />
         </Stack>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }

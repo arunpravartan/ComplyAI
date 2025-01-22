@@ -3,12 +3,9 @@ import { useState } from 'react';
 
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { LineChart } from '@mui/x-charts/LineChart';
-import Chip from '@mui/material/Chip';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
-import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 // @project
 import { TabsType, ViewMode } from '@/enum';
@@ -17,6 +14,7 @@ import Legend from '@/components/third-party/chart/Legend';
 
 // @icons
 import { IconArrowUpRight, IconChevronRight } from '@tabler/icons-react';
+import Background from '@/images/graphics/Background';
 
 // @types
 
@@ -100,61 +98,21 @@ export default function AnalyticsPerformanceChart() {
   }, {});
 
   return (
-    <MainCard>
-      <Stack sx={{ gap: 3.75 }}>
-        <Stack direction="row" sx={{ alignItems: 'end', justifyContent: 'space-between', gap: 2, flexWrap: 'wrap' }}>
-          <Stack sx={{ gap: 0.5 }}>
-            <Stack direction="row" sx={{ gap: 0.25, alignItems: 'end' }}>
-              <Typography variant="h4" sx={{ fontWeight: 400 }}>
-                2680.50k
-              </Typography>
-              <Chip label="60.5%" variant="text" size="small" icon={<IconArrowUpRight />} color="success" />
-            </Stack>
-            <Typography variant="caption" sx={{ color: 'grey.700' }}>
-              Total sales growth and target
-            </Typography>
-          </Stack>
-          <Tabs value={view} onChange={handleViewChange} aria-label="filter tabs" type={TabsType.SEGMENTED} sx={{ width: 'fit-content' }}>
-            {timeFilter.map((filter, index) => (
-              <Tab label={filter} value={filter} key={index} />
-            ))}
-          </Tabs>
-        </Stack>
-        <Legend items={lagendItems} onToggle={toggleVisibility} />
-      </Stack>
-      <LineChart
-        sx={{ '& .MuiLineElement-root': { strokeWidth: 2 }, ...dynamicSeriesStyles }}
-        height={255}
-        series={visibleSeries.map((series) => ({ ...series, showMark: false, curve: 'linear' }))}
-        xAxis={[{ scaleType: 'point', data: xLabels, disableLine: true, disableTicks: true }]}
-        yAxis={[
-          {
-            disableLine: true,
-            disableTicks: true,
-            valueFormatter: (value) => (value > 999 ? `${(value / 1000).toLocaleString()}k` : value)
-          }
-        ]}
-        slotProps={{ legend: { hidden: true } }}
-        grid={{ horizontal: true }}
-        margin={{ top: 40, right: 20, bottom: 20, left: 40 }}
-      >
-        <defs>
-          {visibleSeries.map((series, index) => (
-            <marker
-              id={series.id}
-              key={index}
-              viewBox="0 0 20 20"
-              refX="15"
-              refY="12"
-              markerWidth="10"
-              markerHeight="10"
-              orient="auto-start-reverse"
-            >
-              <IconChevronRight color={series.color} />
-            </marker>
-          ))}
-        </defs>
-      </LineChart>
+    <MainCard sx={{ 
+      height: '70vh', 
+      backgroundColor: '#00579B', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      justifyContent: 'flex-end', 
+      p: 2 
+    }}>
+      <Box>
+          <OutlinedInput
+            placeholder="Email Id"
+            fullWidth
+            error={Boolean()}
+          />
+      </Box>
     </MainCard>
   );
 }
