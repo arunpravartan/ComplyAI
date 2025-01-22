@@ -1,6 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/(admin)/dashboard/analytics/page": "app/(admin)/dashboard/analytics/page.js",
-  "/(admin)/dashboard/analytics/[tab]/page": "app/(admin)/dashboard/analytics/[tab]/page.js"
-}
