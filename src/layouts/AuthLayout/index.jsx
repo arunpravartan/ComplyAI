@@ -14,44 +14,32 @@ import GetImagePath from '@/utils/GetImagePath';
 
 // @types
 
-const dashBoardImage = {
-  light: '/assets/images/graphics/hosting/dashboard-light.svg',
-  dark: '/assets/images/graphics/hosting/dashboard-dark.svg'
+const loginImage = {
+  light: '/assets/images/login-banner.png',
+  dark: '/assets/images/login-banner.png'
 };
 
 /***************************  AUTH LAYOUT  ***************************/
 
 export default function AuthLayout({ children }) {
   return (
-    <Grid container sx={{ height: '100vh' }}>
-      <Grid size={{ xs: 12, md: 6, lg: 7 }} sx={{ p: { xs: 3, sm: 7 } }}>
-        {children}
-      </Grid>
-      <Grid size={{ xs: 12, md: 6, lg: 5 }} sx={{ bgcolor: 'grey.100', pt: 7, display: { xs: 'none', md: 'block' } }}>
-        <Stack sx={{ height: 1, justifyContent: 'space-between' }}>
-          <Stack sx={{ alignItems: 'center', gap: 2 }}>
-            <LogoMain />
-            <Typography variant="body2" color="text.secondary" align="center" sx={{ maxWidth: 400 }}>
-              SaaS platform for seamless data management and user insights. Unlock growth with real-time analytics and flexible features.
-            </Typography>
-          </Stack>
-          <Box sx={{ pt: 6, pl: 6, height: 'calc(100% - 114px)' }}>
-            <CardMedia
-              image={GetImagePath(dashBoardImage)}
-              sx={{
-                height: 1,
-                border: '4px solid',
-                borderColor: 'grey.300',
-                borderBottom: 'none',
-                borderRight: 'none',
-                backgroundPositionX: 'left',
-                backgroundPositionY: 'top',
-                borderTopLeftRadius: 24
-              }}
-            />
-          </Box>
-        </Stack>
-      </Grid>
+    <Grid container sx={{ height: '100vh', padding: "90px", bgcolor : '#E9F5FF' }}>
+        <Grid size={{ xs: 12, md: 6, lg: 7 }} sx={{
+          bgcolor: '#00579B',
+          display: { xs: 'none', md: 'flex' },
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: "-webkit-fill-available",
+          borderTopLeftRadius: "5px",
+          borderBottomLeftRadius: "5px"
+        }}>
+          <img src={GetImagePath(loginImage)} alt="dashboard" style={{ maxWidth: '74%', maxHeight: '100%' }} />
+        </Grid>
+        <Grid size={{ xs: 12, md: 6, lg: 5 }} sx={{ p: { xs: 3, sm: 7 }, bgcolor: '#ffff', "zIndex": 999, 
+          borderTopRightRadius: "5px",
+          borderBottomRightRadius: "5px" }}>
+          {children}
+        </Grid>
     </Grid>
   );
 }

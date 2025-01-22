@@ -78,26 +78,13 @@ export default function AuthLogin({ inputSx }) {
 
   return (
     <>
-      <Stack direction="row" sx={{ gap: 1, mb: 2 }}>
-        {userCredentials.map((credential) => (
-          <Button
-            key={credential.title}
-            variant="outlined"
-            color="secondary"
-            sx={{ flex: 1 }}
-            onClick={() => reset({ email: credential.email, password: credential.password })}
-          >
-            {credential.title}
-          </Button>
-        ))}
-      </Stack>
+      <Stack direction="row" sx={{ gap: 1, mb: 2 }}></Stack>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack gap={2}>
           <Box>
-            <InputLabel>Email</InputLabel>
             <OutlinedInput
               {...register('email', emailSchema)}
-              placeholder="example@saasable.io"
+              placeholder="Email Id"
               fullWidth
               error={Boolean(errors.email)}
               sx={inputSx}
@@ -106,51 +93,42 @@ export default function AuthLogin({ inputSx }) {
           </Box>
 
           <Box>
-            <InputLabel>Password</InputLabel>
             <OutlinedInput
               {...register('password', passwordSchema)}
               type={isPasswordVisible ? 'text' : 'password'}
-              placeholder="Enter your password"
+              placeholder="Password"
               fullWidth
               error={Boolean(errors.password)}
-              endAdornment={
-                <InputAdornment
-                  position="end"
-                  sx={{ cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}
-                  onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                >
-                  {isPasswordVisible ? <IconEye {...commonIconProps} /> : <IconEyeOff {...commonIconProps} />}
-                </InputAdornment>
-              }
-              sx={inputSx}
+              // endAdornment={
+              //   <InputAdornment
+              //     position="end"
+              //     sx={{ cursor: 'pointer', WebkitTapHighlightColor: 'transparent' }}
+              //     onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              //   >
+              //     {isPasswordVisible ? <IconEye {...commonIconProps} /> : <IconEyeOff {...commonIconProps} />}
+              //   </InputAdornment>
+              // }
+              sx={{inputSx, bgColor : '#ebebeb'}}
             />
-            <Stack direction="row" alignItems="center" justifyContent={errors.password ? 'space-between' : 'flex-end'} width={1}>
-              {errors.password?.message && <FormHelperText error>{errors.password.message}</FormHelperText>}
-              <Link
-                component={NextLink}
-                underline="hover"
-                variant="caption"
-                href="/forgot-password"
-                textAlign="right"
-                sx={{ '&:hover': { color: 'primary.dark' }, mt: 0.75 }}
-              >
-                Forgot Password?
-              </Link>
-            </Stack>
           </Box>
         </Stack>
-
-        <Button
-          type="submit"
-          color="primary"
-          variant="contained"
-          disabled={isProcessing}
-          endIcon={isProcessing && <CircularProgress color="secondary" size={16} />}
-          sx={{ minWidth: 120, mt: { xs: 1, sm: 4 }, '& .MuiButton-endIcon': { ml: 1 } }}
-        >
-          Sign In
-        </Button>
-
+        <Box sx={{
+          mt: 2,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'// Optional: Ensures vertical centering on full screen
+        }}>
+          <Button
+            type="submit"
+            color="primary"
+            variant="contained"
+            disabled={isProcessing}
+            endIcon={isProcessing && <CircularProgress color="secondary" size={16} />}
+            sx={{ minWidth: 120, mt: { xs: 1, sm: 4 }, '& .MuiButton-endIcon': { ml: 1 } }}
+          >
+            Sign In
+          </Button>
+        </Box>
         {loginError && (
           <Alert sx={{ mt: 2 }} severity="error" variant="filled" icon={false}>
             {loginError}
