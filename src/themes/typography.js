@@ -1,100 +1,69 @@
-// @project
-import { FONT_ARCHIVO } from '@/config';
+// ==============================|| DEFAULT THEME - TYPOGRAPHY ||============================== //
 
-/***************************  DEFAULT - TYPOGRAPHY  ***************************/
-
-export default function typography(theme) {
+export default function Typography(fontFamily) {
   return {
-    fontFamily: FONT_ARCHIVO,
-    letterSpacing: 0,
-
-    // heading - h1
+    htmlFontSize: 16,
+    fontFamily,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightBold: 600,
     h1: {
-      fontWeight: 500,
-      fontSize: 40,
-      lineHeight: '44px'
+      fontWeight: 600,
+      fontSize: '2.375rem',
+      lineHeight: 1.21
     },
-
-    // heading - h2
     h2: {
-      fontWeight: 500,
-      fontSize: 32,
-      lineHeight: '36px'
+      fontWeight: 600,
+      fontSize: '1.875rem',
+      lineHeight: 1.27
     },
-
-    // heading - h3
     h3: {
-      fontWeight: 500,
-      fontSize: 28,
-      lineHeight: '32px'
+      fontWeight: 600,
+      fontSize: '1.5rem',
+      lineHeight: 1.33
     },
-
-    // heading - h4
     h4: {
-      fontWeight: 500,
-      fontSize: 24,
-      lineHeight: '28px'
+      fontWeight: 600,
+      fontSize: '1.25rem',
+      lineHeight: 1.4
     },
-
-    // heading - h5
     h5: {
-      fontWeight: 500,
-      fontSize: 20,
-      lineHeight: '24px'
+      fontWeight: 600,
+      fontSize: '1rem',
+      lineHeight: 1.5
     },
-
-    // heading - h6
     h6: {
-      fontWeight: 500,
-      fontSize: 18,
-      lineHeight: '22px'
-    },
-
-    // subtitle - 1
-    subtitle1: {
-      fontWeight: 500,
-      fontSize: 16,
-      lineHeight: '20px'
-    },
-
-    // subtitle - 2
-    subtitle2: {
-      fontWeight: 500,
-      fontSize: 14,
-      lineHeight: '18px'
-    },
-
-    // paragraph - 1
-    body1: {
       fontWeight: 400,
-      fontSize: 16,
-      lineHeight: '20px'
+      fontSize: '0.875rem',
+      lineHeight: 1.57
     },
-
-    // paragraph - 2
-    body2: {
-      fontWeight: 400,
-      fontSize: 14,
-      lineHeight: '18px'
-    },
-
-    // caption - regular
     caption: {
       fontWeight: 400,
-      fontSize: 12,
-      lineHeight: '16px',
-      letterSpacing: 0
+      fontSize: '0.75rem',
+      lineHeight: 1.66
     },
-
-    // caption - medium
-    caption1: {
+    body1: {
+      fontSize: '0.875rem',
+      lineHeight: 1.57
+    },
+    body2: {
+      fontSize: '0.75rem',
+      lineHeight: 1.66
+    },
+    subtitle1: {
+      fontSize: '0.875rem',
+      fontWeight: 600,
+      lineHeight: 1.57
+    },
+    subtitle2: {
+      fontSize: '0.75rem',
       fontWeight: 500,
-      fontSize: 12,
-      lineHeight: '16px',
-      letterSpacing: 0
+      lineHeight: 1.66
     },
-
-    // button
+    overline: {
+      lineHeight: 1.66
+    },
     button: {
       textTransform: 'capitalize'
     }

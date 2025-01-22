@@ -1,49 +1,24 @@
-// @mui
+// material-ui
 import { alpha } from '@mui/material/styles';
 
-/***************************  OVERRIDES - TAB  ***************************/
+// ==============================|| OVERRIDES - TAB ||============================== //
 
 export default function Tab(theme) {
   return {
     MuiTab: {
-      defaultProps: {
-        disableFocusRipple: true
-      },
       styleOverrides: {
         root: {
-          ...theme.typography.h6,
-          fontWeight: 400,
-          minWidth: 'auto',
-          minHeight: 42,
-          padding: '10px 16px',
-          color: alpha(theme.palette.text.secondary, 0.6),
+          minHeight: 46,
+          color: theme.palette.text.primary,
+          borderRadius: 4,
           '&:hover': {
-            color: theme.palette.text.secondary
+            backgroundColor: alpha(theme.palette.primary.lighter, 0.6),
+            color: theme.palette.primary.main
           },
           '&:focus-visible': {
-            boxShadow: 'none',
-            backgroundColor: alpha(theme.palette.grey[500], 0.25),
-            ...theme.applyStyles('dark', { backgroundColor: alpha(theme.palette.grey[600], 0.1) })
-          },
-          '&.Mui-disabled': {
-            color: alpha(theme.palette.text.secondary, 0.3),
-            pointerEvents: 'auto',
-            cursor: 'not-allowed',
-            '&:hover': {
-              color: alpha(theme.palette.text.secondary, 0.3),
-              backgroundColor: 'transparent'
-            }
-          },
-          '& .MuiTouchRipple-root span': {
-            backgroundColor: alpha(theme.palette.secondary.main, 0.3)
-          }
-        },
-        textColorSecondary: {
-          '&.Mui-selected': {
-            color: theme.palette.text.primary,
-            '&:hover': {
-              backgroundColor: alpha(theme.palette.grey[200], 0.25)
-            }
+            borderRadius: 4,
+            outline: `2px solid ${theme.palette.secondary.dark}`,
+            outlineOffset: -3
           }
         }
       }

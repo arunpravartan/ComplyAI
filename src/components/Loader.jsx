@@ -1,13 +1,25 @@
-// @mui
+// material-ui
+import { styled } from '@mui/material/styles';
 import LinearProgress from '@mui/material/LinearProgress';
-import Box from '@mui/material/Box';
 
-/***************************  LOADER  ***************************/
+// loader style
+const LoaderWrapper = styled('div')(({ theme }) => ({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  zIndex: 2001,
+  width: '100%',
+  '& > * + *': {
+    marginTop: theme.spacing(2)
+  }
+}));
 
-export default function Loader() {
-  return (
-    <Box sx={{ position: 'fixed', top: 0, left: 0, zIndex: 2001, width: '100%' }}>
-      <LinearProgress variant="indeterminate" color="primary" />
-    </Box>
-  );
-}
+// ==============================|| Loader ||============================== //
+
+const Loader = () => (
+  <LoaderWrapper>
+    <LinearProgress color="primary" />
+  </LoaderWrapper>
+);
+
+export default Loader;

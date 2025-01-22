@@ -1,31 +1,37 @@
-'use client';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-// @next
-import NextLink from 'next/link';
+// material-ui
+import { ButtonBase } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
 
-// @mui
-import { useTheme } from '@mui/material/styles';
-import ButtonBase from '@mui/material/ButtonBase';
+// project import
+import Logo from './LogoMain';
+import config from 'config';
 
-// @project
-import LogoMain from './LogoMain';
-import LogoIcon from './LogoIcon';
-import { APP_DEFAULT_PATH } from '@/config';
-import { generateFocusStyle } from '@/utils/generateFocusStyle';
+// ==============================|| MAIN LOGO ||============================== //
 
-/***************************  MAIN - LOGO  ***************************/
-
-export default function LogoSection({ isIcon, sx, to }) {
-  const theme = useTheme();
-
+const LogoSection = ({ sx, to }) => {
   return (
-    <NextLink href={!to ? APP_DEFAULT_PATH : to} passHref legacyBehavior>
-      <ButtonBase disableRipple sx={{ ...sx, '&:focus-visible': generateFocusStyle(theme.palette.primary.main) }} aria-label="logo">
-        {isIcon ? <LogoIcon /> : <LogoMain />}
-      </ButtonBase>
-    </NextLink>
+    <ButtonBase disableRipple component={Link} to={!to ? config.defaultPath : to} sx={sx}>
+      <Stack direction="row" spacing={1} alignItems="center">
+        <Logo />
+        <Chip
+          label={import.meta.env.VITE_APP_VERSION}
+          variant="outlined"
+          size="small"
+          color="secondary"
+          sx={{ mt: 0.5, ml: 1, fontSize: '0.725rem', height: 20, '& .MuiChip-label': { px: 0.5 } }}
+        />
+      </Stack>
+    </ButtonBase>
   );
-}
+};
 
-LogoSection.propTypes = { isIcon: PropTypes.bool, sx: PropTypes.any, to: PropTypes.string };
+LogoSection.propTypes = {
+  sx: PropTypes.object,
+  to: PropTypes.string
+};
+
+export default LogoSection;

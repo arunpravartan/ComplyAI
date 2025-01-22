@@ -1,21 +1,25 @@
-/***************************  OVERRIDES - INPUT LABEL  ***************************/
+// ==============================|| OVERRIDES - INPUT LABEL ||============================== //
 
 export default function InputLabel(theme) {
   return {
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          ...theme.typography.body2,
-          color: theme.palette.text.primary,
-          marginBottom: 6,
-          '&.Mui-error': {
-            color: theme.palette.error.main,
-            ...theme.applyStyles('dark', { color: theme.palette.error.light })
-          }
+          color: theme.palette.grey[600]
         },
-        asterisk: {
-          color: theme.palette.error.main,
-          ...theme.applyStyles('dark', { color: theme.palette.error.light })
+        outlined: {
+          lineHeight: '1rem',
+          top: -4,
+          '&.MuiInputLabel-sizeSmall': {
+            lineHeight: '1em'
+          },
+          '&.MuiInputLabel-shrink': {
+            background: theme.palette.background.paper,
+            padding: '0 8px',
+            marginLeft: -6,
+            top: 2,
+            lineHeight: '1rem'
+          }
         }
       }
     }

@@ -1,73 +1,93 @@
-// @project
-import { ThemeDirection, ThemeMode } from '@/config';
-import { generateFocusStyle } from '@/utils/generateFocusStyle';
+import PropTypes from 'prop-types';
 
-// @assets
-import { IconSquare, IconSquareCheckFilled, IconSquareMinusFilled } from '@tabler/icons-react';
+// project import
+import getColors from 'utils/getColors';
 
-const colors = ['primary', 'secondary', 'success', 'error', 'warning', 'info'];
+// assets
+import BorderOutlined from '@ant-design/icons/BorderOutlined';
+import CheckSquareFilled from '@ant-design/icons/CheckSquareFilled';
+import MinusSquareFilled from '@ant-design/icons/MinusSquareFilled';
 
-/***************************  OVERRIDES - CHECKBOX  ***************************/
+// ==============================|| RADIO - COLORS ||============================== //
+
+function getColorStyle({ color, theme }) {
+  const colors = getColors(theme, color);
+  const { lighter, main, dark } = colors;
+
+  return {
+    '&:hover': {
+      backgroundColor: lighter,
+      '& .icon': {
+        borderColor: main
+      }
+    },
+    '&.Mui-focusVisible': {
+      outline: `2px solid ${dark}`,
+      outlineOffset: -4
+    }
+  };
+}
+
+function getSizeStyle(size) {
+  switch (size) {
+    case 'small':
+      return { fontSize: 1.15 };
+    case 'large':
+      return { fontSize: 1.6 };
+    case 'medium':
+    default:
+      return { fontSize: 1.35 };
+  }
+}
+
+// ==============================|| CHECKBOX - STYLE ||============================== //
+
+function checkboxStyle(size) {
+  const sizes = getSizeStyle(size);
+
+  return {
+    '& .icon': {
+      fontSize: `${sizes.fontSize}rem`
+    }
+  };
+}
+
+// ==============================|| OVERRIDES - CHECKBOX ||============================== //
 
 export default function Checkbox(theme) {
-  const colorVariants = colors.map((color) => {
-    const paletteColor = theme.palette[color];
-
-    return {
-      props: { color },
-      style: {
-        ...theme.applyStyles('dark', {
-          '&.Mui-checked, &.MuiCheckbox-indeterminate': { color: paletteColor.light }
-        })
-      }
-    };
-  });
+  const { palette } = theme;
 
   return {
     MuiCheckbox: {
       defaultProps: {
-        disableFocusRipple: true,
-        icon: <IconSquare stroke={1} size={16} color={theme.palette.grey[theme.palette.mode === ThemeMode.DARK ? 700 : 500]} />,
-        checkedIcon: <IconSquareCheckFilled stroke={1} size={16} />,
-        indeterminateIcon: <IconSquareMinusFilled stroke={1} size={16} />
+        className: 'size-small',
+        icon: <BorderOutlined className="icon" />,
+        checkedIcon: <CheckSquareFilled className="icon" />,
+        indeterminateIcon: <MinusSquareFilled className="icon" />
       },
       styleOverrides: {
         root: {
-          variants: [...colorVariants],
-          padding: 6.675,
-          ...(theme.direction !== ThemeDirection.RTL && { marginLeft: 2.325 }), // 9 - 6.675 = For fix position of checkbox according to custom padd ing
-          ...(theme.direction === ThemeDirection.RTL && { marginRight: 2.325 }),
-          borderRadius: 4,
-          color: theme.palette.grey[500],
-          '&:hover:not(.Mui-checked):not(.MuiCheckbox-indeterminate)': {
-            color: theme.palette.grey[600]
+          borderRadius: 0,
+          color: palette.secondary[300],
+          '&.size-small': {
+            ...checkboxStyle('small')
           },
-          '& ~ .MuiFormControlLabel-label': theme.typography.body2,
-          '& svg': { width: 21.34, height: 21.34 },
-          '&.Mui-disabled': {
-            cursor: 'not-allowed',
-            pointerEvents: 'auto',
-            ...theme.applyStyles('dark', { opacity: 0.5 }),
-            '&:hover': {
-              backgroundColor: 'transparent'
-            }
+          '&.size-medium': {
+            ...checkboxStyle('medium')
           },
-          '& .MuiTouchRipple-root span': {
-            borderRadius: 4
-          },
-          '&.Mui-focusVisible': {
-            '& svg': { borderRadius: 4, ...generateFocusStyle(theme.palette.primary.main) }
+          '&.size-large': {
+            ...checkboxStyle('large')
           }
         },
-        sizeSmall: {
-          '& ~ .MuiFormControlLabel-label': theme.typography.caption,
-          '& svg': { width: 18.6725, height: 18.6725 }
-        },
-        sizeLarge: {
-          '& ~ .MuiFormControlLabel-label': theme.typography.body1,
-          '& svg': { width: 26.675, height: 26.675 }
-        }
+        colorPrimary: getColorStyle({ color: 'primary', theme }),
+        colorSecondary: getColorStyle({ color: 'secondary', theme }),
+        colorSuccess: getColorStyle({ color: 'success', theme }),
+        colorWarning: getColorStyle({ color: 'warning', theme }),
+        colorInfo: getColorStyle({ color: 'info', theme }),
+        colorError: getColorStyle({ color: 'error', theme })
       }
     }
   };
 }
+
+getColorStyle.propTypes = { color: PropTypes.any, theme: PropTypes.any };
