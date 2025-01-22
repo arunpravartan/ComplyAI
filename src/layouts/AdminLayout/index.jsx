@@ -22,7 +22,7 @@ import { DRAWER_WIDTH } from '@/config';
 
 /***************************  ADMIN LAYOUT  ***************************/
 
-export default function DashboardLayout({ children }) {
+export default function AdminLayout({ children }) {
   const { menuMasterLoading } = useGetMenuMaster();
   const { miniDrawer } = useConfig();
 
@@ -65,4 +65,4 @@ export default function DashboardLayout({ children }) {
   );
 }
 
-DashboardLayout.propTypes = { children: PropTypes.any };
+AdminLayout.propTypes = { children: PropTypes.any };

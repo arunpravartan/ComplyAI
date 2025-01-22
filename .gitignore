@@ -12,6 +12,7 @@ build.*
 .env
 .env.*
 *.env.*
+.next/
 
 # Compiled Java class files
 *.class

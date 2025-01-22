@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 // @project
 import { AuthProvider } from '@/contexts/AuthContext';
 const AdminLayout = dynamic(() => import('@/layouts/AdminLayout'));
+const  UserLayout = dynamic(() => import('@/layouts/UserLayout'));
 const AuthGuard = dynamic(() => import('@/utils/route-guard/AuthGuard'));
 const RoleGuard = dynamic(() => import('@/utils/route-guard/RoleGuard'));
 
@@ -17,7 +18,8 @@ export default function Layout({ children }) {
     <AuthProvider>
       <AuthGuard>
         <RoleGuard>
-          <AdminLayout>{children}</AdminLayout>
+          {/* <AdminLayout>{children}</AdminLayout> */}
+          <UserLayout>{ children }</UserLayout>
         </RoleGuard>
       </AuthGuard>
     </AuthProvider>
