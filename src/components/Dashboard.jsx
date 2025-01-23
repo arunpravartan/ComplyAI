@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import FormComponent from "./DocumentUpload";
+import {Typography } from "@mui/material";
+import RestoreIcon from '@mui/icons-material/Restore';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -31,7 +31,7 @@ function NewCustomTabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      style={{ background: "#F6F6F6", color: "#00579B", height: "78vh", borderRadius: "0 0 8px 8px" }}
+      style={{ background: "#F6F6F6", color: "#00579B", height: "65vh", borderRadius: "0 0 8px 8px" }}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -61,6 +61,7 @@ function a11yProps(index) {
 export default function Dashboard1() {
   const [value, setValue] = React.useState(0);
   const [newvalue, newSetValue] = React.useState(0);
+  const [isUpload, setIsUpload] = React.useState(false);
 
   const handleChange = (event, nValue) => {
     setValue(nValue);
@@ -73,7 +74,11 @@ export default function Dashboard1() {
     { label: 'The Shawshank Redemption', year: 1994 },
     { label: 'The Godfather', year: 1972 },
     { label: 'The Godfather: Part II', year: 1974 }
-  ]
+  ];
+
+  const handleUpload = () => {
+    setIsUpload(true)
+  };
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -183,18 +188,13 @@ export default function Dashboard1() {
           </Tabs>
         </Box>
         <NewCustomTabPanel value={newvalue} index={0}>
-          <Autocomplete
-            disablePortal
-            options={procedureType}
-            sx={{ width: 600, mt : 5, ml : 5, bgcolor: "white", borderRadius: "4px"}}
-            renderInput={(params) => <TextField {...params} label="Procedure Type"/>}
-          />
-           <Autocomplete
-            disablePortal
-            options={procedureType}
-            sx={{ width: 600, mt:2, ml : 5, bgcolor: "white",  borderRadius: "4px"}}
-            renderInput={(params) => <TextField {...params} label="Select Template"/>}
-          />
+          {isUpload ? "" : 
+          <FormComponent options={procedureType} onUpload={handleUpload} />
+          }
+          <Box sx={{ mt: 13, ml: 160, display: "flex", alignItems: "center", gap: 1 }}>
+            <RestoreIcon />
+            <Typography>History</Typography>
+          </Box>
         </NewCustomTabPanel>
         <NewCustomTabPanel value={newvalue} index={1}>
           New Item 2

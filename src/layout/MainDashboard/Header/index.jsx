@@ -16,6 +16,7 @@ import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
 // assets
 import MenuFoldOutlined from '@ant-design/icons/MenuFoldOutlined';
 import MenuUnfoldOutlined from '@ant-design/icons/MenuUnfoldOutlined';
+import { bgcolor } from '@mui/system';
 
 // ==============================|| MAIN LAYOUT - HEADER ||============================== //
 
@@ -45,7 +46,8 @@ export default function Header() {
     color: 'inherit',
     elevation: 0,
     sx: {
-      borderBottom: `1px solid ${theme.palette.divider}`
+      bgcolor:'transparent',
+      // borderBottom: `1px solid ${theme.palette.divider}`
       // boxShadow: theme.customShadows.z1
     }
   };
