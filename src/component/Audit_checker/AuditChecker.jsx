@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import ProcedureList from './ProcedureList';
 import UploadSection from './UploadSection';
-import './styles.css';
+import './style.css';
 
 const AuditChecker = () => {
   return (

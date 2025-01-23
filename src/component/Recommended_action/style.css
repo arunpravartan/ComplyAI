@@ -5,7 +5,7 @@
     --gray-2: #b2b2b2;
   }
   
-  .audit-container {
+  .audit-containers {
     background: var(--bg-red);
     display: flex;
     gap: 14px;
@@ -14,21 +14,21 @@
     padding: 27px 70px 27px 22px;
   }
   
-  .sidebar {
+  .sidebars {
     align-self: end;
     display: flex;
     margin-top: 29px;
     flex-direction: column;
   }
   
-  .icon {
+  .icons {
     aspect-ratio: 1;
     object-fit: contain;
     object-position: center;
     width: 34px;
   }
   
-  .icon-wrapper {
+  .icon-wrappers {
     display: flex;
     margin-top: 12px;
     align-items: center;
@@ -38,7 +38,7 @@
     padding: 3px 0;
   }
   
-  .main-content {
+  .main-contents {
     padding-top: 11px;
     border-radius: 26px;
     box-shadow: 2px 2px 6.8px 0px rgba(0, 0, 0, 0.25);
@@ -53,7 +53,7 @@
     width: fit-content;
   }
   
-  .content-wrapper {
+  .content-wrappers {
     background-color: #fff;
     display: flex;
     width: 100%;
@@ -63,12 +63,12 @@
     padding: 0 55px 26px;
   }
   
-  .title {
+  .titles {
     color: #000;
     font: 600 40px Inter, sans-serif;
   }
   
-  .divider {
+  .dividers {
     margin-top: 7px;
     width: 830px;
     max-width: 100%;
@@ -76,7 +76,7 @@
     border: 1px solid #535353;
   }
   
-  .findings-container {
+  .findings-containers {
     border-radius: 10px;
     background: var(--gray-5);
     align-self: stretch;
@@ -89,7 +89,7 @@
     padding: 36px 42px 11px 20px;
   }
   
-  .findings-text {
+  .findings-texts {
     color: #000;
     font-family: Inter, sans-serif;
     line-height: 31px;
@@ -149,33 +149,33 @@
   }
   
   @media (max-width: 991px) {
-    .audit-container {
+    .audit-containers {
       padding: 0 20px;
     }
   
-    .sidebar {
+    .sidebars {
       display: none;
     }
   
-    .main-content {
+    .main-contents {
       max-width: 100%;
     }
   
-    .content-wrapper {
+    .content-wrappers {
       max-width: 100%;
       padding: 0 20px;
     }
   
-    .title {
+    .titles {
       max-width: 100%;
     }
   
-    .findings-container {
+    .findings-containers {
       max-width: 100%;
       padding-right: 20px;
     }
   
-    .findings-text {
+    .findings-texts {
       max-width: 100%;
     }
   
@@ -194,7 +194,7 @@
     }
   }
   
-  .visually-hidden {
+  .visually-hiddens {
     position: absolute;
     width: 1px;
     height: 1px;

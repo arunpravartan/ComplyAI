@@ -4,10 +4,10 @@ const UploadSection = () => {
   return (
     <section className="upload-section">
       <h2 className="upload-title">Validate Quality Procedure</h2>
-      <hr className="divider" />
+      <divider className="divider" />
       <p className="upload-description">
         Upload the procedure to validate against Regulatory guidelines and Internal quality
-        standards. Once you upload the document, the AI agent will audit it and list out all
+        standards.<br></br> Once you upload the document, the AI agent will audit it and list out all
         the compliance gaps as
       </p>
       <form>

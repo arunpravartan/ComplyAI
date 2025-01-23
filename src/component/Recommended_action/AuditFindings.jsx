@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import './style.css';
 
 const AuditFindings = () => {
   const sidebarIcons = [
@@ -28,21 +28,21 @@ const AuditFindings = () => {
   ];
 
   return (
-    <main className="audit-container">
-      <aside className="sidebar">
+    <main className="audit-containers">
+      <aside className="sidebars">
         {sidebarIcons.map((icon, index) => (
-          <div key={index} className="icon-wrapper">
-            <img src={icon.src} alt={icon.alt} className="icon" />
+          <div key={index} className="icon-wrappers">
+            <img src={icon.src} alt={icon.alt} className="icons" />
           </div>
         ))}
       </aside>
-      <section className="main-content">
-        <div className="content-wrapper">
-          <h1 className="title">Findings of Audit Checker</h1>
-          <hr className="divider" />
-          <div className="findings-container">
-            <h2 className="visually-hidden">Audit Findings</h2>
-            <p className="findings-text">
+      <section className="main-contents">
+        <div className="content-wrappers">
+          <h1 className="titles">Findings of Audit Checker</h1>
+          <hr className="dividers" />
+          <div className="findings-containers">
+            <h2 className="visually-hiddens">Audit Findings</h2>
+            <p className="findings-texts">
               <strong>Document Name : Quality Procedure 123.docx</strong><br />
               <strong>Date : 27-09/2024</strong><br />
               {findings.map((finding, index) => (
