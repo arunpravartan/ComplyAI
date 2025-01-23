@@ -4,8 +4,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import FormComponent from "./DocumentUpload";
-import {Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import RestoreIcon from '@mui/icons-material/Restore';
+
+import UploadDocxFile from "./UploadDocxFile";
+import ResponseData from "./ResponseData";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,6 +65,8 @@ export default function Dashboard1() {
   const [value, setValue] = React.useState(0);
   const [newvalue, newSetValue] = React.useState(0);
   const [isUpload, setIsUpload] = React.useState(false);
+  const [uploadFile, setuploadFile] = React.useState(null);
+  const [isAuditCompleted, setIsAuditCompleted] = React.useState(false);
 
   const handleChange = (event, nValue) => {
     setValue(nValue);
@@ -79,6 +84,27 @@ export default function Dashboard1() {
   const handleUpload = () => {
     setIsUpload(true)
   };
+
+  const uploadFileForAudit = () => {
+    setIsUpload(false);
+    setIsAuditCompleted(true)
+  };
+
+  const removeUploadFile = () => {
+    setuploadFile();
+    setIsUpload(false);
+  };
+
+  const handleClose = () => {
+    setIsUpload(false)
+  };
+
+  const handleUploadFile = (file) => {
+    setIsUpload(false);
+    const formData = new FormData();
+    formData.append("file", file);
+    setuploadFile(file);
+  }
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -159,6 +185,7 @@ export default function Dashboard1() {
                 color: "#00579B",
                 borderRadius: "8px 8px 0 0",
                 border: "0px solid lightgray",
+                fontWeight: 800
               },
             }}
             TabIndicatorProps={{
@@ -188,13 +215,21 @@ export default function Dashboard1() {
           </Tabs>
         </Box>
         <NewCustomTabPanel value={newvalue} index={0}>
-          {isUpload ? "" : 
-          <FormComponent options={procedureType} onUpload={handleUpload} />
+          {isUpload && !isAuditCompleted ? <UploadDocxFile onClose={handleClose} uploadFile={handleUploadFile} /> :
+          isAuditCompleted && !isUpload ? <ResponseData/> :
+            <FormComponent 
+            options={procedureType} 
+            onUpload={handleUpload} 
+            uploadFileForAudit={uploadFileForAudit}
+            removeUploadFile={removeUploadFile}
+            fileDetails={uploadFile} 
+            />
           }
-          <Box sx={{ mt: 13, ml: 160, display: "flex", alignItems: "center", gap: 1 }}>
+          {!isAuditCompleted &&
+          <Box sx={{ mt: 13, width: "100%", display: "flex", alignItems: "right", gap: 1, justifyContent: "flex-end", marginLeft: "-50px" }}>
             <RestoreIcon />
             <Typography>History</Typography>
-          </Box>
+          </Box> }
         </NewCustomTabPanel>
         <NewCustomTabPanel value={newvalue} index={1}>
           New Item 2
