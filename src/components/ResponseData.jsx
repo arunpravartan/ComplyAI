@@ -25,7 +25,7 @@ const ResponseData = () => {
         {/* Left Panel */}
         <Grid item xs={9}>
           <Box sx={{ padding: '5px 30px 10px 20px' }}>
-            <Paper sx={{ backgroundColor: 'white', padding: '10px', height: '59vh', overflowY: 'auto' }}>
+            <Paper sx={{ backgroundColor: 'white', padding: '40px', height: '59vh', overflowY: 'auto' }}>
               <Typography>CAPA ID: -2023-003</Typography>
               <Typography>Title: Corrective Action for Batch Contamination Incident</Typography>
               <Typography>Associated Deviation ID: DEV-567</Typography>
