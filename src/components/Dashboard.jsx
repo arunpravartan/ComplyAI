@@ -74,7 +74,8 @@ export default function Dashboard1() {
   const [message, setMessage] = React.useState("Uploading file...");
   const url = "https://complyai.pravartan.com";
 
-  const formDetails = {};
+  
+  const [formDetails, setFormDetails] = React.useState({});
   const handleChange = (event, nValue) => {
     setValue(nValue);
   };
@@ -99,6 +100,9 @@ export default function Dashboard1() {
     setIsUpload(true)
   };
 
+  const handleFormDetailsChange = (updatedDetails) => {
+    setFormDetails(updatedDetails);
+  };
 
   const uploadFileForAudit = () => {
     setIsUpload(false);
@@ -328,6 +332,7 @@ export default function Dashboard1() {
                 removeUploadFile={removeUploadFile}
                 fileDetails={uploadFile}
                 formDetails = {formDetails}
+                onFormDetailsChange={handleFormDetailsChange}
               />
           }
           {!isAuditCompleted &&

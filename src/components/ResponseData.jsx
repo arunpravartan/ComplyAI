@@ -86,12 +86,12 @@ const handlePrintClick = () => {
     '&::-webkit-scrollbar': {
       display: 'none', // Hide scrollbar (Chrome, Safari, Edge)
     }, }}>
-              <Typography>CAPA ID: 2023-003</Typography>
-              <Typography>Title: {fileName}</Typography>
-              <Typography>Associated Deviation ID: DEV-567</Typography>
-              <Typography>Awareness Date:  {new Date().toLocaleDateString()}</Typography>
-              <Typography>Date Initiated: {new Date().toLocaleDateString()}</Typography>
-              <Typography>Category: {formDetails?.procedureType}</Typography>
+              <Typography><strong>CAPA ID:</strong> 2023-003</Typography>
+              <Typography><strong>Title:</strong> {fileName}</Typography>
+              <Typography><strong>Associated Deviation ID:</strong> DEV-567</Typography>
+              <Typography><strong>Awareness Date:</strong>  {new Date().toLocaleDateString()}</Typography>
+              <Typography><strong>Date Initiated:</strong> {new Date().toLocaleDateString()}</Typography>
+              <Typography><strong>Category:</strong> {formDetails?.procedureType}</Typography>
               {/* <Typography>CAPA Owner: Ron Swanson - Quality Assurance Lead</Typography>
               <Typography>Department: Manufacturing Operations</Typography> */}
               <Box sx={{ mt: 2, mb: 2 }}></Box>

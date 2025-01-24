@@ -2,12 +2,17 @@ import React from "react";
 import { Autocomplete, TextField, Button, Box, Typography } from "@mui/material";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile, fileDetails, formDetails }) => {
+const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile, fileDetails, formDetails, onFormDetailsChange }) => {
 
-
-    const handleChange = (event, value) => {
-        formDetails["procedureType"] = value;
-    };
+    const handleProcedureTypeChange = (event, value) => {
+        formDetails["procedureType"] = value?.label;
+        onFormDetailsChange({ ...formDetails }); // Pass updated object to parent
+      };
+    
+      const handleInstructionChange = (e) => {
+        formDetails["instruction"] = e.target.value;
+        onFormDetailsChange({ ...formDetails }); // Pass updated object to parent
+      };
 
     return (
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "left" }}>
@@ -15,14 +20,22 @@ const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile
                 disablePortal
                 options={options}
                 sx={{ width: 600, mt: 5, bgcolor: "white", borderRadius: "4px" }}
-                onChange={handleChange}
+                onChange={handleProcedureTypeChange}
                 renderInput={(params) => <TextField {...params} label="Procedure Type" />}
             />
-            <Autocomplete
+            {/* <Autocomplete
                 disablePortal
                 options={options}
                 sx={{ width: 600, mt: 3, bgcolor: "white", borderRadius: "4px" }}
                 renderInput={(params) => <TextField {...params} label="Select Template" />}
+            /> */}
+            <TextField
+                id="outlined-multiline-flexible"
+                label="Provide Instruction of the Procedure"
+                sx={{ width: 600, mt: 3, bgcolor: "white", borderRadius: "4px" }}
+                multiline
+                maxRows={4}
+                onChange={handleInstructionChange} // Handle change
             />
             <Box sx={{ mt: 3, textAlign: "center", width: 600,  display: fileDetails ? "flex" : "block", 
                 justifyContent: fileDetails ? "space-between" : "center", }}>
