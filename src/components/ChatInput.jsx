@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { TextField, Button, Box, Grid, Stack, Typography, Card, CircularProgress, Drawer } from "@mui/material";
 import { FormControl } from "@mui/base";
 import Download from '@mui/icons-material/Download';
@@ -10,11 +10,16 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
 
 const ChatInput = () => {
+  let scrollRef = useRef(null);
   const [question, setQuestion] = useState("");
   const [responseHistory, setResponseHistory] = useState({});
   const [preLoading, setPreLoader] = useState(false);
   const [editKey, setEdit] = useState(null);
   const [ans, setAnswer] = useState("");
+
+  useEffect(() => {
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [responseHistory, question]);
 
   const handleQuestionSubmit = () => {
     if (!question) return;
@@ -105,8 +110,8 @@ const ChatInput = () => {
           </Box>
         </Grid>
         <Grid item xs={10}>
-          <Box>
-            <Stack className="hide-scroll" sx={{
+          <Box >
+            <Stack className="hide-scroll" ref={scrollRef} sx={{
               height: '60vh', overflowY: 'auto',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -195,6 +200,7 @@ const ChatInput = () => {
                 </Stack>
               ))}
             </Stack>
+            {/* ask me textfield & send button */}
             <Stack
               sx={{
                 position: "fixed",
@@ -252,6 +258,7 @@ const ChatInput = () => {
           </Box>
         </Grid>
       </Grid>
+      {/* preloading */}
       <Drawer
         anchor="left"
         open={preLoading}
