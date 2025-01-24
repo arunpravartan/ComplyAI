@@ -37,6 +37,7 @@ const AuthProvider = ({ children }) => {
             // const response = await userLogin(payload);
             // if (response?.success) setUser(response.data);
             // return { success: response };
+            localStorage.setItem("user", JSON.stringify(payload));
             setUser(payload);
         } catch (error) {
             console.error(error);
@@ -48,6 +49,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         try {
             // await userLogout({ id: user?.id });
+            localStorage.removeItem("user");
             setUser(null);
         } catch (error) {
             console.error(error);
