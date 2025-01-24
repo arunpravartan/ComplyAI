@@ -11,7 +11,7 @@ import {
   Card
 } from "@mui/material";
 import RestoreIcon from '@mui/icons-material/Restore';
-import { Stack } from "@mui/system";
+import { fontSize, Stack } from "@mui/system";
 import Download from '@mui/icons-material/Download';
 import Share from '@mui/icons-material/Share';
 import History from '@mui/icons-material/History';
@@ -70,9 +70,7 @@ const handleDownloadClick = () => {
   URL.revokeObjectURL(url);
 };
 
-const handlePrintClick = () => {
-  const textToPrint = document.querySelector('.findings-text').textContent;
-  window.print(textToPrint);
+const handleEditClick = () => {
 }
 
   return (
@@ -94,11 +92,11 @@ const handlePrintClick = () => {
               <Typography><strong>Category:</strong> {formDetails?.procedureType}</Typography>
               {/* <Typography>CAPA Owner: Ron Swanson - Quality Assurance Lead</Typography>
               <Typography>Department: Manufacturing Operations</Typography> */}
-              <Box sx={{ mt: 2, mb: 2 }}></Box>
+              <Box></Box>
               <Stack className="findings-text">
               {(findings || []).map((finding, index) => (
-                  <Box >
-                      <Typography>{index + 1}. Finding {index + 1} :</Typography>
+                  <Box sx={{ mt:2}}>
+                      <Typography><strong style={{ fontSize: '16px' }}>Finding {index + 1} :</strong></Typography>
                       <Typography>{finding.issue}</Typography>
                       <Typography><strong>Recommendation :</strong> {finding?.recommendation}</Typography>
                   </Box>
@@ -112,7 +110,7 @@ const handlePrintClick = () => {
             <Button variant="contained" startIcon={<Download />} sx={{ backgroundColor: "#25BAA2", color: "white", "&:hover": { backgroundColor: "#25BAA2", color: "white"}}} onClick={() => { handleDownloadClick() }}>
               Download
             </Button>
-            <Button variant="outlined" startIcon={<BorderColor />} sx={{ border: '4px solid', color: "#25BAA2", "&:hover": { border: '4px solid', color: "#25BAA2"}}}>
+            <Button variant="outlined" startIcon={<BorderColor />} sx={{ border: '4px solid', color: "#25BAA2", "&:hover": { border: '4px solid', color: "#25BAA2"}}} onClick={() => { handleEditClick() }}>
               Edit
             </Button>
             <Button variant="outlined" startIcon={<Share />} sx={{ border: '4px solid', color: "#25BAA2", "&:hover": { border: '4px solid', color: "#25BAA2"}}} onClick={() => { handleShareClick() }}>
@@ -123,9 +121,9 @@ const handlePrintClick = () => {
             </Button>
           </Stack>
           <Stack direction="column" spacing={2} sx={{ padding: '10px 140px'}}>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, justifyContent: "flex-end",}}>
-            <RestoreIcon />
-            <Typography>History</Typography>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1, justifyContent: "flex-end",}}>
+              <RestoreIcon />
+              <Typography>History</Typography>
             </Box>
           </Stack>
         </Grid>

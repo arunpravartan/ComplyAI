@@ -10,6 +10,7 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import UploadDocxFile from "./UploadDocxFile";
 import ResponseData from "./ResponseData";
 import CircularProgress from '@mui/material/CircularProgress';
+import ChatInput from "./ChatInput";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -346,7 +347,7 @@ export default function Dashboard1() {
         </NewCustomTabPanel>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        Item Two
+        <ChatInput />
       </CustomTabPanel>
     </Box>
   );
