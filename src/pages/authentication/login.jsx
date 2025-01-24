@@ -27,7 +27,8 @@ export default function Login() {
         display: "flex",
         height: "100vh",
         backgroundColor: "#f5f5f5",
-        padding: "50px"
+        padding: "50px",
+        borderRadius: "8px",
       }}
     >
       {/* Left Section */}
@@ -38,6 +39,7 @@ export default function Login() {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#00579B", // Change to preferred color
+          borderRadius: "10px 0 0 10px"
         }}
       >
         <Typography
@@ -61,6 +63,7 @@ export default function Login() {
           justifyContent: "center",
           padding: "80px",
           backgroundColor: "white",
+          borderRadius: "0 10px 10px 0"
         }}
       >
         {/* Login Title */}
