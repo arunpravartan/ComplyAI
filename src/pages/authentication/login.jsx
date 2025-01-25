@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from 'react-router-dom';
 
 // material-ui
@@ -16,17 +17,35 @@ import AppleIcon from "@mui/icons-material/Apple";
 // import { useAuth } from '../contexts/AuthProvider';
 
 import Logo from 'components/logo';
+import { Password } from "@mui/icons-material";
 
 // ================================|| LOGIN ||================================ //
 
 export default function Login() {
   // const { isAuthenticated, isLoading } = useAuth();
+  const [credentialData, setCredentialData] = React.useState({
+    name : 'Manish Srivastava',
+    email : '',
+    password : ''
+  });
+  const handleLogin = () => {
+    if(!credentialData){
+      alert('Invalid Credentials') ;
+      return
+    }
+    if(credentialData?.password === 'pravartan@123' && credentialData?.email === 'manish@pravartan.co.in') {
+      localStorage.setItem('credentialData', JSON.stringify(credentialData));
+      window.location.href = '/';
+    } else {
+      alert('Invalid Credentials');
+      return
+    }
+  }
   return (
     <Box
       sx={{
         display: "flex",
         height: "100vh",
-        backgroundColor: "#f5f5f5",
         padding: "50px",
         borderRadius: "8px",
         backgroundColor: "#E9F5FF",
@@ -118,6 +137,7 @@ export default function Login() {
           variant="outlined"
           fullWidth
           sx={{ mb: 3 }}
+          onChange={(e) => setCredentialData({...credentialData, email : e.target.value})}
         />
         <TextField
           label="Password"
@@ -125,6 +145,7 @@ export default function Login() {
           variant="outlined"
           fullWidth
           sx={{ mb: 4 }}
+          onChange={(e) => setCredentialData({...credentialData, password : e.target.value})}
         />
 
         {/* Login Button */}
@@ -140,6 +161,7 @@ export default function Login() {
               bgcolor: "#25BAA2",
             },
           }}
+          onClick={() => {handleLogin()}}
         >
           Login
         </Button>
