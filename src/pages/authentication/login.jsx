@@ -29,6 +29,7 @@ export default function Login() {
         backgroundColor: "#f5f5f5",
         padding: "50px",
         borderRadius: "8px",
+        backgroundColor: "#E9F5FF",
       }}
     >
       {/* Left Section */}
