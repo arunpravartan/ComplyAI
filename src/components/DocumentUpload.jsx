@@ -31,7 +31,7 @@ const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile
             /> */}
             <TextField
                 id="outlined-multiline-flexible"
-                label="Provide Instruction of the Procedure"
+                label="Provide any additional instructions"
                 sx={{ width: 600, mt: 3, bgcolor: "white", borderRadius: "4px" }}
                 multiline
                 maxRows={4}

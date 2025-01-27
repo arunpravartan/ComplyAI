@@ -70,8 +70,8 @@ const handleDownloadClick = () => {
   URL.revokeObjectURL(url);
 };
 
-const handleEditClick = () => {
-}
+// const handleEditClick = () => {
+// }
 
   return (
     <Box>
@@ -110,9 +110,9 @@ const handleEditClick = () => {
             <Button variant="contained" startIcon={<Download />} sx={{ backgroundColor: "#25BAA2", color: "white", "&:hover": { backgroundColor: "#25BAA2", color: "white"}}} onClick={() => { handleDownloadClick() }}>
               Download
             </Button>
-            <Button variant="outlined" startIcon={<BorderColor />} sx={{ border: '4px solid', color: "#25BAA2", "&:hover": { border: '4px solid', color: "#25BAA2"}}} onClick={() => { handleEditClick() }}>
+            {/* <Button variant="outlined" startIcon={<BorderColor />} sx={{ border: '4px solid', color: "#25BAA2", "&:hover": { border: '4px solid', color: "#25BAA2"}}} onClick={() => { handleEditClick() }}>
               Edit
-            </Button>
+            </Button> */}
             <Button variant="outlined" startIcon={<Share />} sx={{ border: '4px solid', color: "#25BAA2", "&:hover": { border: '4px solid', color: "#25BAA2"}}} onClick={() => { handleShareClick() }}>
               Share
             </Button>

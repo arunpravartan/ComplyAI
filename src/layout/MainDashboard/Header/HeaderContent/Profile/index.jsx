@@ -57,6 +57,9 @@ export default function Profile() {
     setOpen((prevOpen) => !prevOpen);
   };
 
+  const handleLogout = () => {
+    window.location.href = '/login';
+  }
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
@@ -124,7 +127,7 @@ export default function Profile() {
                         <Stack direction="row" spacing={1.25} alignItems="center">
                           <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} />
                           <Stack>
-                            <Typography variant="h6">John Doe</Typography>
+                            <Typography variant="h6">Manish Srivastava</Typography>
                             <Typography variant="body2" color="text.secondary">
                               UI/UX Designer
                             </Typography>
@@ -134,7 +137,7 @@ export default function Profile() {
                       <Grid item>
                         <Tooltip title="Logout">
                           <IconButton size="large" sx={{ color: 'text.primary' }}>
-                            <LogoutOutlined />
+                            <LogoutOutlined onClick={() => {handleLogout()}} />
                           </IconButton>
                         </Tooltip>
                       </Grid>

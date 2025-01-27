@@ -30,14 +30,27 @@ const ChatInput = () => {
   };
   const getResponse = async (question) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      // const response = await fetch("http://localhost:5000/", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ question })});
-      // const data = await response.json();
-      const data = "To make the white box match the width of the Grid item while keeping it positioned at the bottom of the screen, you need to ensure the Stack takes up the width of the Grid item it's inside."
-      setResponseHistory((prevHistory) => ({
-        ...prevHistory,
-        [question]: data,
-      }));
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
+      const res = await fetch("/knowledgehub/ask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch response from server");
+      }
+
+      const data = await res.json();
+      // const data = { response: "To make the white box match the width of the Grid item while keeping it positioned at the bottom of the screen, you need to ensure the Stack takes up the width of the Grid item it's inside." }
+      if (data && data?.response) {
+        setResponseHistory((prevHistory) => ({
+          ...prevHistory,
+          [question]: data?.response,
+        }));
+      }
     } catch (e) {
       console.log(e);
     } finally {
@@ -93,22 +106,28 @@ const ChatInput = () => {
   return (
     <Box>
       <Grid container spacing={2}>
-        <Grid item xs={2}>
-          <Box className="hide-scroll" sx={{
-            height: '72vh', overflowY: 'auto',
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            '&::-webkit-scrollbar': {
-              display: 'none',
-            }
-          }}>
-            {/* {Object.keys(responseHistory).map((key) => (
-              <Card key={key} sx={{ padding: "5px", marginBottom: "2px", bgcolor: "#96dcef" }}>
-                <Typography>{key}</Typography>
-              </Card>
-            ))} */}
-          </Box>
-        </Grid>
+        {
+          responseHistory && Object.keys(responseHistory).length > 0 ? (
+            <Grid item xs={2} sx={{ backgroundColor: "#d3d3d3", }}>
+              <Box className="hide-scroll" sx={{
+                height: '71.6vh', overflowY: 'auto',
+                scrollbarWidth: 'none',
+                paddingRight: "20px",
+                msOverflowStyle: 'none',
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                }
+              }}>
+                {Object.keys(responseHistory).reverse().map((key) => (
+                  <Card key={key} sx={{ padding: "5px", marginBottom: "2px", bgcolor: "white" }}>
+                    <Typography>{key}</Typography>
+                  </Card>
+                ))}
+              </Box>
+            </Grid>
+          ) : <Grid item xs={2}></Grid>
+        }
+
         <Grid item xs={10}>
           <Box >
             <Stack className="hide-scroll" ref={scrollRef} sx={{
@@ -130,14 +149,14 @@ const ChatInput = () => {
                   spacing={2}
                 >
                   <Stack sx={{ width: "100%", alignItems: "flex-end" }} >
-                    <Card sx={{ width: "30%", padding: "10px", bgcolor: "#96dcef", borderRadius: "8px 0px 8px 8px" }} >
+                    <Card sx={{ width: "30%", padding: "10px", bgcolor: "white", borderRadius: "8px 0px 8px 8px" }} >
                       <Typography variant="body1">
                         {key}
                       </Typography>
                     </Card>
                   </Stack>
                   <Stack sx={{ width: "100%", alignItems: "flex-end" }}>
-                    <Card sx={{ padding: "10px", width: "80%", bgcolor: "#96dcef", borderRadius: "0px 8px 8px 8px" }}>
+                    <Card sx={{ padding: "10px", width: "80%", bgcolor: "white", borderRadius: "0px 8px 8px 8px" }}>
                       {editKey === key ?
                         <FormControl fullWidth>
                           <TextField
@@ -225,6 +244,11 @@ const ChatInput = () => {
                     placeholder="Ask me anything about _, _ and _"
                     InputProps={{ disableUnderline: true }}
                     onChange={(e) => setQuestion(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        handleQuestionSubmit(); // Call the submit function when Enter is pressed
+                      }
+                    }}
                     sx={{
                       flex: 1,
                       marginRight: "10px",

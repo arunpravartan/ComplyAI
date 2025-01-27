@@ -20,7 +20,7 @@ function CustomTabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      style={{ background: value ? "#00579B" : "white", color: value ? "white" : "black", height: "78vh", borderRadius: "0 0 8px 8px" }}
+      style={{ background: value ? "#f6f6f6" : "white", color: value ? "white" : "black", height: "78vh", borderRadius: "0 0 8px 8px" }}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -130,7 +130,7 @@ export default function Dashboard1() {
             "Uploading file...",
             "Validating data...",
             "Processing data...",
-            "Finalizing audit...",
+            "Finalizing audit report...",
           ];
   
           let currentMessageIndex = 0;
@@ -279,7 +279,7 @@ export default function Dashboard1() {
             }}
           >
             <Tab
-              label="Validate Procedure"
+              label="Validate Record"
               value={0}
               sx={{
                 textAlign: 'center',
@@ -287,7 +287,7 @@ export default function Dashboard1() {
               }}
             />
             <Tab
-              label="Validate Record"
+              label="Validate Procedure"
               value={1}
               sx={{
                 textAlign: 'center',

@@ -10,7 +10,7 @@ import login from "assets/images/auth/login.png";
 // project import
 import AuthWrapper from './AuthWrapper';
 import AuthLogin from './auth-forms/AuthLogin';
-import { Box, Typography, TextField, Button } from "@mui/material";
+import { Box, Typography, TextField, Button, useMediaQuery  } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";
 
@@ -23,6 +23,7 @@ import { Password } from "@mui/icons-material";
 
 export default function Login() {
   // const { isAuthenticated, isLoading } = useAuth();
+  const isMobile = useMediaQuery("(max-width:768px)");
   const [credentialData, setCredentialData] = React.useState({
     name : 'Manish Srivastava',
     email : '',
@@ -52,6 +53,7 @@ export default function Login() {
       }}
     >
       {/* Left Section */}
+      {!isMobile && (
       <Box
         sx={{
           width: "60%",
@@ -72,7 +74,7 @@ export default function Login() {
           <img src={login} alt="dashboard" style={{ maxWidth: '74%', maxHeight: '100%', marginTop: '95px' }} />
         </Typography>
       </Box>
-
+      )}
       {/* Right Section */}
       <Box
         sx={{
