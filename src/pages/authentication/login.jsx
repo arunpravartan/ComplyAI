@@ -23,7 +23,6 @@ import { Password } from "@mui/icons-material";
 
 export default function Login() {
   // const { isAuthenticated, isLoading } = useAuth();
-  const isMobile = useMediaQuery("(max-width:768px)");
   const [credentialData, setCredentialData] = React.useState({
     name : 'Manish Srivastava',
     email : '',
@@ -43,52 +42,26 @@ export default function Login() {
     }
   }
   return (
-    <Box
-      sx={{
-        display: "flex",
-        height: "100vh",
-        padding: "50px",
-        borderRadius: "8px",
-        backgroundColor: "#E9F5FF",
-      }}
-    >
-      {/* Left Section */}
-      {!isMobile && (
-      <Box
-        sx={{
-          width: "60%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#00579B", // Change to preferred color
-          borderRadius: "10px 0 0 10px"
-        }}
-      >
-        <Typography
-          variant="h1"
-          sx={{
-            color: "white",
-            fontWeight: "bold",
-          }}
-        >
-          <img src={login} alt="dashboard" style={{ maxWidth: '74%', maxHeight: '100%', marginTop: '95px' }} />
-        </Typography>
-      </Box>
-      )}
-      {/* Right Section */}
-      <Box
-        sx={{
-          width: "40%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "80px",
-          backgroundColor: "white",
-          borderRadius: "0 10px 10px 0"
-        }}
-      >
+    <Grid container sx={{ height: '100vh', padding: "90px", bgcolor : '#E9F5FF' }}>
+      <Grid size={{ xs: 12, md: 8, lg: 8 }} sx={{
+          bgcolor: '#00579B',
+          display: { xs: 'none', md: 'flex' },
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: "-webkit-fill-available",
+          borderTopLeftRadius: "5px",
+          borderBottomLeftRadius: "5px"
+        }}>
+          <img src={login} alt="dashboard" style={{ maxWidth: '85%', maxHeight: '100%', marginTop: '80px' }} />
+      </Grid>
+     
+      <Grid size={{ xs: 12, md: 4, lg: 4}} 
+        sx={{ p: { xs: 3, sm: 7 }, 
+          bgcolor: '#ffff', "zIndex": 999, 
+          borderTopRightRadius: "5px",
+          borderBottomRightRadius: "5px" }}>
         {/* Login Title */}
+        <Box sx={{ mb: 3 }}>
         <Typography
           variant="h6"
           sx={{
@@ -151,7 +124,7 @@ export default function Login() {
         />
 
         {/* Login Button */}
-        <Box sx={{ width: "100%", display: "-webkit-box", justifyContent: "center" }}>
+        <Box sx={{ display: "-webkit-box", justifyContent: "center" }}>
         <Button
           variant="contained"
           fullWidth
@@ -180,7 +153,8 @@ export default function Login() {
         >
           One step solution for your company 
         </Typography>
-      </Box>
-    </Box>
+        </Box>
+      </Grid>
+    </Grid>
   );
 }
