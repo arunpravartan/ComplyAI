@@ -30,21 +30,22 @@ const ChatInput = () => {
   };
   const getResponse = async (question) => {
     try {
-      // await new Promise((resolve) => setTimeout(resolve, 1000));
-      const res = await fetch("/knowledgehub/ask", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ question }),
-      });
+      // const res = await fetch("/knowledgehub/ask", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ question }),
+      // });
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch response from server");
-      }
+      // if (!res.ok) {
+      //   throw new Error("Failed to fetch response from server");
+      // }
 
-      const data = await res.json();
-      // const data = { response: "To make the white box match the width of the Grid item while keeping it positioned at the bottom of the screen, you need to ensure the Stack takes up the width of the Grid item it's inside." }
+      // const data = await res.json();
+      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const data = { response: "To make the white box match the width of the Grid item while keeping it positioned at the bottom of the screen, you need to ensure the Stack takes up the width of the Grid item it's inside." }
       if (data && data?.response) {
         setResponseHistory((prevHistory) => ({
           ...prevHistory,

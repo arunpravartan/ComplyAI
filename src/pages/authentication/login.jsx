@@ -55,30 +55,28 @@ export default function Login() {
           display: { xs: 'none', md: 'flex' },
           justifyContent: 'center',
           alignItems: 'center',
-          height: "-webkit-fill-available",
-          borderTopLeftRadius: "5px",
-          borderBottomLeftRadius: "5px"
+          height: "-webkit-fill-available"
         }}>
           <img src={loginImage} alt="ComplyAI" style={{ height: '60%' }} />
       </Grid>
      
       <Grid item xs={12} md={5} sx={{ 
-          p: { xs: 3, sm: 7 }, 
-          bgcolor: '#ffff', "zIndex": 999, 
-          borderTopRightRadius: "5px",
-          borderBottomRightRadius: "5px" }}>
+          p: { xs: 3, sm: 7 },
+          bgcolor: '#ffff',
+          maxWidth: '400px'
+        }}>
         {/* Login Title */}
         <Box sx={{ mb: 3 }} display="flex" justifyContent="center" alignItems="center" height="100%">
           <Box width="100%" px={3}>
             <Stack>
               <Typography
-              variant="h6"
-              sx={{
-                color:'gray',
-                mb: 1,
-                textAlign: "center",
-              }}
-            >
+                variant="h6"
+                sx={{
+                  color: 'gray',
+                  mb: 1,
+                  textAlign: 'center'
+                }}
+              >
               Sign In
               </Typography>
               {/* Social Login Buttons */}
