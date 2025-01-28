@@ -24,11 +24,15 @@ const AuthProvider = ({ children }) => {
         // };
 
         // fetchUser();
-        const loggedinUser = localStorage.getItem("user");
-        if (loggedinUser) {
-            setUser(JSON.parse(loggedinUser));
-        } else {
-            setUser(null)
+        try {
+            const loggedinUser = localStorage.getItem("user");
+            if (loggedinUser) {
+                setUser(JSON.parse(loggedinUser));
+            } else {
+                setUser(null)
+            }
+        } finally {
+            setLoading(false);
         }
     }, []);
 
@@ -37,11 +41,14 @@ const AuthProvider = ({ children }) => {
             // const response = await userLogin(payload);
             // if (response?.success) setUser(response.data);
             // return { success: response };
+            setLoading(true);
             localStorage.setItem("user", JSON.stringify(payload));
             setUser(payload);
         } catch (error) {
             console.error(error);
             return { error };
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -53,8 +60,8 @@ const AuthProvider = ({ children }) => {
             setUser(null);
         } catch (error) {
             console.error(error);
-        }finally{
-            setLoading(false);  
+        } finally {
+            setLoading(false);
         }
     };
 

@@ -19,28 +19,44 @@ import AppleIcon from "@mui/icons-material/Apple";
 import Logo from 'components/logo';
 import { Password } from "@mui/icons-material";
 
+import { useAuth } from 'hooks/useAuthContext';
+
 // ================================|| LOGIN ||================================ //
 
 export default function Login() {
-  // const { isAuthenticated, isLoading } = useAuth();
-  const [credentialData, setCredentialData] = React.useState({
-    name : 'Manish Srivastava',
-    email : '',
-    password : ''
-  });
+  const { loading, user, login } = useAuth();
+
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  const credentials = [{
+    name: 'Manish Srivastava',
+    email: 'manish@pravartan.co.in',
+    password: 'pravartan@123'
+  }, {
+    name: 'Arun Kumar',
+    email: 'arun.kumar@pravartan.co.in',
+    password: 'arun@123'
+  }, {
+    name: 'Gaurav Pandey',
+    email: 'gaurav.pandey@pravartan.co.in',
+    password: 'gaurav@123'
+  }];
+
   const handleLogin = () => {
-    if(!credentialData){
-      alert('Invalid Credentials') ;
-      return
-    }
-    if(credentialData?.password === 'pravartan@123' && credentialData?.email === 'manish@pravartan.co.in') {
-      localStorage.setItem('credentialData', JSON.stringify(credentialData));
-      window.location.href = '/';
+    const user = credentials?.find((cred) => cred?.email === email)
+    if (user?.password === password) {
+      login({
+        ...user
+      })
     } else {
-      alert('Invalid Credentials');
-      return
+      alert('Invalid credential.');
+      return;
     }
-  }
+  };
+
+  if (loading) return <div>Loading...</div>;
+
   return (
     <Box
       sx={{
@@ -137,7 +153,7 @@ export default function Login() {
           variant="outlined"
           fullWidth
           sx={{ mb: 3 }}
-          onChange={(e) => setCredentialData({...credentialData, email : e.target.value})}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
           label="Password"
@@ -145,7 +161,7 @@ export default function Login() {
           variant="outlined"
           fullWidth
           sx={{ mb: 4 }}
-          onChange={(e) => setCredentialData({...credentialData, password : e.target.value})}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         {/* Login Button */}
@@ -176,7 +192,7 @@ export default function Login() {
             color : "#00579B"
           }}
         >
-          One step solution for your company 
+          One stop solution for your company 
         </Typography>
       </Box>
     </Box>

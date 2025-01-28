@@ -13,9 +13,12 @@ import MobileSection from './MobileSection';
 // project import
 import { GithubOutlined } from '@ant-design/icons';
 
+import { useAuth } from 'hooks/useAuthContext';
+
 // ==============================|| HEADER - CONTENT ||============================== //
 
 export default function HeaderContent() {
+  const { user } = useAuth();
   const downLG = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
   return (

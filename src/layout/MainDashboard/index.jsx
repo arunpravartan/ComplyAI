@@ -31,7 +31,7 @@ export default function MainDashboard() {
       <Header />
       <Box component="main" sx={{ width: 'calc(100% - 260px)', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
         <Toolbar />
-          <Breadcrumbs navigation={navigation} title />
+        <Breadcrumbs navigation={navigation} title />
         <Outlet />
       </Box> 
     </Box>

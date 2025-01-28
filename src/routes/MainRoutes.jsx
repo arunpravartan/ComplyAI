@@ -1,28 +1,37 @@
 import { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 
 // project import
 import Loadable from 'components/Loadable';
 import MainDashboard from 'layout/MainDashboard';
-import Dashboard1 from 'components/Dashboard';
+import DashboardDefault from 'components/Dashboard';
 
-const Color = Loadable(lazy(() => import('pages/component-overview/color')));
-const Typography = Loadable(lazy(() => import('pages/component-overview/typography')));
-const Shadow = Loadable(lazy(() => import('pages/component-overview/shadows')));
-const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/index')));
+// const Color = Loadable(lazy(() => import('pages/component-overview/color')));
+// const Typography = Loadable(lazy(() => import('pages/component-overview/typography')));
+// const Shadow = Loadable(lazy(() => import('pages/component-overview/shadows')));
+// const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/index')));
 
 // render - sample page
-const SamplePage = Loadable(lazy(() => import('pages/extra-pages/sample-page')));
+// const SamplePage = Loadable(lazy(() => import('pages/extra-pages/sample-page')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
-const MainRoutes = {
+const MainRoutes = [{
   path: '/',
-  element: <MainDashboard/>,
+  element: <MainDashboard />,
   children: [
-      {
+    {
       path: '/',
-      element: <Dashboard1 />
+      element: <DashboardDefault />
     },
+    {
+      path: '/dashboard',
+      element: <DashboardDefault />
+    },
+    { 
+      path: '*', 
+      element: <Navigate to="/" /> 
+    }
   ]
   // children: [
   //   {
@@ -59,6 +68,6 @@ const MainRoutes = {
   //     element: <Typography />
   //   }
   // ]
-};
+}];
 
 export default MainRoutes;

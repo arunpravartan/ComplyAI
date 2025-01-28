@@ -1,11 +1,22 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useAuth } from 'hooks/useAuthContext';
 
-// project import
+// Project imports
 import MainRoutes from './MainRoutes';
 import LoginRoutes from './LoginRoutes';
 
-// ==============================|| ROUTING RENDER ||============================== //
+const AppRouter = () => {
+  const { loading, user } = useAuth();
 
-const router = createBrowserRouter([MainRoutes, LoginRoutes], { basename: import.meta.env.VITE_APP_BASE_NAME });
+  if (loading) {
+    return <div>Loading...</div>; // Optional loading state
+  }
 
-export default router;
+  // Dynamically choose routes
+  const routes = user ? [...MainRoutes] : [...LoginRoutes];
+
+  const router = createBrowserRouter(routes, { basename: import.meta.env.VITE_APP_BASE_NAME });
+  return <RouterProvider router={router} />;
+};
+
+export default AppRouter;
