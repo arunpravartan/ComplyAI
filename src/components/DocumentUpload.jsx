@@ -2,23 +2,43 @@ import React from "react";
 import { Autocomplete, TextField, Button, Box, Typography } from "@mui/material";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-const FormComponent = ({ options, onUpload, uploadFileForAudit,removeUploadFile, fileDetails }) => {
+const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile, fileDetails, formDetails, onFormDetailsChange }) => {
+
+    const handleProcedureTypeChange = (event, value) => {
+        formDetails["procedureType"] = value?.label;
+        onFormDetailsChange({ ...formDetails }); // Pass updated object to parent
+      };
+    
+      const handleInstructionChange = (e) => {
+        formDetails["instruction"] = e.target.value;
+        onFormDetailsChange({ ...formDetails }); // Pass updated object to parent
+      };
+
     return (
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "left" }}>
             <Autocomplete
                 disablePortal
                 options={options}
                 sx={{ width: 600, mt: 5, bgcolor: "white", borderRadius: "4px" }}
+                onChange={handleProcedureTypeChange}
                 renderInput={(params) => <TextField {...params} label="Procedure Type" />}
             />
-            <Autocomplete
+            {/* <Autocomplete
                 disablePortal
                 options={options}
                 sx={{ width: 600, mt: 3, bgcolor: "white", borderRadius: "4px" }}
                 renderInput={(params) => <TextField {...params} label="Select Template" />}
+            /> */}
+            <TextField
+                id="outlined-multiline-flexible"
+                label="Provide any additional instructions"
+                sx={{ width: 600, mt: 3, bgcolor: "white", borderRadius: "4px" }}
+                multiline
+                maxRows={4}
+                onChange={handleInstructionChange} // Handle change
             />
             <Box sx={{ mt: 3, textAlign: "center", width: 600,  display: fileDetails ? "flex" : "block", 
-    justifyContent: fileDetails ? "space-between" : "center", }}>
+                justifyContent: fileDetails ? "space-between" : "center", }}>
                 {fileDetails && (
                     <Box sx={{ display: "flex", alignItems: "center", textAlign: "left" }}>
                         <Typography

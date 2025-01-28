@@ -12,10 +12,12 @@ import Typography from 'themes/typography';
 
 export default function Title() {
   const theme = useTheme();
-
+const handleLogoClick = () => {
+  window.location.href = '/';
+}
   return (
     <TitleStyled theme={theme}>
-      <Logo sx={{ width: 'auto', height: 35 }} />
+      <Logo sx={{ width: 'auto', height: 35 }} onClick={() => {handleLogoClick()}} />
     </TitleStyled>
   );
 }
