@@ -12,6 +12,8 @@ import ResponseData from "./ResponseData";
 import CircularProgress from '@mui/material/CircularProgress';
 import ChatInput from "./ChatInput";
 
+import GroupTabs from './GroupTabs';
+
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -63,7 +65,7 @@ function a11yProps(index) {
   };
 }
 
-export default function Dashboard1() {
+export default function Dashboard() {
   const [value, setValue] = React.useState(0);
   const [newvalue, newSetValue] = React.useState(0);
   const [isUpload, setIsUpload] = React.useState(false);
@@ -343,7 +345,8 @@ export default function Dashboard1() {
             </Box>}
         </NewCustomTabPanel>
         <NewCustomTabPanel value={newvalue} index={1}>
-          Comming Soon.....
+          {/* <GroupTabs /> */}
+          Comming soon...
         </NewCustomTabPanel>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>

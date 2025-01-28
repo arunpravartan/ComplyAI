@@ -13,11 +13,8 @@ import config from 'config';
 // ==============================|| MAIN LOGO ||============================== //
 
 const LogoSection = ({ sx, to }) => {
-  const handleLogoClick = () => {
-    window.location.href = '/login';
-  }
   return (
-    <ButtonBase disableRipple component={Link} sx={sx} onClick={() => {handleLogoClick()}}>
+    <ButtonBase disableRipple component={Link} sx={sx}>
       <Stack direction="row" spacing={1} alignItems="center">
         <Logo />
       </Stack>

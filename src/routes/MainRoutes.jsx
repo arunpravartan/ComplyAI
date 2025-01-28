@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 // project import
 import Loadable from 'components/Loadable';
 import MainDashboard from 'layout/MainDashboard';
-import DashboardDefault from 'components/Dashboard';
+import DashboardDefault from 'pages/dashboard';
 
 // const Color = Loadable(lazy(() => import('pages/component-overview/color')));
 // const Typography = Loadable(lazy(() => import('pages/component-overview/typography')));
