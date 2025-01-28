@@ -43,7 +43,11 @@ export default function Login() {
   }
   return (
     <Grid container sx={{ height: '100vh', padding: "90px", bgcolor : '#E9F5FF' }}>
-      <Grid size={{ xs: 12, md: 8, lg: 8 }} sx={{
+      <Grid 
+       xs={0} 
+       md={6} 
+       lg={8}  
+      sx={{
           bgcolor: '#00579B',
           display: { xs: 'none', md: 'flex' },
           justifyContent: 'center',
@@ -52,22 +56,26 @@ export default function Login() {
           borderTopLeftRadius: "5px",
           borderBottomLeftRadius: "5px"
         }}>
-          <img src={login} alt="dashboard" style={{ maxWidth: '85%', maxHeight: '100%', marginTop: '80px' }} />
+          <img src={login} alt="dashboard" style={{ maxHeight: '90%', marginTop: '55px' }} />
       </Grid>
      
-      <Grid size={{ xs: 12, md: 4, lg: 4}} 
+      <Grid 
+      xs={12} 
+      md={6}  
+      lg={4} 
         sx={{ p: { xs: 3, sm: 7 }, 
           bgcolor: '#ffff', "zIndex": 999, 
           borderTopRightRadius: "5px",
           borderBottomRightRadius: "5px" }}>
         {/* Login Title */}
-        <Box sx={{ mb: 3 }}>
+        <Box sx={{ marginTop:"30px" }}>
         <Typography
           variant="h6"
           sx={{
             color:'gray',
             mb: 1,
-            textAlign: "center",
+            textAlign: "center", 
+            fontFamily : 'urbanist'
           }}
         >
           Sign In
@@ -76,31 +84,40 @@ export default function Login() {
         {/* Social Login Buttons */}
         <Button
           variant="outlined"
-          startIcon={<GoogleIcon />}
+          startIcon={<GoogleIcon  sx={{ color : "#00579b", fontSize : "25px !important" }}/>}
           fullWidth
           sx={{
-            mb: 3,
+            mb: 2,
+            height: "48px",
             textTransform: "none",
-            color : "#25BAA2",
-            borderColor: "#25BAA2"
+            color : "#148bbb",
+            borderColor: "#25BAA2",
+            borderWidth: "5px",
+            "&:hover": {
+              bgcolor: "#fff",
+              color : "#148bbb",
+            borderColor: "#148bbb", 
+            borderWidth: "5px",
+            }, 
           }}
         >
           Sign in with Google
         </Button>
         <Button
           variant="outlined"
-          startIcon={<AppleIcon />}
+          startIcon={<AppleIcon  sx={{ fontSize : "25px !important" }}/>}
           fullWidth
           sx={{
-            mb: 3,
+            mb: 2,
             textTransform: "none",
             color : "#fff",
             bgcolor : "lightgrey",
+            height: "48px",
             borderColor: "lightgrey",
             "&:hover": {
-              bgcolor: "#fff",
-              color : "#25BAA2",
-            borderColor: "#25BAA2",
+              bgcolor: "lightgrey",
+              color : "#fff",
+              borderColor: "lightgrey",
             },
           }}
         >
@@ -111,7 +128,7 @@ export default function Login() {
           label="Email"
           variant="outlined"
           fullWidth
-          sx={{ mb: 3 }}
+          sx={{ mb: 2 }}
           onChange={(e) => setCredentialData({...credentialData, email : e.target.value})}
         />
         <TextField
@@ -119,7 +136,7 @@ export default function Login() {
           type="password"
           variant="outlined"
           fullWidth
-          sx={{ mb: 4 }}
+          sx={{ mb: 2 }}
           onChange={(e) => setCredentialData({...credentialData, password : e.target.value})}
         />
 

@@ -58,7 +58,7 @@ function getSizeStyle(size) {
       };
     case 'sm':
       return {
-        fontSize: '0.875rem',
+        fontSize: '1rem',
         width: 32,
         height: 32
       };

@@ -1,6 +1,7 @@
 // ==============================|| DEFAULT THEME - TYPOGRAPHY ||============================== //
 
 export default function Typography(fontFamily) {
+  // fontFamily = fontFamily || (fontFamily : "urbanist");
   return {
     htmlFontSize: 16,
     fontFamily,
@@ -35,7 +36,7 @@ export default function Typography(fontFamily) {
     },
     h6: {
       fontWeight: 400,
-      fontSize: '0.875rem',
+      fontSize: '1rem',
       lineHeight: 1.57
     },
     caption: {
@@ -44,7 +45,7 @@ export default function Typography(fontFamily) {
       lineHeight: 1.66
     },
     body1: {
-      fontSize: '0.875rem',
+      fontSize: '1rem',
       lineHeight: 1.57
     },
     body2: {
@@ -52,7 +53,7 @@ export default function Typography(fontFamily) {
       lineHeight: 1.66
     },
     subtitle1: {
-      fontSize: '0.875rem',
+      fontSize: '1rem',
       fontWeight: 600,
       lineHeight: 1.57
     },
