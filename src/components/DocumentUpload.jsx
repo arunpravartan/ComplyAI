@@ -19,7 +19,7 @@ const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile
             <Autocomplete
                 disablePortal
                 options={options}
-                sx={{ width: 600, mt: 5, bgcolor: "white", borderRadius: "4px" }}
+                sx={{ maxWidth: 600, mt: 5, bgcolor: "white", borderRadius: "4px" }}
                 onChange={handleProcedureTypeChange}
                 renderInput={(params) => <TextField {...params} label="Procedure Type" />}
             />
@@ -32,12 +32,12 @@ const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile
             <TextField
                 id="outlined-multiline-flexible"
                 label="Provide any additional instructions"
-                sx={{ width: 600, mt: 3, bgcolor: "white", borderRadius: "4px" }}
+                sx={{ maxWidth: 600, mt: 3, bgcolor: "white", borderRadius: "4px" }}
                 multiline
                 maxRows={4}
                 onChange={handleInstructionChange} // Handle change
             />
-            <Box sx={{ mt: 3, textAlign: "center", width: 600,  display: fileDetails ? "flex" : "block", 
+            <Box sx={{ mt: 3, textAlign: "center", maxWidth: 600,  display: fileDetails ? "flex" : "block", 
                 justifyContent: fileDetails ? "space-between" : "center", }}>
                 {fileDetails && (
                     <Box sx={{ display: "flex", alignItems: "center", textAlign: "left" }}>
@@ -57,7 +57,7 @@ const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile
                     </Button>
                 </Box>
             </Box>
-            <Box sx={{ mt: 3, textAlign: "center", width: 600 }}>
+            <Box sx={{ mt: 3, textAlign: "center", maxWidth: 600 }}>
                 <Button variant="contained" className="disabled" disabled={!fileDetails?.name} sx={{
                     color: "#ffff !important", bgcolor: fileDetails?.name ? "#25BAA2" : "#b8b8b8 !important", "&:hover": {
                         bgcolor: fileDetails?.name ? "#25BAA2" : "#b8b8b8 !important", // Ensure the hover color matches the default

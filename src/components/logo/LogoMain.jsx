@@ -12,7 +12,7 @@ import logo from 'assets/images/icons/ComplyAI.png';
 
 // ==============================|| LOGO SVG ||============================== //
 
-const Logo = () => {
+const Logo = ({ sx }) => {
   const theme = useTheme();
 
   return (
@@ -56,7 +56,7 @@ const Logo = () => {
           </linearGradient>
         </defs>
       </svg> */}
-      <img src={logo} alt="ComplyAI" />
+      <img src={logo} style={sx} alt="ComplyAI" />
     </>
   );
 };

@@ -4,15 +4,13 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import FormComponent from "./DocumentUpload";
-import { Typography } from "@mui/material";
-import RestoreIcon from '@mui/icons-material/Restore';
+import { Typography, Paper, BottomNavigation, BottomNavigationAction, useTheme, useMediaQuery } from "@mui/material";
+import { Home, Search, Person, Restore as RestoreIcon } from "@mui/icons-material";
 
 import UploadDocxFile from "./UploadDocxFile";
 import ResponseData from "./ResponseData";
 import CircularProgress from '@mui/material/CircularProgress';
 import ChatInput from "./ChatInput";
-
-import GroupTabs from './GroupTabs';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -66,6 +64,9 @@ function a11yProps(index) {
 }
 
 export default function Dashboard() {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  
   const [value, setValue] = React.useState(0);
   const [newvalue, newSetValue] = React.useState(0);
   const [isUpload, setIsUpload] = React.useState(false);
@@ -80,6 +81,7 @@ export default function Dashboard() {
   
   const [formDetails, setFormDetails] = React.useState({});
   const handleChange = (event, nValue) => {
+    console.log("Switching to: ", nValue);
     setValue(nValue);
   };
   const NewhandleChange = (event, newvalue) => {
@@ -196,14 +198,14 @@ export default function Dashboard() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 0, borderColor: 'divider' }}>
+      {isDesktop ? (<Box sx={{ borderBottom: 0, borderColor: 'divider' }}>
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="custom tabs example"
           sx={{
             '&.MuiTabs-root': {
-              minHeight: "0px !important"
+              minHeight: "0px !important",
             },
             '& .MuiTabs-flexContainer': {
               justifyContent: "space-between"
@@ -245,112 +247,115 @@ export default function Dashboard() {
             }}
           />
         </Tabs>
-      </Box>
-      <CustomTabPanel value={value} index={0}>
-        <Box sx={{ borderBottom: 0, borderColor: 'divider' }}>
-          <Tabs
-            value={newvalue}
-            onChange={NewhandleChange}
-            aria-label="custom tabs example"
-            sx={{
-              '&.MuiTabs-root': {
-                minHeight: "0px !important"
-              },
-              '& .MuiTabs-flexContainer': {
-                display: "flex"
-              },
-              '& .MuiTab-root': {
-                background: "white",
-                color: "lightgrey",
-                borderRadius: "8px 8px 0 0",
-                border: "1px solid lightgray",
-                borderBottom: 0,
-                flex: 1,
-                maxWidth: "50%"
-              },
-              '& .Mui-selected': {
-                background: "#F6F6F6",
-                color: "#00579B",
-                borderRadius: "8px 8px 0 0",
-                border: "0px solid lightgray",
-                fontWeight: 800
-              },
-            }}
-            TabIndicatorProps={{
-              style: { display: 'none' }, // Optional: hide the tab indicator if not needed
-            }}
-          >
-            <Tab
-              label="Validate Record"
-              value={0}
-              sx={{
-                textAlign: 'center',
-                fontWeight: 'bold',
-              }}
-            />
-            <Tab
-              label="Validate Procedure"
-              value={1}
-              sx={{
-                textAlign: 'center',
-                fontWeight: 'bold',
-                '&.MuiTab-root': {
-                  background: "#00579B",
-                  color: "white",
-                },
-              }}
-            />
-          </Tabs>
-        </Box>
-        <NewCustomTabPanel value={newvalue} index={0}>
-          {isLoading && (
-            <Box
-              sx={{
-                position: 'absolute', // Restrict to parent container
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent white background
-                backdropFilter: 'blur(0.5px)', // Adds a blur effect to the background
-                zIndex: 10, // Ensure it appears above content within the TabPanel
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column', // Stack spinner and message vertically\
-              }}
-            >
-              <CircularProgress /><br/>
-              <Typography variant="body1" sx={{  color: 'gray' }}>
-                {message || "Uploading file..."}
-              </Typography>
+      </Box>) : (
+        <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={3}>
+          <BottomNavigation value={value} onChange={handleChange}>
+            <BottomNavigationAction label="Home" icon={<Home />} value={0} />
+            <BottomNavigationAction label="Search" icon={<Search />} value={1} />
+          </BottomNavigation>
+        </Paper>
+      )}
+      <CustomTabPanel value={value} index={value}>
+        { value === 0 ?
+          (<Box>
+            <Box sx={{ borderBottom: 0, borderColor: 'divider' }}>
+              <Tabs
+                value={newvalue}
+                onChange={NewhandleChange}
+                aria-label="custom tabs example"
+                sx={{
+                  '&.MuiTabs-root': {
+                    minHeight: "0px !important"
+                  },
+                  '& .MuiTabs-flexContainer': {
+                    display: "flex"
+                  },
+                  '& .MuiTab-root': {
+                    background: "white",
+                    color: "grey",
+                    borderRadius: "8px 8px 0 0",
+                    border: "1px solid lightgray",
+                    borderBottom: 0,
+                    flex: 1,
+                    maxWidth: "50%"
+                  },
+                  '& .Mui-selected': {
+                    background: "#F6F6F6",
+                    color: "#00579B",
+                    borderRadius: "8px 8px 0 0",
+                    border: "0px solid lightgray",
+                    fontWeight: 800
+                  },
+                }}
+                TabIndicatorProps={{
+                  style: { display: 'none' }, // Optional: hide the tab indicator if not needed
+                }}
+              >
+                <Tab
+                  label="Validate Record"
+                  value={0}
+                  sx={{
+                    textAlign: 'center',
+                    fontWeight: 'bold',
+                  }}
+                />
+                <Tab
+                  label="Validate Procedure"
+                  value={1}
+                  sx={{
+                    textAlign: 'center',
+                    fontWeight: 'bold'
+                  }}
+                />
+              </Tabs>
             </Box>
-          )}
-          {isUpload && !isAuditCompleted ? <UploadDocxFile onClose={handleClose} uploadFile={handleUploadFile} /> :
-            isAuditCompleted && !isUpload ? <ResponseData findings={auditData} fileName= {uploadFile?.name} formDetails = {formDetails} /> :
-              <FormComponent
-                options={procedureType}
-                onUpload={handleUpload}
-                uploadFileForAudit={uploadFileForAudit}
-                removeUploadFile={removeUploadFile}
-                fileDetails={uploadFile}
-                formDetails = {formDetails}
-                onFormDetailsChange={handleFormDetailsChange}
-              />
-          }
-          {!isAuditCompleted &&
-            <Box sx={{ mt: 13, width: "100%", display: "flex", alignItems: "right", gap: 1, justifyContent: "flex-end", marginLeft: "-50px" }}>
-              <RestoreIcon />
-              <Typography>History</Typography>
-            </Box>}
-        </NewCustomTabPanel>
-        <NewCustomTabPanel value={newvalue} index={1}>
-          {/* <GroupTabs /> */}
-          Comming soon...
-        </NewCustomTabPanel>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <ChatInput />
+            <NewCustomTabPanel value={newvalue} index={0}>
+              {isLoading && (
+                <Box
+                  sx={{
+                    position: 'absolute', // Restrict to parent container
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent white background
+                    backdropFilter: 'blur(0.5px)', // Adds a blur effect to the background
+                    zIndex: 10, // Ensure it appears above content within the TabPanel
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'column', // Stack spinner and message vertically\
+                  }}
+                >
+                  <CircularProgress /><br/>
+                  <Typography variant="body1" sx={{  color: 'gray' }}>
+                    {message || "Uploading file..."}
+                  </Typography>
+                </Box>
+              )}
+              {isUpload && !isAuditCompleted ? <UploadDocxFile onClose={handleClose} uploadFile={handleUploadFile} /> :
+                isAuditCompleted && !isUpload ? <ResponseData findings={auditData} fileName= {uploadFile?.name} formDetails = {formDetails} /> :
+                  <FormComponent
+                    options={procedureType}
+                    onUpload={handleUpload}
+                    uploadFileForAudit={uploadFileForAudit}
+                    removeUploadFile={removeUploadFile}
+                    fileDetails={uploadFile}
+                    formDetails = {formDetails}
+                    onFormDetailsChange={handleFormDetailsChange}
+                  />
+              }
+              {!isAuditCompleted &&
+                <Box sx={{ mt: 13, width: "100%", display: "flex", alignItems: "right", gap: 1, justifyContent: "flex-end", marginLeft: "-50px" }}>
+                  <RestoreIcon />
+                  <Typography>History</Typography>
+                </Box>}
+            </NewCustomTabPanel>
+            <NewCustomTabPanel value={newvalue} index={1}>
+              {/* <GroupTabs /> */}
+              Comming soon...
+            </NewCustomTabPanel>
+          </Box>) : <ChatInput /> }
       </CustomTabPanel>
     </Box>
   );

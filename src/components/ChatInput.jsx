@@ -8,25 +8,25 @@ import AddToPhotos from '@mui/icons-material/AddToPhotos';
 import BorderColor from '@mui/icons-material/BorderColor';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
+import { identity } from "lodash";
 
 const ChatInput = () => {
   let scrollRef = useRef(null);
   const [question, setQuestion] = useState("");
-  const [responseHistory, setResponseHistory] = useState({});
+  const [responseHistory, setResponseHistory] = useState([]);
   const [preLoading, setPreLoader] = useState(false);
   const [editKey, setEdit] = useState(null);
   const [ans, setAnswer] = useState("");
 
   useEffect(() => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, [responseHistory, question]);
+  }, [responseHistory]);
 
   const handleQuestionSubmit = () => {
     if (!question) return;
     setPreLoader(true);
-    const qus = question;
     setQuestion("");
-    getResponse(qus);
+    getResponse(question);
   };
   const getResponse = async (question) => {
     try {
@@ -47,10 +47,12 @@ const ChatInput = () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       const data = { response: "To make the white box match the width of the Grid item while keeping it positioned at the bottom of the screen, you need to ensure the Stack takes up the width of the Grid item it's inside." }
       if (data && data?.response) {
-        setResponseHistory((prevHistory) => ({
-          ...prevHistory,
-          [question]: data?.response,
-        }));
+        setAnswer(data?.response);
+        setResponseHistory([...responseHistory, {
+            id: Date?.now(),
+            question,
+            answer: data?.response
+          }]);
       }
     } catch (e) {
       console.log(e);
@@ -96,6 +98,7 @@ const ChatInput = () => {
     setEdit(key);
     setAnswer(value);
   };
+
   const handleSave = (key, value) => {
     setEdit(null);
     setResponseHistory((prevHistory) => ({
@@ -107,41 +110,38 @@ const ChatInput = () => {
   return (
     <Box>
       <Grid container spacing={2}>
-        {
-          responseHistory && Object.keys(responseHistory).length > 0 ? (
-            <Grid item xs={2} sx={{ backgroundColor: "#d3d3d3", }}>
-              <Box className="hide-scroll" sx={{
-                height: '71.6vh', overflowY: 'auto',
-                scrollbarWidth: 'none',
-                paddingRight: "20px",
-                msOverflowStyle: 'none',
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                }
-              }}>
-                {Object.keys(responseHistory).reverse().map((key) => (
-                  <Card key={key} sx={{ padding: "5px", marginBottom: "2px", bgcolor: "white" }}>
-                    <Typography>{key}</Typography>
-                  </Card>
-                ))}
-              </Box>
-            </Grid>
-          ) : <Grid item xs={2}></Grid>
-        }
-
-        <Grid item xs={10}>
+        <Grid item xs={0} md={3} padding={0} sx={{ padding: 0, backgroundColor: "#d3d3d3", display: { xs: "none", sm: 'none', md: 'block' } }}>
+          <Box className="hide-scroll" sx={{
+            height: '71.6vh', 
+            overflowY: 'auto',
+            padding: 2,
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            }
+          }}>
+            {responseHistory?.length && [...responseHistory].reverse()?.map((item) => (
+              <Card key={item?.id} sx={{ padding: "5px", marginBottom: "2px", bgcolor: "white" }}>
+                <Typography>{item?.question}</Typography>
+              </Card>
+            ))}
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={9}>
           <Box >
             <Stack className="hide-scroll" ref={scrollRef} sx={{
-              height: '60vh', overflowY: 'auto',
+              height: '70vh', 
+              overflowY: 'auto',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
               '&::-webkit-scrollbar': {
                 display: 'none',
               }
             }}>
-              {Object.entries(responseHistory).map(([key, value]) => (
+              {responseHistory?.length && responseHistory?.map(({ id, question, answer }) => (
                 <Stack
-                  key={key}
+                  key={id}
                   sx={{
                     padding: "10px",
                     marginBottom: "10px",
@@ -152,21 +152,21 @@ const ChatInput = () => {
                   <Stack sx={{ width: "100%", alignItems: "flex-end" }} >
                     <Card sx={{ width: "30%", padding: "10px", bgcolor: "white", borderRadius: "8px 0px 8px 8px" }} >
                       <Typography variant="body1">
-                        {key}
+                        {question}
                       </Typography>
                     </Card>
                   </Stack>
-                  <Stack sx={{ width: "100%", alignItems: "flex-end" }}>
+                  <Stack sx={{ width: "100%", alignItems: "flex-start" }}>
                     <Card sx={{ padding: "10px", width: "80%", bgcolor: "white", borderRadius: "0px 8px 8px 8px" }}>
-                      {editKey === key ?
+                      {editKey === id ?
                         <FormControl fullWidth>
                           <TextField
                             variant="standard"
-                            value={ans}
+                            value={answer}
                             multiline
-                            placeholder="Ask me anything about _, _ and _"
+                            placeholder="Ask me anything"
                             InputProps={{ disableUnderline: true }}
-                            onChange={(e) => setAnswer(e.target.value)}
+                            onChange={(e) => setQuestion(e.target.value)}
                             sx={{
                               flex: 1,
                               marginRight: "10px",
@@ -197,23 +197,24 @@ const ChatInput = () => {
                                   boxShadow: "0px 5px 8px rgba(0, 0, 0, 0.15)",
                                 },
                               }}
-                              onClick={() => handleSave(key, ans)}
+                              onClick={() => handleSave(id)}
                               startIcon={<CheckIcon />}
                             >
                             </Button>
                           </Box>
                         </FormControl> :
-                        <>
+                        <Box>
                           <Typography variant="body1">
-                            {value}
+                            {answer}
                           </Typography>
                           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "12px" }}>
                             <Box sx={{ display: "flex", gap: 3 }}>
-                              <ContentCopyIcon sx={{ fontSize: "1rem", cursor: "pointer", marginRight: "10px" }} onClick={() => handleCopyClick(value)} />
-                              <BorderColor sx={{ fontSize: "1rem", cursor: "pointer" }} onClick={() => handleEditClick(key, value)} />
+                              <ContentCopyIcon sx={{ fontSize: "1rem", cursor: "pointer", marginRight: "10px" }} onClick={() => handleCopyClick(answer)} />
+                              <BorderColor sx={{ fontSize: "1rem", cursor: "pointer" }} onClick={() => handleEditClick(id)} />
                             </Box>
-                            <Share sx={{ fontSize: "1rem", cursor: "pointer", marginRight: "5px" }} onClick={() => handleShareClick(value)} />
-                          </Box></>
+                            <Share sx={{ fontSize: "1rem", cursor: "pointer", marginRight: "5px" }} onClick={() => handleShareClick(answer)} />
+                          </Box>
+                        </Box>
                       }
                     </Card>
                   </Stack>
@@ -221,14 +222,7 @@ const ChatInput = () => {
               ))}
             </Stack>
             {/* ask me textfield & send button */}
-            <Stack
-              sx={{
-                position: "fixed",
-                bottom: 0,
-                left: "16.666%",
-                width: "83.333%",
-                padding: "55px"
-              }}>
+            <Stack>
               <FormControl fullWidth>
                 <Box
                   sx={{

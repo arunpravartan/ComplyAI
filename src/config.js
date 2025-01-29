@@ -2,7 +2,7 @@
 
 const config = {
   defaultPath: '/dashboard/default',
-  fontFamily: `'Urbanist'`,
+  fontFamily: `'Urbanist', sarif`,
   i18n: 'en',
   miniDrawer: false,
   container: true,
