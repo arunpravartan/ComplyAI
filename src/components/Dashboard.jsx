@@ -5,7 +5,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import FormComponent from "./DocumentUpload";
 import { Typography, Paper, BottomNavigation, BottomNavigationAction, useTheme, useMediaQuery } from "@mui/material";
-import { Home, Search, Person, Restore as RestoreIcon } from "@mui/icons-material";
+import { Home, Search, Person, Restore as RestoreIcon, PlayArrow, Grade, Stop, PanoramaFishEye, Forum } from "@mui/icons-material";
 
 import UploadDocxFile from "./UploadDocxFile";
 import ResponseData from "./ResponseData";
@@ -20,7 +20,7 @@ function CustomTabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      style={{ background: value ? "#f6f6f6" : "white", color: value ? "white" : "black", height: "78vh", borderRadius: "0 0 8px 8px" }}
+      style={{ background: value ? "#f6f6f6" : "white", color: value ? "white" : "black", height: "80vh", borderRadius: "0 0 8px 8px" }}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -227,17 +227,44 @@ export default function Dashboard() {
           }}
         >
           <Tab
+            icon={<PlayArrow />} 
+            iconPosition="start"
             label="Document Validation"
-            value={0}
             sx={{
+              flex: 1,
+              maxWidth: '15vw',
               textAlign: 'center',
               fontWeight: 'bold',
             }}
           />
           <Tab
-            label="Ask Me Anything"
-            value={1}
+            icon={<Stop />} 
+            iconPosition="start"
+            label="Update Knowledge"
             sx={{
+              flex: 1,
+              maxWidth: '15vw',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            }}
+          />
+          <Tab
+            icon={<PanoramaFishEye />} 
+            iconPosition="start"
+            label="Predictive Analysis"
+            sx={{
+              flex: 1,
+              maxWidth: '15vw',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            }}
+          />
+          <Tab
+            icon={<Grade />} 
+            iconPosition="start"
+            label="Ask Me Anything"
+            sx={{
+              marginLeft: 'auto', 
               textAlign: 'center',
               fontWeight: 'bold',
               '&.MuiTab-root': {
@@ -249,9 +276,11 @@ export default function Dashboard() {
         </Tabs>
       </Box>) : (
         <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={3}>
-          <BottomNavigation value={value} onChange={handleChange}>
-            <BottomNavigationAction label="Home" icon={<Home />} value={0} />
-            <BottomNavigationAction label="Search" icon={<Search />} value={1} />
+          <BottomNavigation showLabels value={value} onChange={handleChange}>
+            <BottomNavigationAction label="Document" icon={<PlayArrow />} value={0} />
+            <BottomNavigationAction label="Knowledge" icon={<Stop />} value={1} />
+            <BottomNavigationAction label="Analysis" icon={<PanoramaFishEye />} value={2} />
+            <BottomNavigationAction label="Ask Me" icon={<Grade />} value={3} />
           </BottomNavigation>
         </Paper>
       )}
@@ -355,7 +384,7 @@ export default function Dashboard() {
               {/* <GroupTabs /> */}
               Comming soon...
             </NewCustomTabPanel>
-          </Box>) : <ChatInput /> }
+          </Box>) : (value === 3 ? <ChatInput /> : <Box sx={{ color: "#00579B" }} >Comming soon...</Box>) }
       </CustomTabPanel>
     </Box>
   );

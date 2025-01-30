@@ -92,7 +92,7 @@ export default function Profile() {
       >
         <Stack direction="row" spacing={1.25} alignItems="center" sx={{ p: 0.5 }}>
           <Avatar alt="profile user" src={avatar1} size="sm" />
-          <Typography variant="subtitle1" sx={{ textTransform: 'capitalize' }}>
+          <Typography variant="subtitle1" sx={{ textTransform: 'capitalize', display: { xs: 'none', sm: 'none', md: 'block' } }}>
           { user?.name }
           </Typography>
         </Stack>
@@ -133,7 +133,7 @@ export default function Profile() {
                           </Stack>
                         </Stack>
                       </Grid>
-                      <Grid item>
+                      <Grid item sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
                         <Tooltip title="Logout">
                           <IconButton size="large" sx={{ color: 'text.primary' }} onClick={ () => logout() }>
                             <LogoutOutlined />
