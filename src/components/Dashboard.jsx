@@ -375,7 +375,7 @@ export default function Dashboard() {
                   />
               }
               {!isAuditCompleted &&
-                <Box sx={{ mt: 13, width: "100%", display: "flex", alignItems: "right", gap: 1, justifyContent: "flex-end", marginLeft: "-50px" }}>
+                <Box sx={{ display: 'none', mt: 13, width: "100%", alignItems: "right", gap: 1, justifyContent: "flex-end", marginLeft: "-50px" }}>
                   <RestoreIcon />
                   <Typography>History</Typography>
                 </Box>}

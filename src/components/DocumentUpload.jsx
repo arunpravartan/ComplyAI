@@ -15,8 +15,9 @@ const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile
       };
 
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "left" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <Autocomplete
+                fullWidth
                 disablePortal
                 options={options}
                 sx={{ maxWidth: 600, mt: 5, bgcolor: "white", borderRadius: "4px" }}
@@ -30,6 +31,7 @@ const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile
                 renderInput={(params) => <TextField {...params} label="Select Template" />}
             /> */}
             <TextField
+                fullWidth
                 id="outlined-multiline-flexible"
                 label="Provide any additional instructions"
                 sx={{ maxWidth: 600, mt: 3, bgcolor: "white", borderRadius: "4px" }}
