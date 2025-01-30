@@ -1,24 +1,35 @@
-import React, {useRef } from "react";
-import { Card, CardHeader, CardContent, Box, Typography, Button, IconButton } from "@mui/material";
+import React, { useRef } from "react";
+import {
+  Card, CardHeader, CardContent, Box, Typography, Button,
+  IconButton, Dialog, Slide, useMediaQuery
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-const UploadDocxFile = ({onClose, uploadFile}) => {
-const [file, setFile] = React.useState(null);
-const fileInputRef = useRef(null);
+import { useTheme } from "@mui/material/styles";
+const UploadDocxFile = ({ onClose, uploadFile }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [open, setOpen] = React.useState(true);
 
-const onUploadFile = () => {   
+  const [file, setFile] = React.useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleFileSelect = () => {
     fileInputRef.current.click();
-}
+    setOpen(true)
+  }
 
-const onFileChange = (event) => {
+  const onFileChange = (event) => {
     const file = event.target.files[0];
     uploadFile(file);
   };
 
-    return (
+  return (
+    <>
+      {/* Normal UI for Desktop */}
+      {!isMobile ? (
         <Card sx={{ width: 500, borderRadius: 2, boxShadow: 3 }}>
-          {/* Card Header */}
           <CardHeader
             title="Upload Data Docx"
             titleTypographyProps={{ align: "center", fontWeight: "bold" }}
@@ -29,10 +40,7 @@ const onFileChange = (event) => {
             }
             sx={{ textAlign: "center", pb: 0 }}
           />
-    
-          {/* Card Content */}
           <CardContent>
-            {/* Drag and Drop Box */}
             <Box
               sx={{
                 height: 146.5,
@@ -50,26 +58,96 @@ const onFileChange = (event) => {
               <Typography sx={{ mt: 1, color: "#666" }}>Drag and Drop or Click to Upload</Typography>
               <Typography sx={{ mt: 2, color: "#666" }}>OR</Typography>
             </Box>
-    
-            {/* Upload Button */}
             <Box sx={{ mt: 3, textAlign: "center" }}>
-            <Button
-              variant="contained"
-              sx={{ bgcolor: "#25BAA2", "&:hover": { bgcolor: "#25BAA2" } }}
-            onClick={onUploadFile}>
-              Upload File
-            </Button>
+              <Button variant="contained" sx={{ bgcolor: "#25BAA2" }} onClick={handleFileSelect}>
+                Upload File
+              </Button>
             </Box>
             <input
-                type="file"
-                ref={fileInputRef}
-                accept=".docx"
-                style={{ display: 'none' }}
-                onChange={onFileChange}
+              type="file"
+              ref={fileInputRef}
+              accept=".docx"
+              style={{ display: "none" }}
+              onChange={onFileChange}
             />
           </CardContent>
         </Card>
-      );
+      ) : (
+        <>
+          {/* Bottom Drawer for Mobile */}
+          <Dialog
+            open={open}
+            onClose={() => setOpen(false)}
+            TransitionComponent={Slide}
+            TransitionProps={{ direction: "up" }}
+            fullWidth
+            maxWidth="sm" // Ensures a controlled width
+            sx={{
+              position: "fixed", 
+              bottom: 0,
+              left: 0,
+              right: 0,
+              "& .MuiDialog-paper": {
+                borderRadius: "20px 20px 0 0",
+                maxWidth: "100%",
+                position: "absolute",
+                bottom: 0,
+                margin: "0 auto",
+                maxHeight: "60vh", // Prevents covering full screen
+                overflowY: "auto",
+                width: "100%",
+              },
+            }}
+          >
+            <Card sx={{ width: "100%", boxShadow: 3, borderRadius: 2 }}>
+              <CardHeader
+                title="Upload Data Docx"
+                titleTypographyProps={{ align: "center", fontWeight: "bold" }}
+                action={
+                  <IconButton onClick={() => { setOpen(false); onClose(); }}>
+                    <CloseIcon />
+                  </IconButton>
+                }
+                sx={{ textAlign: "center", pb: 0 }}
+              />
+              <CardContent>
+                <Box
+                  sx={{
+                    height: 146.5,
+                    border: "2px dashed #ccc",
+                    borderRadius: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    bgcolor: "#f9f9f9",
+                    mb: 3,
+                  }}
+                >
+                  <CloudUploadIcon sx={{ fontSize: 40, color: "#1976d2" }} />
+                  <Typography sx={{ mt: 1, color: "#666" }}>Drag and Drop or Click to Upload</Typography>
+                  <Typography sx={{ mt: 2, color: "#666" }}>OR</Typography>
+                </Box>
+                <Box sx={{ mt: 3, textAlign: "center" }}>
+                  <Button variant="contained" sx={{ bgcolor: "#25BAA2" }} onClick={handleFileSelect}>
+                    Upload File
+                  </Button>
+                </Box>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  accept=".docx"
+                  style={{ display: "none" }}
+                  onChange={onFileChange}
+                />
+              </CardContent>
+            </Card>
+          </Dialog>
+
+        </>
+      )}
+    </>
+  );
 };
 
 export default UploadDocxFile;

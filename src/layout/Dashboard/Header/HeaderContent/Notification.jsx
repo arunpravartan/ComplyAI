@@ -162,7 +162,7 @@ export default function Notification() {
                         primary={
                           <Typography variant="h6">
                             <Typography component="span" variant="subtitle1">
-                              Aida Burg
+                             Your document has been successfully validated
                             </Typography>{' '}
                             commented your post.
                           </Typography>

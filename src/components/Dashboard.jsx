@@ -345,7 +345,7 @@ export default function Dashboard() {
                     onFormDetailsChange={handleFormDetailsChange}
                   />
               }
-              {!isAuditCompleted &&
+              {!isAuditCompleted && isDesktop &&
                 <Box sx={{ mt: 13, width: "100%", display: "flex", alignItems: "right", gap: 1, justifyContent: "flex-end", marginLeft: "-50px" }}>
                   <RestoreIcon />
                   <Typography>History</Typography>

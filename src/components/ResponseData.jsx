@@ -8,7 +8,7 @@ import {
   Grid,
   Paper,
   IconButton,
-  Card
+  Card, useMediaQuery
 } from "@mui/material";
 import RestoreIcon from '@mui/icons-material/Restore';
 import { fontSize, Stack } from "@mui/system";
@@ -18,8 +18,10 @@ import History from '@mui/icons-material/History';
 import AddToPhotos from '@mui/icons-material/AddToPhotos';
 import BorderColor from '@mui/icons-material/BorderColor';
 
+import { useTheme } from "@mui/material/styles";
 const ResponseData = ({findings, fileName, formDetails}) => {
-  
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const handleShareClick = () => {
     const textToShare = document.querySelector('.findings-text')?.textContent || '';
 
@@ -76,14 +78,14 @@ const handleDownloadClick = () => {
   return (
     <Box>
       <Grid container spacing={2}>
-        <Grid item xs={9}>
-          <Box sx={{ padding: '5px 30px 10px 20px' }}>
-            <Paper className="hide-scroll" sx={{ backgroundColor: 'white', padding: '10px', height: '59vh', overflowY: 'auto', // Enable vertical scrolling
-    scrollbarWidth: 'none', // Hide scrollbar (Firefox)
-    msOverflowStyle: 'none', // Hide scrollbar (IE/Edge)
-    '&::-webkit-scrollbar': {
-      display: 'none', // Hide scrollbar (Chrome, Safari, Edge)
-    }, }}>
+        <Grid item xs={12} md={9} lg={9}>
+          <Box sx={{ padding: !isMobile? '5px 30px 10px 20px' : '' }}>
+            <Paper className="hide-scroll" sx={{ backgroundColor: 'white', padding: '10px', height: isMobile? '45vh' : '59vh', overflowY: 'auto', // Enable vertical scrolling
+            scrollbarWidth: 'none', // Hide scrollbar (Firefox)
+            msOverflowStyle: 'none', // Hide scrollbar (IE/Edge)
+            '&::-webkit-scrollbar': {
+              display: 'none', // Hide scrollbar (Chrome, Safari, Edge)
+            }, }}>
               <Typography><strong>CAPA ID:</strong> 2023-003</Typography>
               <Typography><strong>Title:</strong> {fileName}</Typography>
               <Typography><strong>Associated Deviation ID:</strong> DEV-567</Typography>
@@ -105,28 +107,70 @@ const handleDownloadClick = () => {
             </Paper>
           </Box>
         </Grid>
-        <Grid item xs={3}>
-          <Stack direction="column" spacing={2} sx={{ padding: '30px 60px 0px 60px', height: '54vh' }}>
-            <Button variant="contained" startIcon={<Download />} sx={{ backgroundColor: "#25BAA2", color: "white", "&:hover": { backgroundColor: "#25BAA2", color: "white"}}} onClick={() => { handleDownloadClick() }}>
-              Download
-            </Button>
-            {/* <Button variant="outlined" startIcon={<BorderColor />} sx={{ border: '4px solid', color: "#25BAA2", "&:hover": { border: '4px solid', color: "#25BAA2"}}} onClick={() => { handleEditClick() }}>
-              Edit
-            </Button> */}
-            <Button variant="outlined" startIcon={<Share />} sx={{ border: '4px solid', color: "#25BAA2", "&:hover": { border: '4px solid', color: "#25BAA2"}}} onClick={() => { handleShareClick() }}>
-              Share
-            </Button>
-            <Button variant="outlined" startIcon={<AddToPhotos />} sx={{ border: '4px solid', color: "#25BAA2", "&:hover": { border: '4px solid', color: "#25BAA2"}}} onClick={() => handleCopyClick()}>
-              Copy
-            </Button>
-          </Stack>
-          <Stack direction="column" spacing={2} sx={{ padding: '10px 140px'}}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1, justifyContent: "flex-end",}}>
-              <RestoreIcon />
-              <Typography>History</Typography>
-            </Box>
-          </Stack>
-        </Grid>
+        <Grid item xs={12} md={3} lg={3}>
+      {/* Stack for Buttons */}
+      <Stack
+        direction={isMobile ? "row" : "column"} // Change direction based on screen size
+        spacing={2}
+        sx={{
+          padding: isMobile ? "10px" : "30px 60px 0px 60px",
+          height: "54vh",
+          justifyContent: isMobile ? "center" : "flex-start", // Center buttons in mobile view
+          flexWrap: isMobile ? "wrap" : "nowrap", // Wrap buttons in small screens if needed
+        }}
+      >
+        <Button
+          variant="contained"
+          startIcon={<Download />}
+          sx={{
+            backgroundColor: "#25BAA2",
+            color: "white",
+            "&:hover": { backgroundColor: "#25BAA2", color: "white" },
+            ...(isMobile && { width: "40px", height: "fit-content", fontSize : '20px' })
+          }}
+          onClick={handleDownloadClick}
+        >
+         {!isMobile && "Download"} 
+        </Button>
+        
+        <Button
+          variant="outlined"
+          startIcon={<Share />}
+          sx={{
+            border: "4px solid",
+            color: "#25BAA2",
+            "&:hover": { border: "4px solid", color: "#25BAA2" },
+            ...(isMobile && { width: "40px", height: "fit-content", fontSize : '20px' })
+          }}
+          onClick={handleShareClick}
+        > 
+        {!isMobile && "Share"} 
+        </Button>
+        <Button
+          variant="outlined"
+          startIcon={<AddToPhotos />}
+          sx={{
+            border: "4px solid",
+            color: "#25BAA2",
+            "&:hover": { border: "4px solid", color: "#25BAA2" },
+            ...(isMobile && { width: "40px", height: "fit-content", fontSize : '20px' })
+          }}
+          onClick={handleCopyClick}
+        >
+          {!isMobile && "Copy"} 
+        </Button>
+      </Stack>
+
+      {/* History Section (Visible Only on Larger Screens) */}
+      {!isMobile && (
+        <Stack direction="column" spacing={2} sx={{ padding: "10px 140px" }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, justifyContent: "flex-end" }}>
+            <RestoreIcon />
+            <Typography>History</Typography>
+          </Box>
+        </Stack>
+      )}
+    </Grid>
       </Grid>
     </Box>
   );

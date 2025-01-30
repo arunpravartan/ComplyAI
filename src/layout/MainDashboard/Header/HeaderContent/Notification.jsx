@@ -130,17 +130,13 @@ export default function Notification() {
                     <ListItemButton selected={read > 0}>
                       <ListItemAvatar>
                         <Avatar sx={{ color: 'success.main', bgcolor: 'success.lighter' }}>
-                          <GiftOutlined />
+                          <MessageOutlined />
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
                         primary={
                           <Typography variant="h6">
-                            It&apos;s{' '}
-                            <Typography component="span" variant="subtitle1">
-                              Cristina danny&apos;s
-                            </Typography>{' '}
-                            birthday today.
+                            Your last document has been successfully validated.
                           </Typography>
                         }
                         secondary="2 min ago"
@@ -161,10 +157,7 @@ export default function Notification() {
                       <ListItemText
                         primary={
                           <Typography variant="h6">
-                            <Typography component="span" variant="subtitle1">
-                              Aida Burg
-                            </Typography>{' '}
-                            commented your post.
+                            Your document has been successfully validated.
                           </Typography>
                         }
                         secondary="5 August"
@@ -187,7 +180,7 @@ export default function Notification() {
                           <Typography variant="h6">
                             Your Profile is Complete &nbsp;
                             <Typography component="span" variant="subtitle1">
-                              60%
+                              100%
                             </Typography>{' '}
                           </Typography>
                         }
@@ -200,7 +193,7 @@ export default function Notification() {
                       </ListItemSecondaryAction>
                     </ListItemButton>
                     <Divider />
-                    <ListItemButton>
+                    {/* <ListItemButton>
                       <ListItemAvatar>
                         <Avatar sx={{ color: 'primary.main', bgcolor: 'primary.lighter' }}>C</Avatar>
                       </ListItemAvatar>
@@ -233,7 +226,7 @@ export default function Notification() {
                           </Typography>
                         }
                       />
-                    </ListItemButton>
+                    </ListItemButton> */}
                   </List>
                 </MainCard>
               </ClickAwayListener>

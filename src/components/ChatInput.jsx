@@ -30,29 +30,29 @@ const ChatInput = () => {
   };
   const getResponse = async (question) => {
     try {
-      // const res = await fetch("/knowledgehub/ask", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ question }),
-      // });
+      const res = await fetch("/knowledgehub/ask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question }),
+      });
 
-      // if (!res.ok) {
-      //   throw new Error("Failed to fetch response from server");
-      // }
+      if (!res.ok) {
+        throw new Error("Failed to fetch response from server");
+      }
 
-      // const data = await res.json();
-      
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const data = { response: "To make the white box match the width of the Grid item while keeping it positioned at the bottom of the screen, you need to ensure the Stack takes up the width of the Grid item it's inside." }
+      const data = await res.json();
+
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
+      // const data = { response: "To make the white box match the width of the Grid item while keeping it positioned at the bottom of the screen, you need to ensure the Stack takes up the width of the Grid item it's inside." }
       if (data && data?.response) {
         setAnswer(data?.response);
         setResponseHistory([...responseHistory, {
-            id: Date?.now(),
-            question,
-            answer: data?.response
-          }]);
+          id: Date?.now(),
+          question,
+          answer: data?.response
+        }]);
       }
     } catch (e) {
       console.log(e);
@@ -94,44 +94,48 @@ const ChatInput = () => {
     }
   };
 
-  const handleEditClick = (key, value) => {
-    setEdit(key);
-    setAnswer(value);
+  const handleEditClick = (id, question, answer) => {
+    setEdit(id);
+    setAnswer(answer);
   };
 
-  const handleSave = (key, value) => {
+  const handleSave = (id, value) => {
     setEdit(null);
-    setResponseHistory((prevHistory) => ({
-      ...prevHistory,
-      [key]: value,
-    }));
+    setResponseHistory((prevHistory) =>
+      prevHistory.map((item) =>
+        item.id === id ? { ...item, answer: ans } : item
+      )
+    );
   };
 
   return (
     <Box>
       <Grid container spacing={2}>
-        <Grid item xs={0} md={3} padding={0} sx={{ padding: 0, backgroundColor: "#d3d3d3", display: { xs: "none", sm: 'none', md: 'block' } }}>
-          <Box className="hide-scroll" sx={{
-            height: '71.6vh', 
-            overflowY: 'auto',
-            padding: 2,
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            '&::-webkit-scrollbar': {
-              display: 'none',
-            }
-          }}>
-            {responseHistory?.length && [...responseHistory].reverse()?.map((item) => (
-              <Card key={item?.id} sx={{ padding: "5px", marginBottom: "2px", bgcolor: "white" }}>
-                <Typography>{item?.question}</Typography>
-              </Card>
-            ))}
-          </Box>
-        </Grid>
+        {responseHistory?.length ? (
+          <Grid item xs={0} md={3} padding={0} sx={{ padding: 0, backgroundColor: "#d3d3d3", display: { xs: "none", sm: 'none', md: 'block' } }}>
+            <Box className="hide-scroll" sx={{
+              height: '71.6vh',
+              overflowY: 'auto',
+              padding: 2,
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              }
+            }}>
+              {responseHistory?.length && [...responseHistory].reverse()?.map((item) => (
+                <Card key={item?.id} sx={{ padding: "5px", marginBottom: "2px", bgcolor: "white" }}>
+                  <Typography>{item?.question}</Typography>
+                </Card>
+              ))}
+            </Box>
+          </Grid>
+        ) : (<Grid item xs={0} md={3}></Grid>)}
+
         <Grid item xs={12} md={9}>
           <Box >
             <Stack className="hide-scroll" ref={scrollRef} sx={{
-              height: '70vh', 
+              height: '65vh',
               overflowY: 'auto',
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -162,11 +166,11 @@ const ChatInput = () => {
                         <FormControl fullWidth>
                           <TextField
                             variant="standard"
-                            value={answer}
+                            value={ans}
                             multiline
                             placeholder="Ask me anything"
                             InputProps={{ disableUnderline: true }}
-                            onChange={(e) => setQuestion(e.target.value)}
+                            onChange={(e) => setAnswer(e.target.value)}
                             sx={{
                               flex: 1,
                               marginRight: "10px",
@@ -210,7 +214,7 @@ const ChatInput = () => {
                           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "12px" }}>
                             <Box sx={{ display: "flex", gap: 3 }}>
                               <ContentCopyIcon sx={{ fontSize: "1rem", cursor: "pointer", marginRight: "10px" }} onClick={() => handleCopyClick(answer)} />
-                              <BorderColor sx={{ fontSize: "1rem", cursor: "pointer" }} onClick={() => handleEditClick(id)} />
+                              <BorderColor sx={{ fontSize: "1rem", cursor: "pointer" }} onClick={() => handleEditClick(id, question, answer)} />
                             </Box>
                             <Share sx={{ fontSize: "1rem", cursor: "pointer", marginRight: "5px" }} onClick={() => handleShareClick(answer)} />
                           </Box>
