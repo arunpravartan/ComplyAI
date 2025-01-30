@@ -1,23 +1,22 @@
-import PropTypes from 'prop-types';
-
 // material-ui
-import { useTheme } from '@mui/material/styles';
+import { useTheme, useMediaQuery } from '@mui/material';
 
 // project import
 import TitleStyled from './TitleStyled';
 import Logo from 'components/logo';
-import Typography from 'themes/typography';
 
 // ==============================|| DRAWER HEADER ||============================== //
 
 export default function Title() {
   const theme = useTheme();
-const handleLogoClick = () => {
-  window.location.href = '/';
-}
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+  const handleLogoClick = () => {
+    window.location.href = '/';
+  }
   return (
     <TitleStyled theme={theme}>
-      <Logo sx={{ width: 'auto', height: 35 }} onClick={() => {handleLogoClick()}} />
+      <Logo sx={{ width: 'auto', maxHeight: isDesktop ? 30 : 20 }} onClick={() => {handleLogoClick()}} />
     </TitleStyled>
   );
 }
