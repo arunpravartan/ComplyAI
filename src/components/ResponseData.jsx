@@ -21,7 +21,7 @@ import BorderColor from '@mui/icons-material/BorderColor';
 import { useTheme } from "@mui/material/styles";
 const ResponseData = ({findings, fileName, formDetails}) => {
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const handleShareClick = () => {
     const textToShare = document.querySelector('.findings-text')?.textContent || '';
 
@@ -80,7 +80,7 @@ const handleDownloadClick = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={9} lg={9}>
           <Box sx={{ padding: !isMobile? '5px 30px 10px 20px' : '' }}>
-            <Paper className="hide-scroll" sx={{ backgroundColor: 'white', padding: '10px', height: isMobile? '45vh' : '59vh', overflowY: 'auto', // Enable vertical scrolling
+            <Paper className="hide-scroll" sx={{ backgroundColor: 'white', padding: '10px', height: isMobile? '53vh' : '59vh', overflowY: 'auto', // Enable vertical scrolling
             scrollbarWidth: 'none', // Hide scrollbar (Firefox)
             msOverflowStyle: 'none', // Hide scrollbar (IE/Edge)
             '&::-webkit-scrollbar': {
@@ -114,7 +114,7 @@ const handleDownloadClick = () => {
         spacing={2}
         sx={{
           padding: isMobile ? "10px" : "30px 60px 0px 60px",
-          height: "54vh",
+          height: isMobile ? "fit-content" : "54vh",
           justifyContent: isMobile ? "center" : "flex-start", // Center buttons in mobile view
           flexWrap: isMobile ? "wrap" : "nowrap", // Wrap buttons in small screens if needed
         }}
@@ -123,6 +123,7 @@ const handleDownloadClick = () => {
           variant="contained"
           startIcon={<Download />}
           sx={{
+            "& .MuiButton-startIcon": { margin: { xs: 0, md: '0 8px 0 -4px' } },
             backgroundColor: "#25BAA2",
             color: "white",
             "&:hover": { backgroundColor: "#25BAA2", color: "white" },
@@ -137,9 +138,10 @@ const handleDownloadClick = () => {
           variant="outlined"
           startIcon={<Share />}
           sx={{
-            border: "4px solid",
+            "& .MuiButton-startIcon": { margin: { xs: 0, md: '0 8px 0 -4px' } },
             color: "#25BAA2",
-            "&:hover": { border: "4px solid", color: "#25BAA2" },
+            borderColor: "#25BAA2",
+            "&:hover": { color: "#25BAA2" },
             ...(isMobile && { width: "40px", height: "fit-content", fontSize : '20px' })
           }}
           onClick={handleShareClick}
@@ -150,7 +152,8 @@ const handleDownloadClick = () => {
           variant="outlined"
           startIcon={<AddToPhotos />}
           sx={{
-            border: "4px solid",
+            "& .MuiButton-startIcon": { margin: { xs: 0, md: '0 8px 0 -4px' } },
+            borderColor: "#25BAA2",
             color: "#25BAA2",
             "&:hover": { border: "4px solid", color: "#25BAA2" },
             ...(isMobile && { width: "40px", height: "fit-content", fontSize : '20px' })

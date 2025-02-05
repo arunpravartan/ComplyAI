@@ -6,7 +6,6 @@ import AuthProvider from 'hooks/useAuthContext';
 import ScrollTop from 'components/ScrollTop';
 
 import AppRouter from 'routes';
-
 // ==============================|| APP - THEME, ROUTER, LOCAL ||============================== //
 
 export default function App() {

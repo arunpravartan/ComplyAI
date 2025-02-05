@@ -2,6 +2,18 @@
 
 export default function Theme(colors) {
   const { blue, red, gold, cyan, green, grey } = colors;
+  const primaryPalette = [
+    "#E3EFF9", // 50 - Very Light Blue
+    "#BCD7F0", // 100 - Lighter Blue
+    "#92BDE7", // 200 - Light Blue
+    "#669FDA", // 300 - Soft Blue
+    "#3E85CE", // 400 - Sky Blue
+    "#00579B", // 500 - Main Primary
+    "#004F8E", // 600 - Slightly Darker
+    "#00467D", // 700 - Dark Blue
+    "#003A69", // 800 - Deep Navy Blue
+    "#002748"  // 900 - Almost Black Blue
+  ];
   const greyColors = {
     0: grey[0],
     50: grey[1],
@@ -25,16 +37,21 @@ export default function Theme(colors) {
 
   return {
     primary: {
-      lighter: blue[0],
-      100: blue[1],
-      200: blue[2],
-      light: blue[3],
-      400: blue[4],
-      main: blue[5],
-      dark: blue[6],
-      700: blue[7],
-      darker: blue[8],
-      900: blue[9],
+      lighter: primaryPalette[0],
+      50: primaryPalette[0],
+      100: primaryPalette[1],
+      200: primaryPalette[2],
+      light: primaryPalette[2],
+      300: primaryPalette[3],
+      400: primaryPalette[4],
+      500: primaryPalette[5],
+      main: primaryPalette[5],
+      600: primaryPalette[6],
+      dark: primaryPalette[7],
+      700: primaryPalette[7],
+      800: primaryPalette[7],
+      darker: primaryPalette[9],
+      900: primaryPalette[9],
       contrastText
     },
     secondary: {

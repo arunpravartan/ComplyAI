@@ -5,7 +5,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import FormComponent from "./DocumentUpload";
 import { Typography, Paper, BottomNavigation, BottomNavigationAction, useTheme, useMediaQuery } from "@mui/material";
-import { Home, Search, Person, Restore as RestoreIcon } from "@mui/icons-material";
+import { Home, Search, Person, Restore as RestoreIcon, PlayArrow, Grade, Stop, PanoramaFishEye, Forum, Circle, DocumentScanner, LibraryBooks, Insights, Try } from "@mui/icons-material";
 
 import UploadDocxFile from "./UploadDocxFile";
 import ResponseData from "./ResponseData";
@@ -20,10 +20,10 @@ function CustomTabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      style={{ background: value ? "#f6f6f6" : "white", color: value ? "white" : "black", height: "78vh", borderRadius: "0 0 8px 8px" }}
+      style={{ background: value ? "#f6f6f6" : "white", color: value ? "white" : "black", height: "80vh", borderRadius: "0 0 8px 8px" }}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: 1 }}>{children}</Box>}
     </div>
   );
 }
@@ -36,7 +36,7 @@ function NewCustomTabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      style={{ background: "#F6F6F6", color: "#00579B", height: "65vh", borderRadius: "0 0 8px 8px" }}
+      style={{ background: "#F6F6F6", color: "#00579B", height: "71vh", borderRadius: "0 0 8px 8px" }}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -197,7 +197,7 @@ export default function Dashboard() {
   }
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }}> 
       {isDesktop ? (<Box sx={{ borderBottom: 0, borderColor: 'divider' }}>
         <Tabs
           value={value}
@@ -227,17 +227,44 @@ export default function Dashboard() {
           }}
         >
           <Tab
+            icon={<DocumentScanner />} 
+            iconPosition="start"
             label="Document Validation"
-            value={0}
             sx={{
+              flex: 1,
+              maxWidth: '15vw',
               textAlign: 'center',
               fontWeight: 'bold',
             }}
           />
           <Tab
-            label="Ask Me Anything"
-            value={1}
+            icon={<LibraryBooks />} 
+            iconPosition="start"
+            label="Update Knowledge"
             sx={{
+              flex: 1,
+              maxWidth: '15vw',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            }}
+          />
+          <Tab
+            icon={<Insights />} 
+            iconPosition="start"
+            label="Predictive Analysis"
+            sx={{
+              flex: 1,
+              maxWidth: '15vw',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            }}
+          />
+          <Tab
+            icon={<Try />} 
+            iconPosition="start"
+            label="Ask Me Anything"
+            sx={{
+              marginLeft: 'auto', 
               textAlign: 'center',
               fontWeight: 'bold',
               '&.MuiTab-root': {
@@ -249,9 +276,11 @@ export default function Dashboard() {
         </Tabs>
       </Box>) : (
         <Paper sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }} elevation={3}>
-          <BottomNavigation value={value} onChange={handleChange}>
-            <BottomNavigationAction label="Home" icon={<Home />} value={0} />
-            <BottomNavigationAction label="Search" icon={<Search />} value={1} />
+          <BottomNavigation showLabels value={value} onChange={handleChange}>
+            <BottomNavigationAction label="Document" icon={<DocumentScanner />} value={0} />
+            <BottomNavigationAction label="Knowledge" icon={<LibraryBooks />} value={1} />
+            <BottomNavigationAction label="Analysis" icon={<Insights />} value={2} />
+            <BottomNavigationAction label="Ask Me" icon={<Try />} value={3} />
           </BottomNavigation>
         </Paper>
       )}
@@ -345,17 +374,17 @@ export default function Dashboard() {
                     onFormDetailsChange={handleFormDetailsChange}
                   />
               }
-              {!isAuditCompleted && isDesktop &&
+              {/* {!isAuditCompleted && isDesktop &&
                 <Box sx={{ mt: 13, width: "100%", display: "flex", alignItems: "right", gap: 1, justifyContent: "flex-end", marginLeft: "-50px" }}>
                   <RestoreIcon />
                   <Typography>History</Typography>
-                </Box>}
+                </Box>} */}
             </NewCustomTabPanel>
             <NewCustomTabPanel value={newvalue} index={1}>
               {/* <GroupTabs /> */}
               Comming soon...
             </NewCustomTabPanel>
-          </Box>) : <ChatInput /> }
+          </Box>) : (value === 3 ? <ChatInput /> : <Box sx={{ color: "#00579B" }} >Comming soon...</Box>) }
       </CustomTabPanel>
     </Box>
   );

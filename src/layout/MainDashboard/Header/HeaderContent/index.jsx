@@ -25,7 +25,7 @@ export default function HeaderContent() {
       <Box sx={{ width: '100%', ml: 1 }} />
       <Notification />
       <Profile />
-      {downLG && <MobileSection />}
+      {/* {downLG && <MobileSection />} */}
     </>
   );
 }

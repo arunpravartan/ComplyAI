@@ -29,6 +29,7 @@ const UploadDocxFile = ({ onClose, uploadFile }) => {
     <>
       {/* Normal UI for Desktop */}
       {!isMobile ? (
+        <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
         <Card sx={{ width: 500, borderRadius: 2, boxShadow: 3 }}>
           <CardHeader
             title="Upload Data Docx"
@@ -72,6 +73,7 @@ const UploadDocxFile = ({ onClose, uploadFile }) => {
             />
           </CardContent>
         </Card>
+        </Box>
       ) : (
         <>
           {/* Bottom Drawer for Mobile */}
