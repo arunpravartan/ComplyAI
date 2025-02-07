@@ -128,7 +128,7 @@ export default function Profile() {
                           <Stack>
                             <Typography variant="h6">{ user?.name }</Typography>
                             <Typography variant="body2" color="text.secondary">
-                              UI/UX Designer
+                              { user?.designation }
                             </Typography>
                           </Stack>
                         </Stack>

@@ -79,7 +79,7 @@ const UploadDocxFile = ({ onClose, uploadFile }) => {
           {/* Bottom Drawer for Mobile */}
           <Dialog
             open={open}
-            onClose={() => setOpen(false)}
+            onClose={() => {setOpen(false); onClose();}}
             TransitionComponent={Slide}
             TransitionProps={{ direction: "up" }}
             fullWidth

@@ -17,9 +17,9 @@ import Share from '@mui/icons-material/Share';
 import History from '@mui/icons-material/History';
 import AddToPhotos from '@mui/icons-material/AddToPhotos';
 import BorderColor from '@mui/icons-material/BorderColor';
-
+import { jsPDF } from "jspdf";
 import { useTheme } from "@mui/material/styles";
-const ResponseData = ({findings, fileName, formDetails}) => {
+const ResponseData = ({findings, fileName, formDetails, handleResetClick}) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const handleShareClick = () => {
@@ -61,15 +61,41 @@ const ResponseData = ({findings, fileName, formDetails}) => {
     alert("Copied to clipboard");
 }
 
-const handleDownloadClick = () => {
-  const textToDownload = document.querySelector('.findings-text').textContent;
-  const blob = new Blob([textToDownload], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = fileName + '.txt';
-  link.click();
-  URL.revokeObjectURL(url);
+const handleDownloadClick = (findings, fileName) => {
+  const doc = new jsPDF();
+
+  let yPosition = 10; // Initial Y position for text
+  doc.setFontSize(13); // Set font size to 13px
+
+  findings.forEach((finding, index) => {
+    // Finding Title (Bold)
+    doc.setFont("helvetica", "bold");
+    doc.text(`Finding ${index + 1}:`, 10, yPosition);
+    yPosition += 8;
+
+    // Finding Issue (Normal)
+    doc.setFont("helvetica", "normal");
+    doc.text(finding.issue, 10, yPosition, { maxWidth: 180 });
+    yPosition += 12; // Added gap between Finding & Recommendation
+
+    // Recommendation Title (Bold)
+    doc.setFont("helvetica", "bold");
+    doc.text("Recommendation:", 10, yPosition);
+    yPosition += 8;
+
+    // Recommendation Text (Normal)
+    doc.setFont("helvetica", "normal");
+    doc.text(finding.recommendation, 10, yPosition, { maxWidth: 180 });
+    yPosition += 15; // Extra space before next Finding
+
+    // Ensure the content does not overflow the page
+    if (yPosition > 270) {
+      doc.addPage();
+      yPosition = 10;
+    }
+  });
+
+  doc.save(`${fileName}.pdf`);
 };
 
 // const handleEditClick = () => {
@@ -113,14 +139,14 @@ const handleDownloadClick = () => {
         direction={isMobile ? "row" : "column"} // Change direction based on screen size
         spacing={2}
         sx={{
-          padding: isMobile ? "10px" : "30px 60px 0px 60px",
+          padding: isMobile ? "1px" : "30px 60px 0px 60px",
           height: isMobile ? "fit-content" : "54vh",
           justifyContent: isMobile ? "center" : "flex-start", // Center buttons in mobile view
           flexWrap: isMobile ? "wrap" : "nowrap", // Wrap buttons in small screens if needed
         }}
       >
         <Button
-          variant="contained"
+          variant="outlined"
           startIcon={<Download />}
           sx={{
             "& .MuiButton-startIcon": { margin: { xs: 0, md: '0 8px 0 -4px' } },
@@ -129,7 +155,7 @@ const handleDownloadClick = () => {
             "&:hover": { backgroundColor: "#25BAA2", color: "white" },
             ...(isMobile && { width: "40px", height: "fit-content", fontSize : '20px' })
           }}
-          onClick={handleDownloadClick}
+          onClick={() => {handleDownloadClick(findings, fileName)}}
         >
          {!isMobile && "Download"} 
         </Button>
@@ -148,6 +174,7 @@ const handleDownloadClick = () => {
         > 
         {!isMobile && "Share"} 
         </Button>
+
         <Button
           variant="outlined"
           startIcon={<AddToPhotos />}
@@ -155,12 +182,25 @@ const handleDownloadClick = () => {
             "& .MuiButton-startIcon": { margin: { xs: 0, md: '0 8px 0 -4px' } },
             borderColor: "#25BAA2",
             color: "#25BAA2",
-            "&:hover": { border: "4px solid", color: "#25BAA2" },
+            "&:hover": { color: "#25BAA2" },
             ...(isMobile && { width: "40px", height: "fit-content", fontSize : '20px' })
           }}
           onClick={handleCopyClick}
         >
           {!isMobile && "Copy"} 
+        </Button>
+
+        <Button
+          variant="outlined"
+          sx={{
+             margin: { xs: 0, md: '0 8px 0 -4px' },
+            borderColor: "#25BAA2",
+            color: "#25BAA2",
+            ...(isMobile && { width: "40px", height: "fit-content", fontSize : '12px' })
+          }}
+          onClick={handleResetClick}
+        >
+          Reset
         </Button>
       </Stack>
 

@@ -114,6 +114,13 @@ export default function Dashboard() {
     handleSubmit()
   };
 
+  const handleResetClick = () => {
+   setIsAuditCompleted(false);
+   setAuditData([]);
+   setIsLoading(false);
+   setuploadFileData(null);
+   setuploadFile(null);
+  }
   const handleSubmit = async () => {
     if (!uploadFileData) {
       alert("Please upload a doc file before submitting.");
@@ -252,6 +259,7 @@ export default function Dashboard() {
             icon={<Insights />} 
             iconPosition="start"
             label="Predictive Analysis"
+            disabled
             sx={{
               flex: 1,
               maxWidth: '15vw',
@@ -348,7 +356,7 @@ export default function Dashboard() {
                     width: '100%',
                     height: '100%',
                     backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent white background
-                    backdropFilter: 'blur(0.5px)', // Adds a blur effect to the background
+                    backdropFilter: 'blur(5px)', // Adds a blur effect to the background
                     zIndex: 10, // Ensure it appears above content within the TabPanel
                     display: 'flex',
                     alignItems: 'center',
@@ -357,13 +365,13 @@ export default function Dashboard() {
                   }}
                 >
                   <CircularProgress /><br/>
-                  <Typography variant="body1" sx={{  color: 'gray' }}>
+                  <Typography variant="body1" sx={{  color: 'balck', fontWeight: 'bold', fontSize: '20px' }}>
                     {message || "Uploading file..."}
                   </Typography>
                 </Box>
               )}
               {isUpload && !isAuditCompleted ? <UploadDocxFile onClose={handleClose} uploadFile={handleUploadFile} /> :
-                isAuditCompleted && !isUpload ? <ResponseData findings={auditData} fileName= {uploadFile?.name} formDetails = {formDetails} /> :
+                isAuditCompleted && !isUpload ? <ResponseData findings={auditData} fileName= {uploadFile?.name} formDetails = {formDetails} handleResetClick={handleResetClick} /> :
                   <FormComponent
                     options={procedureType}
                     onUpload={handleUpload}
@@ -382,9 +390,9 @@ export default function Dashboard() {
             </NewCustomTabPanel>
             <NewCustomTabPanel value={newvalue} index={1}>
               {/* <GroupTabs /> */}
-              Comming soon...
+              Coming soon...
             </NewCustomTabPanel>
-          </Box>) : (value === 3 ? <ChatInput /> : <Box sx={{ color: "#00579B" }} >Comming soon...</Box>) }
+          </Box>) : (value === 3 ? <ChatInput /> : <Box sx={{ color: "#00579B", textAlign: "center", fontSize: "20px", fontWeight: "bold", mt: 30 }} >Coming soon...</Box>) }
       </CustomTabPanel>
     </Box>
   );

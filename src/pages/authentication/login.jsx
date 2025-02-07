@@ -23,14 +23,17 @@ export default function Login() {
   const credentials = [{
     name: 'Manish Srivastava',
     email: 'manish@pravartan.co.in',
+    designation : 'CEO of Pravartan',
     password: 'pravartan@123'
   }, {
     name: 'Arun Kumar',
     email: 'arun.kumar@pravartan.co.in',
+    designation : 'Product Engineer',
     password: 'arun@123'
   }, {
     name: 'Gaurav Pandey',
     email: 'gaurav.pandey@pravartan.co.in',
+    designation : 'Product Engineer',
     password: 'gaurav@123'
   }];
 
