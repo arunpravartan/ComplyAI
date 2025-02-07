@@ -20,10 +20,10 @@ function CustomTabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      style={{ background: value ? "#f6f6f6" : "white", color: value ? "white" : "black", height: "80vh", borderRadius: "0 0 8px 8px" }}
+      style={{ background: value ? "#f5f5f5" : "white", color: "black", height: "80vh", borderRadius: "0 0 8px 8px" }}
       {...other}
     >
-      {value === index && <Box sx={{ p: 1 }}>{children}</Box>}
+      {value === index && <Box height="100%" sx={{ p: 1 }}>{children}</Box>}
     </div>
   );
 }
@@ -39,7 +39,7 @@ function NewCustomTabPanel(props) {
       style={{ background: "#F6F6F6", color: "#00579B", height: "71vh", borderRadius: "0 0 8px 8px" }}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box height="100%" sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -242,6 +242,15 @@ export default function Dashboard() {
               maxWidth: '15vw',
               textAlign: 'center',
               fontWeight: 'bold',
+              '&.MuiTab-root': {
+                borderBottom: "1px solid lightgrey",
+              },
+              '&.MuiTab-root:hover': {
+                backgroundColor: 'white'
+              },
+              '&.MuiTab-root.Mui-selected': {
+                borderBottom: 0,
+              },
             }}
           />
           <Tab
@@ -253,6 +262,16 @@ export default function Dashboard() {
               maxWidth: '15vw',
               textAlign: 'center',
               fontWeight: 'bold',
+              '&.MuiTab-root': {
+                background: "#f6f6f6",
+                color: "#929292",
+                borderBottom: "1px solid lightgrey",
+              },
+              '&.MuiTab-root.Mui-selected': {
+                background: "#f5f5f5 !important",
+                color: "#929292",
+                borderBottom: 0,
+              },
             }}
           />
           <Tab
@@ -265,6 +284,16 @@ export default function Dashboard() {
               maxWidth: '15vw',
               textAlign: 'center',
               fontWeight: 'bold',
+              '&.MuiTab-root': {
+                background: "#f6f6f6",
+                color: "#929292",
+                borderBottom: "1px solid lightgrey",
+              },
+              '&.MuiTab-root.Mui-selected': {
+                background: "#f5f5f5 !important",
+                color: "#929292",
+                borderBottom: 0,
+              },
             }}
           />
           <Tab
@@ -355,8 +384,8 @@ export default function Dashboard() {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent white background
-                    backdropFilter: 'blur(5px)', // Adds a blur effect to the background
+                    backgroundColor: 'rgba(255, 255, 255, 0.66)', // Semi-transparent white background
+                    backdropFilter: 'blur(0.5px)', // Adds a blur effect to the background
                     zIndex: 10, // Ensure it appears above content within the TabPanel
                     display: 'flex',
                     alignItems: 'center',
@@ -364,10 +393,12 @@ export default function Dashboard() {
                     flexDirection: 'column', // Stack spinner and message vertically\
                   }}
                 >
-                  <CircularProgress /><br/>
-                  <Typography variant="body1" sx={{  color: 'balck', fontWeight: 'bold', fontSize: '20px' }}>
-                    {message || "Uploading file..."}
-                  </Typography>
+                  <Box display="flex" flexDirection="column" alignItems="center" bgcolor="#f5f5f5" boxShadow="0px 4px 10px rgba(0, 0, 0, 0.2)" padding="50px" borderRadius="8px"> 
+                    <CircularProgress /><br/>
+                    <Typography variant="body1" sx={{  color: 'gray' }}>
+                      {message || "Uploading file..."}
+                    </Typography>
+                  </Box>
                 </Box>
               )}
               {isUpload && !isAuditCompleted ? <UploadDocxFile onClose={handleClose} uploadFile={handleUploadFile} /> :
@@ -390,9 +421,9 @@ export default function Dashboard() {
             </NewCustomTabPanel>
             <NewCustomTabPanel value={newvalue} index={1}>
               {/* <GroupTabs /> */}
-              Coming soon...
+              <Box display="flex" justifyContent="center" alignItems="center" height="100%">Comming soon...</Box>
             </NewCustomTabPanel>
-          </Box>) : (value === 3 ? <ChatInput /> : <Box sx={{ color: "#00579B", textAlign: "center", fontSize: "20px", fontWeight: "bold", mt: 30 }} >Coming soon...</Box>) }
+          </Box>) : (value === 3 ? <ChatInput /> : <Box display="flex" justifyContent="center" alignItems="center" height="100%"  sx={{ color: "#00579B", backgroundColor: "#f6f6f6", borderRadius: "8px" }} >Comming soon...</Box>) }
       </CustomTabPanel>
     </Box>
   );

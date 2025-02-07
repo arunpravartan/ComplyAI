@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useCallback } from "react";
+import { useDropzone } from 'react-dropzone'
 import {
   Card, CardHeader, CardContent, Box, Typography, Button,
   IconButton, Dialog, Slide, useMediaQuery
@@ -11,8 +12,8 @@ const UploadDocxFile = ({ onClose, uploadFile }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [open, setOpen] = React.useState(true);
+  const [error, setError] = useState("");
 
-  const [file, setFile] = React.useState(null);
   const fileInputRef = useRef(null);
 
   const handleFileSelect = () => {
@@ -25,6 +26,37 @@ const UploadDocxFile = ({ onClose, uploadFile }) => {
     uploadFile(file);
   };
 
+  const onDrop = useCallback((acceptedFiles) => {
+    acceptedFiles.forEach((file) => {
+      uploadFile(file);
+      // const reader = new FileReader()
+
+      // reader.onabort = () => console.log('file reading was aborted')
+      // reader.onerror = () => console.log('file reading has failed')
+      // reader.onload = () => {
+      // // Do whatever you want with the file contents
+      //   const binaryStr = reader.result
+      //   console.log(binaryStr)
+      // }
+      // reader.readAsArrayBuffer(file)
+    });
+  }, []);
+
+  const onDropRejected = useCallback(() => {
+    setError("Only .doc and .docx files are allowed.");
+    alert("Only .doc and .docx files are allowed.");
+  }, []);
+
+  const { getRootProps, getInputProps } = useDropzone({ 
+    onDrop,
+    onDropRejected,
+    multiple: false,
+    accept: {
+      "application/msword": [".doc"],
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
+    },
+  })
+
   return (
     <>
       {/* Normal UI for Desktop */}
@@ -32,6 +64,7 @@ const UploadDocxFile = ({ onClose, uploadFile }) => {
         <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
         <Card sx={{ width: 500, borderRadius: 2, boxShadow: 3 }}>
           <CardHeader
+            color="primary.main"
             title="Upload Data Docx"
             titleTypographyProps={{ align: "center", fontWeight: "bold" }}
             action={
@@ -54,23 +87,12 @@ const UploadDocxFile = ({ onClose, uploadFile }) => {
                 bgcolor: "#f9f9f9",
                 mb: 3,
               }}
+              {...getRootProps()}
             >
               <CloudUploadIcon sx={{ fontSize: 40, color: "#1976d2" }} />
-              <Typography sx={{ mt: 1, color: "#666" }}>Drag and Drop or Click to Upload</Typography>
-              <Typography sx={{ mt: 2, color: "#666" }}>OR</Typography>
+              <input {...getInputProps()} />
+              <Typography sx={{ mt: 1, color: "#666" }}>Drag and Drop or Click to Select</Typography>
             </Box>
-            <Box sx={{ mt: 3, textAlign: "center" }}>
-              <Button variant="contained" sx={{ bgcolor: "#25BAA2" }} onClick={handleFileSelect}>
-                Upload File
-              </Button>
-            </Box>
-            <input
-              type="file"
-              ref={fileInputRef}
-              accept=".docx"
-              style={{ display: "none" }}
-              onChange={onFileChange}
-            />
           </CardContent>
         </Card>
         </Box>
@@ -125,27 +147,15 @@ const UploadDocxFile = ({ onClose, uploadFile }) => {
                     bgcolor: "#f9f9f9",
                     mb: 3,
                   }}
+                  {...getRootProps()}
                 >
                   <CloudUploadIcon sx={{ fontSize: 40, color: "#1976d2" }} />
-                  <Typography sx={{ mt: 1, color: "#666" }}>Drag and Drop or Click to Upload</Typography>
-                  <Typography sx={{ mt: 2, color: "#666" }}>OR</Typography>
+                  <input {...getInputProps()} />
+                  <Typography sx={{ mt: 1, color: "#666" }}>Click to Select & Upload</Typography>
                 </Box>
-                <Box sx={{ mt: 3, textAlign: "center" }}>
-                  <Button variant="contained" sx={{ bgcolor: "#25BAA2" }} onClick={handleFileSelect}>
-                    Upload File
-                  </Button>
-                </Box>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  accept=".docx"
-                  style={{ display: "none" }}
-                  onChange={onFileChange}
-                />
               </CardContent>
             </Card>
           </Dialog>
-
         </>
       )}
     </>
