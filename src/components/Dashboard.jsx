@@ -278,7 +278,6 @@ export default function Dashboard() {
             icon={<Insights />} 
             iconPosition="start"
             label="Predictive Analysis"
-            disabled
             sx={{
               flex: 1,
               maxWidth: '15vw',
