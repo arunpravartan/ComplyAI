@@ -55,7 +55,7 @@ const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile
                 maxRows={4}
                 onChange={handleInstructionChange} // Handle change
             />
-            <Box sx={{ mt: 3, textAlign: "center", maxWidth: 600,  display: fileDetails ? "flex" : "block", 
+            <Box sx={{ mt: 3, textAlign: "center", maxWidth: 600, flexDirection: 'column', rowGap: 2,  display: fileDetails ? "flex" : "block", 
                 justifyContent: fileDetails ? "space-between" : "center", }}>
                 {fileDetails && (
                     <Box sx={{ display: "flex", alignItems: "center", textAlign: "left" }}>
@@ -76,11 +76,18 @@ const FormComponent = ({ options, onUpload, uploadFileForAudit, removeUploadFile
                 </Box>
             </Box>
             <Box sx={{ mt: 3, textAlign: "center", maxWidth: 600 }}>
-                <Button variant="contained" className="disabled" disabled={!fileDetails?.name} sx={{
-                    color: "#ffff !important", bgcolor: fileDetails?.name ? "#25BAA2" : "#b8b8b8 !important", "&:hover": {
-                        bgcolor: fileDetails?.name ? "#25BAA2" : "#b8b8b8 !important", // Ensure the hover color matches the default
-                    }
-                }} onClick={uploadFileForAudit} >
+                <Button variant="contained" className="disabled" disabled={!fileDetails?.name || !formDetails?.procedureType} 
+                    sx={{
+                        color: "#ffff !important", 
+                        bgcolor: fileDetails?.name || !formDetails?.procedureType ? "#25BAA2" : "#b8b8b8 !important", 
+                        "&.MuiButton-root.Mui-disabled": {
+                            backgroundColor: "#b8b8b8",
+                            color: "#d9d9d9"
+                        },
+                        "&:hover": {
+                            bgcolor: fileDetails?.name || !formDetails?.procedureType ? "#25BAA2" : "#b8b8b8 !important", // Ensure the hover color matches the default
+                        }
+                    }} onClick={uploadFileForAudit} >
                     Validate
                 </Button>
             </Box>
