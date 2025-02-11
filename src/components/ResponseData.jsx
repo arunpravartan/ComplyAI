@@ -19,7 +19,7 @@ import AddToPhotos from '@mui/icons-material/AddToPhotos';
 import BorderColor from '@mui/icons-material/BorderColor';
 import { jsPDF } from "jspdf";
 import { useTheme } from "@mui/material/styles";
-const ResponseData = ({findings, fileName, formDetails, handleResetClick}) => {
+const ResponseData = ({findings, fileName, formDetails,date, handleResetClick}) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const handleShareClick = () => {
@@ -115,14 +115,14 @@ const handleDownloadClick = (findings, fileName) => {
               <Typography><strong>CAPA ID:</strong> 2023-003</Typography>
               <Typography><strong>Title:</strong> {fileName}</Typography>
               <Typography><strong>Associated Deviation ID:</strong> DEV-567</Typography>
-              <Typography><strong>Awareness Date:</strong>  {new Date().toLocaleDateString()}</Typography>
-              <Typography><strong>Date Initiated:</strong> {new Date().toLocaleDateString()}</Typography>
+              <Typography><strong>Awareness Date:</strong>  {new Date(date).toLocaleDateString() || new Date().toLocaleDateString()}</Typography>
+              <Typography><strong>Date Initiated:</strong> {new Date(date).toLocaleDateString() || new Date().toLocaleDateString()}</Typography>
               <Typography><strong>Category:</strong> {formDetails?.procedureType}</Typography>
               {/* <Typography>CAPA Owner: Ron Swanson - Quality Assurance Lead</Typography>
               <Typography>Department: Manufacturing Operations</Typography> */}
               <Box></Box>
               <Stack className="findings-text">
-              {(findings || []).map((finding, index) => (
+              {((findings || audit_data) || []).map((finding, index) => (
                   <Box sx={{ mt:2}}>
                       <Typography><strong style={{ fontSize: '16px' }}>Finding {index + 1} :</strong></Typography>
                       <Typography>{finding.issue}</Typography>

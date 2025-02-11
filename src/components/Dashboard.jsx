@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -12,6 +12,7 @@ import ResponseData from "./ResponseData";
 import CircularProgress from '@mui/material/CircularProgress';
 import ChatInput from "./ChatInput";
 
+import { useAuth } from 'hooks/useAuthContext';
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -65,6 +66,7 @@ function a11yProps(index) {
 
 export default function Dashboard() {
   const theme = useTheme();
+    const { user } = useAuth();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   
   const [value, setValue] = React.useState(0);
@@ -74,9 +76,13 @@ export default function Dashboard() {
   const [uploadFileData, setuploadFileData] = React.useState(null);
   const [isAuditCompleted, setIsAuditCompleted] = React.useState(false);
   const [auditData, setAuditData] = React.useState([]);
+  const [auditHistoryData, setAuditHistoryData] = React.useState({});
+  
+  const [historyData, setHistoryData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [message, setMessage] = React.useState("Uploading file...");
   const url = "https://complyai.pravartan.com";
+  const serverURL = 'http://localhost:1892'
 
   
   const [formDetails, setFormDetails] = React.useState({});
@@ -100,6 +106,30 @@ export default function Dashboard() {
     { label: "Complaint and Recall Management" },
     { label: "Data Management and Integrity" }
   ];
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(`${serverURL}/get-history`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_id: user?._id }),
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setHistoryData(data?.data);
+        console.log("Fetched Data:", data); 
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    }
+    fetchData(); 
+  }, [user]);
 
   const handleUpload = () => {
     setIsUpload(true)
@@ -149,7 +179,7 @@ export default function Dashboard() {
             if (currentMessageIndex < messages.length) {
               setMessage(messages[currentMessageIndex]);
               currentMessageIndex += 1;
-              setTimeout(updateMessage, 15000);
+              setTimeout(updateMessage, 5000);
             } else {
             fetchJobDetails(result?.jobid, uploadFile?.name);
             }
@@ -172,6 +202,17 @@ export default function Dashboard() {
         const jobIdResult = await jobIdResponse.json();
         if (jobIdResult && jobIdResult?.["audit-result"]?.length > 0) {
           const responceData = jobIdResult?.["audit-result"];
+          const response = await fetch(`${serverURL}/add-history`, {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json", // ✅ Required for JSON data
+            },
+            body: JSON.stringify({
+              user_id : user?._id,
+              responceData,
+              fileName: uploadFile?.name,
+            })
+          });
           setIsAuditCompleted(true);
           setAuditData(responceData);
         }
@@ -186,6 +227,13 @@ export default function Dashboard() {
     }
   };
 
+  
+  const handleHistoryClick = (id) => {
+    const selectedHistory = historyData.find((item) => item._id === id)
+    setAuditData(selectedHistory?.audit_data);
+    setAuditHistoryData(selectedHistory);
+    setIsAuditCompleted(true);
+  }
   const removeUploadFile = () => {
     setuploadFile();
     setIsUpload(false);
@@ -401,7 +449,7 @@ export default function Dashboard() {
                 </Box>
               )}
               {isUpload && !isAuditCompleted ? <UploadDocxFile onClose={handleClose} uploadFile={handleUploadFile} /> :
-                isAuditCompleted && !isUpload ? <ResponseData findings={auditData} fileName= {uploadFile?.name} formDetails = {formDetails} handleResetClick={handleResetClick} /> :
+                isAuditCompleted && !isUpload ? <ResponseData findings={auditData} fileName= {uploadFile?.name || auditHistoryData?.file_name} formDetails = {formDetails} date = {auditHistoryData?.date} handleResetClick={handleResetClick} /> :
                   <FormComponent
                     options={procedureType}
                     onUpload={handleUpload}
@@ -410,15 +458,56 @@ export default function Dashboard() {
                     fileDetails={uploadFile}
                     formDetails = {formDetails}
                     onFormDetailsChange={handleFormDetailsChange}
+                    responseHistory = {historyData}
+                    handleHistoryClick={handleHistoryClick}
+                    documentType = {"Record Type"}
                   />
               }
-              {/* {!isAuditCompleted && isDesktop &&
-                <Box sx={{ mt: 13, width: "100%", display: "flex", alignItems: "right", gap: 1, justifyContent: "flex-end", marginLeft: "-50px" }}>
-                  <RestoreIcon />
-                  <Typography>History</Typography>
-                </Box>} */}
             </NewCustomTabPanel>
             <NewCustomTabPanel value={newvalue} index={1}>
+            {isLoading && (
+                <Box
+                  sx={{
+                    position: 'absolute', // Restrict to parent container
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'rgba(255, 255, 255, 0.66)', // Semi-transparent white background
+                    backdropFilter: 'blur(0.5px)', // Adds a blur effect to the background
+                    zIndex: 10, // Ensure it appears above content within the TabPanel
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'column', // Stack spinner and message vertically\
+                  }}
+                >
+                  <Box display="flex" flexDirection="column" alignItems="center" bgcolor="#f5f5f5" boxShadow="0px 4px 10px rgba(0, 0, 0, 0.2)" padding="50px" borderRadius="8px"> 
+                    <CircularProgress /><br/>
+                    <Typography variant="body1" sx={{  color: 'gray' }}>
+                      {message || "Uploading file..."}
+                    </Typography>
+                  </Box>
+                </Box>
+              )}
+              {isUpload && !isAuditCompleted ? <UploadDocxFile onClose={handleClose} uploadFile={handleUploadFile} /> :
+                isAuditCompleted && !isUpload ? <ResponseData findings={auditData} fileName= {uploadFile?.name || auditHistoryData?.file_name} formDetails = {formDetails} date = {auditHistoryData?.date} handleResetClick={handleResetClick} /> :
+                  <FormComponent
+                    options={procedureType}
+                    onUpload={handleUpload}
+                    uploadFileForAudit={uploadFileForAudit}
+                    removeUploadFile={removeUploadFile}
+                    fileDetails={uploadFile}
+                    formDetails = {formDetails}
+                    onFormDetailsChange={handleFormDetailsChange}
+                    responseHistory = {historyData}
+                    handleHistoryClick={handleHistoryClick}
+                    documentType = {"Procedure Type"}
+                  />
+              }
+            </NewCustomTabPanel>
+            
+            <NewCustomTabPanel value={newvalue} index={2}>
               {/* <GroupTabs /> */}
               <Box display="flex" justifyContent="center" alignItems="center" height="100%">Comming soon...</Box>
             </NewCustomTabPanel>
