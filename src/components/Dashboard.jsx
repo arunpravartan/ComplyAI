@@ -82,7 +82,9 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [message, setMessage] = React.useState("Uploading file...");
   const url = "https://complyai.pravartan.com";
-  const serverURL = 'http://localhost:1892'
+  // const serverURL = 'https://complyai.pravartan.com/complyaiserver';
+  
+  const serverURL = 'http://localhost:8002';
 
   
   const [formDetails, setFormDetails] = React.useState({});

@@ -20,7 +20,8 @@ export default function Login() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const credentials = [{
+  const credentials = [
+    {
     _id : "65c23bfe678a4f3c9c1b0d45",
     name: 'Manish Srivastava',
     email: 'manish@pravartan.co.in',

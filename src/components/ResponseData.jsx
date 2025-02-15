@@ -206,8 +206,8 @@ const handleDownloadClick = (findings, fileName) => {
 
       {/* History Section (Visible Only on Larger Screens) */}
       {!isMobile && (
-        <Stack direction="column" spacing={2} sx={{ padding: "10px 140px" }}>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, justifyContent: "flex-end" }}>
+        <Stack direction="column" spacing={2} sx={{ padding: "10px 140px"}}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, justifyContent: "flex-end", cursor: "pointer" }} onClick={handleResetClick}>
             <RestoreIcon />
             <Typography>History</Typography>
           </Box>
